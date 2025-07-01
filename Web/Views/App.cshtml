@@ -1,0 +1,22 @@
+﻿@using InertiaCore
+@using InertiaCore.Utils
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title inertia>Inertia ASP.NET Core Vue Example</title>
+</head>
+<body>
+
+@await Inertia.Html(Model)
+
+@* Detect the Vite development server and inject *@
+@* the Vite client to enable Hot Module Replacement. *@
+@* In build mode, the directive will load your compiled *@
+@* and versioned assets, including any imported CSS. *@
+@Vite.Input("src/app.ts")
+
+</body>
+</html>
