@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue';
 import laravel from "laravel-vite-plugin";
 import path from "path";
 import { mkdirSync } from "fs";
+import tailwindcss from '@tailwindcss/vite'
 
 const outDir = "../wwwroot/build";
 
@@ -10,11 +11,12 @@ mkdirSync(outDir, {recursive: true});
 
 export default defineConfig({
   plugins: [
+    tailwindcss(),
     // Using laravel-vite-plugin package because it offers Vite 
     // configuration options that are also useful for other
     // server frameworks such as ASP.NET Core.
     laravel({
-      input: ["src/app.js"],
+      input: ["src/app.ts"],
       publicDirectory: outDir,
       // When your application is built using traditional server-side
       // rendering with Blade, Vite can improve your development workflow
@@ -62,6 +64,7 @@ export default defineConfig({
     },
   },
   build: {
+    target: "esnext",
     outDir,
     emptyOutDir: true,
   },

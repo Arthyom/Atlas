@@ -1,4 +1,5 @@
 ﻿{
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue", "app.ts"],
   "compilerOptions": {
     "allowJs": true,
     "target": "esnext",
@@ -19,7 +20,6 @@
     },
     "types": [
       "vite/client"
-    ],
-    "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue", "app.ts"]
+    ]
   }
 }
