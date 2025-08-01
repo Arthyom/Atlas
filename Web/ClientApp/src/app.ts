@@ -4,6 +4,11 @@ import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createPinia } from 'pinia'
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+
 // Import css resources here instead in vite.config.ts under laravel settings
 import './app.css';
 
@@ -11,6 +16,7 @@ const appName = window.document.getElementsByTagName('title')[0]?.innerText || '
 
 const pinia = createPinia()
 
+library.add(fas)
 
 await createInertiaApp({
   resolve: (name) =>
@@ -21,6 +27,7 @@ await createInertiaApp({
   setup({el, App, props, plugin}) {
     createApp({render: () => h(App, props)})
       .use(plugin)
+      .component('font-awesome-icon', FontAwesomeIcon)  
       .use(pinia)
       .mount(el);
   },

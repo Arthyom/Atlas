@@ -11,7 +11,7 @@ public class BaseService<TBaseEntity> : IBaseService<TBaseEntity> where TBaseEnt
 {
 
     private readonly IUnitOfWork _UoW;
-    private readonly IBaseRepository<TBaseEntity> _BaseRepository;
+    protected readonly IBaseRepository<TBaseEntity> _BaseRepository;
 
 
 

@@ -8,12 +8,12 @@ namespace Core.Services.Implementations.Base;
 
 public class UnitOfWork : IUnitOfWork
 {
-    private readonly AppDbContext _appContext;
+    private readonly AtlasDbContext _appContext;
     private Dictionary<Type, object> _repos;
     private bool _disposed;
 
 
-    public UnitOfWork(AppDbContext appDbContext)
+    public UnitOfWork(AtlasDbContext appDbContext)
     {
         _appContext = appDbContext;
         _repos = new Dictionary<Type, object>();
@@ -39,50 +39,48 @@ public class UnitOfWork : IUnitOfWork
 
     public int SaveChanges()
     {
-        // return _appContext.SaveChanges();
-       return 0;
+        return _appContext.SaveChanges();
     }
 
     public async Task<int> SaveChangesAsync()
     {
-        //   return await _appContext.SaveChangesAsync();
-        return await Task.FromResult(0);
+        return await _appContext.SaveChangesAsync();
     }
 
 
 
     public void Commit()
     {
-      //  _appContext.Database.CommitTransaction();
+       _appContext.Database.CommitTransaction();
     }
 
     public async Task CommitAsync()
     {
-      //  await _appContext.Database.CommitTransactionAsync();
+       await _appContext.Database.CommitTransactionAsync();
     }
 
 
 
     public void Begin()
     {
-       // _appContext.Database.BeginTransaction();
+       _appContext.Database.BeginTransaction();
     }
 
     public async Task BeginAsync()
     {
-        //await _appContext.Database.BeginTransactionAsync();
+        await _appContext.Database.BeginTransactionAsync();
     }
 
 
 
     public void RollBack()
     {
-        //_appContext.Database.RollbackTransaction();
+        _appContext.Database.RollbackTransaction();
     }
 
     public async Task RollBackAsync()
     {
-       // await _appContext.Database.RollbackTransactionAsync();
+       await _appContext.Database.RollbackTransactionAsync();
     }
 
 
