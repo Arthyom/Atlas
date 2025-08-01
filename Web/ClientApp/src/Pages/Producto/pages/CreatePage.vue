@@ -134,6 +134,7 @@ const submitForm = ()=>{
 
   if( formInfIsValid.value){
 
+    opts.onStart({})
     const f = { ... formInf.value, ... formImg.value}
 
     const form = useForm(f)
@@ -141,19 +142,7 @@ const submitForm = ()=>{
     form.post(url.value,{
       _method: 'post',
       forceFormData: true,
-      onStart: (data:any)=>{
-        console.log('onstart', data)
-      },
-      onSuccess: (data:any)=>{
-        console.log('onsuccess', data)
-
-      },
-      onFinish: (data:any)=>{
-        console.log('onfinish', data)
-      },
-      onError: (data:any) =>{
-        console.log('onerror', data)
-      }
+      opts
     })
 
     console.log('el form final ', f);

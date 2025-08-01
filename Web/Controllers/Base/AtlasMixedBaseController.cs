@@ -108,7 +108,7 @@ namespace Web.Controllers.Base
 
 
 
-        [HttpPost]
+        [HttpPost("store")]
         public async Task<IActionResult> Store([FromForm] TBaseDtoRequest entityToCreate)
         {
             try
@@ -118,8 +118,10 @@ namespace Web.Controllers.Base
                 var response = await _baseService.Store(entityToCreate);
 
                 _baseService.UoW.Commit();
+                
+                return Inertia.Location("index");
 
-                return Inertia.Render($"{_resourceName}/pages/IndexPage", entityToCreate );
+                // return Inertia.Render($"{_resourceName}/pages/IndexPage", entityToCreate);
             }
             catch (Exception ex)
             {

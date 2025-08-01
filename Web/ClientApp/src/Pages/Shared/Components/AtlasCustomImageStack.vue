@@ -30,6 +30,15 @@ const resource = ref('producto')
           </div>
         </div>
         
+        <template v-if="imagenes.length == 1">
+    <div class="avatar-group space-x-6  flex justify-center">
+      <div class="avatar avatar-placeholder border-neutral-300">
+          <div class="bg-neutral text-neutral-content w-20">
+            <span>0</span>
+          </div>
+      </div>
+    </div>
+    </template>
       </div>
     </div>
   </template>
