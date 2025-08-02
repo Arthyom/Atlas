@@ -23,15 +23,15 @@ namespace Web.Controllers.Base
         {
             try
             {
-                _baseService.UoW.Begin();
+                // _baseService.UoW.Begin();
                 var atlasResponse = await _baseService.GetAll();
-                _baseService.UoW.Commit();
+                // _baseService.UoW.Commit();
 
                 return Inertia.Render($"{_resourceName}/pages/IndexPage",  atlasResponse );
             }
             catch (Exception ex)
             {
-                _baseService.UoW.RollBack();
+                // _baseService.UoW.RollBack();
                 return Problem(ex.Message);
             }
         }
