@@ -38,6 +38,10 @@ public class DtoProductoResponse : AtlasBaseDto
     [Unicode(false)]
     public string? Genero { get; set; }
 
+    [StringLength(100)]
+    [Unicode(false)]
+    public string? Slug { get; set; }
+
     public byte ExistenciaMinima { get; set; }
 
     public byte ExistenciaMaxima { get; set; }

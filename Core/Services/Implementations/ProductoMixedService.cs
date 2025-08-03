@@ -8,7 +8,11 @@ using Core.DTOs;
 using Core.DTOs.Base;
 using Core.Services.Implementations.Base;
 using Core.Services.Interfaces;
+using IronBarCode;
 using Microsoft.EntityFrameworkCore;
+using PdfSharp.Drawing;
+using PdfSharp.Pdf;
+using PdfSharp.UniversalAccessibility;
 
 namespace Core.Services.Implementations;
 
@@ -225,6 +229,62 @@ public class ProductoMixedService : AtlasBaseServiceMixed<Producto, DtoProductoR
         response.Extras = new { editable = true, categorias = c };
 
         return response;
+    }
+
+    public async Task<byte[]> GetCodes(DtoProductoBarCodeRequest codes)
+    {
+        string code = Guid.NewGuid().ToString();
+        var r = new Random().Next(1000000000, int.MaxValue);
+        // var v = BarcodeWriter.CreateBarcode(r.ToString(), BarcodeEncoding.EAN13);
+        var v = BarcodeWriter.CreateBarcode(code, BarcodeEncoding.Code128);
+
+
+        var pdf = new PdfDocument();
+
+    //     pdf.Info.Title = "cuyoooooosh";
+
+    //     pdf.Info.Subject = "Cuyoooos pdf";
+
+
+    // pdf.ViewerPreferences.FitWindow = true;
+    //         pdf.PageLayout = PdfPageLayout.SinglePage;
+
+        // var page = pdf.AddPage();
+
+   
+        var ua = UAManager.ForDocument(pdf);
+
+        var xgf = XGraphics.FromPdfPage(pdf.AddPage());
+        
+
+        var sb = ua.StructureBuilder;
+
+
+MemoryStream sms = new MemoryStream(v.ToPngBinaryData());
+        var i = XImage.FromStream(  v.ToPdfStream() );
+
+
+
+         sb.BeginElement(PdfIllustrationElementTag.Figure, "A BMW Z3 driving through a sandstone desert.", new XRect(5, 5, i.PointWidth, i.PointHeight));
+                {
+                    // Add the image as usual.
+                    xgf.DrawImage(i, 5, 5);
+                }
+                sb.End();
+
+
+
+             MemoryStream ms = new MemoryStream();
+
+        pdf.Close();
+
+        await pdf.SaveAsync(ms);
+
+
+        return ms.ToArray();
+
+
+        // return await Task.FromResult(v.ToBitmap().GetBytes());
     }
 
 
