@@ -19,8 +19,11 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Seeder/" />
-  </ItemGroup>
+
+<ItemGroup>
+   <Content Include="Seeder/Data/*">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+   </Content>
+</ItemGroup> 
 
 </Project>

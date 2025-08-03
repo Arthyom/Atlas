@@ -68,32 +68,9 @@ app.MapControllerRoute(
     pattern: "{controller=Store}/{action=Index}/{id?}"
 );
 
-// app.MapControllerRoute(
-//     name: "admin",
-//     pattern: "admin/{controller}/{action=Index}/{id?}",
-//     defaults: new { controller = "Admin", action = "Index" }
-// );
+app.ApplyMigrations();
+app.ApplySeeders();
 
-// app.MapControllerRoute(
-//     name: "json-admin",
-//     pattern: "admin/{controller}/json/{action=List}/{id?}"
-// );
-
-// app.MapControllerRoute(
-//     name: "json-single",
-//     pattern: "{controller}/json/{action=List}/{id?}"
-// );
-
-
-// app.MapControllerRoute(
-//     name: "file-admin",
-//     pattern: "admin/{controller}/file/{action=Get}/{identifier}"
-// );
-
-// app.MapControllerRoute(
-//     name: "file-single",
-//     pattern: "{controller}/file/{action=Get}/{identifier}"
-// );
 
 app.MapFallbackToFile("index.html");
 

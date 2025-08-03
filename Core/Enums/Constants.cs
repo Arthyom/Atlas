@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using Atlas.Core.Entities;
 
 namespace Core.Enums;
 
@@ -17,10 +18,10 @@ public static string UserLoggedKeySession = "AppCityHallLoggedUser";
     }
 
     public static Type[] SeederTypesAndOrder = [
-        // typeof(Alcaldia),
-        // typeof(Departamento),
-        // typeof(Rubro),
-        // typeof(Tipo),
+        typeof(Categoria),
+        typeof(Producto),
+        typeof(Imagen),
+        typeof(ImagenProducto),
         // typeof(Clase),
         // typeof(Ingreso),
         // typeof(Rol),

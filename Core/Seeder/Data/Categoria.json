@@ -1,0 +1,26 @@
+[
+	{
+		"Id" : 1,
+		"Nombre" : "Gorras",
+		"Codigo" : "gorras",
+		"Descripcion" : "Catalogo de gorras"
+	},
+	{
+		"Id" : 2,
+		"Nombre" : "Mochilas",
+		"Codigo" : "mochilas",
+		"Descripcion" : "Catalogo de mochilas"
+	},
+	{
+		"Id" : 3,
+		"Nombre" : "Tenis",
+		"Codigo" : "tenis",
+		"Descripcion" : "Catalogo de tenis"
+	},
+	{
+		"Id" : 4,
+		"Nombre" : "Playeras",
+		"Codigo" : "playeras",
+		"Descripcion" : "Catalogo de playeras"
+	}
+]

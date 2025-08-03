@@ -1,0 +1,157 @@
+[
+	{
+		"Id" : 1037,
+		"ImagenId" : 1039,
+		"ProductoId" : 1013
+	},
+	{
+		"Id" : 1038,
+		"ImagenId" : 1040,
+		"ProductoId" : 1013
+	},
+	{
+		"Id" : 1039,
+		"ImagenId" : 1041,
+		"ProductoId" : 1013
+	},
+	{
+		"Id" : 1040,
+		"ImagenId" : 1042,
+		"ProductoId" : 1013
+	},
+	{
+		"Id" : 1041,
+		"ImagenId" : 1043,
+		"ProductoId" : 1013
+	},
+	{
+		"Id" : 1042,
+		"ImagenId" : 1044,
+		"ProductoId" : 1013
+	},
+	{
+		"Id" : 1043,
+		"ImagenId" : 1045,
+		"ProductoId" : 1013
+	},
+	{
+		"Id" : 1044,
+		"ImagenId" : 1046,
+		"ProductoId" : 1013
+	},
+	{
+		"Id" : 1045,
+		"ImagenId" : 1047,
+		"ProductoId" : 1014
+	},
+	{
+		"Id" : 1046,
+		"ImagenId" : 1048,
+		"ProductoId" : 1014
+	},
+	{
+		"Id" : 1047,
+		"ImagenId" : 1049,
+		"ProductoId" : 1014
+	},
+	{
+		"Id" : 1048,
+		"ImagenId" : 1050,
+		"ProductoId" : 1014
+	},
+	{
+		"Id" : 1049,
+		"ImagenId" : 1051,
+		"ProductoId" : 1014
+	},
+	{
+		"Id" : 1050,
+		"ImagenId" : 1052,
+		"ProductoId" : 1014
+	},
+	{
+		"Id" : 1051,
+		"ImagenId" : 1053,
+		"ProductoId" : 1015
+	},
+	{
+		"Id" : 1052,
+		"ImagenId" : 1054,
+		"ProductoId" : 1015
+	},
+	{
+		"Id" : 1053,
+		"ImagenId" : 1055,
+		"ProductoId" : 1015
+	},
+	{
+		"Id" : 1054,
+		"ImagenId" : 1056,
+		"ProductoId" : 1015
+	},
+	{
+		"Id" : 1055,
+		"ImagenId" : 1057,
+		"ProductoId" : 1016
+	},
+	{
+		"Id" : 1056,
+		"ImagenId" : 1058,
+		"ProductoId" : 1016
+	},
+	{
+		"Id" : 1057,
+		"ImagenId" : 1059,
+		"ProductoId" : 1016
+	},
+	{
+		"Id" : 1058,
+		"ImagenId" : 1060,
+		"ProductoId" : 1017
+	},
+	{
+		"Id" : 1059,
+		"ImagenId" : 1061,
+		"ProductoId" : 1017
+	},
+	{
+		"Id" : 1060,
+		"ImagenId" : 1062,
+		"ProductoId" : 1017
+	},
+	{
+		"Id" : 1061,
+		"ImagenId" : 1063,
+		"ProductoId" : 1017
+	},
+	{
+		"Id" : 1062,
+		"ImagenId" : 1064,
+		"ProductoId" : 1017
+	},
+	{
+		"Id" : 1063,
+		"ImagenId" : 1065,
+		"ProductoId" : 1017
+	},
+	{
+		"Id" : 1064,
+		"ImagenId" : 1066,
+		"ProductoId" : 1017
+	},
+	{
+		"Id" : 1065,
+		"ImagenId" : 1067,
+		"ProductoId" : 1017
+	},
+	{
+		"Id" : 1066,
+		"ImagenId" : 1068,
+		"ProductoId" : 1017
+	},
+	{
+		"Id" : 1067,
+		"ImagenId" : 1069,
+		"ProductoId" : 1018
+	}
+]

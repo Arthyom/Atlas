@@ -29,6 +29,8 @@ public class SeederFacade<TBaseEntity> : ISeederFacade<TBaseEntity> where TBaseE
     {
         try
         {
+            _unitOfWork.Begin();
+            var repo = _unitOfWork.GetRepo<TBaseEntity>();
             string entityName = typeof(TBaseEntity).Name;
             string documentName = $"{entityName}.json";
             var assembly = Assembly.GetExecutingAssembly();
@@ -41,8 +43,6 @@ public class SeederFacade<TBaseEntity> : ISeederFacade<TBaseEntity> where TBaseE
             {
                 if (seederList.Any())
                 {
-                    var repo = _unitOfWork.GetRepo<TBaseEntity>();
-                   _unitOfWork.Begin();
                     SetIdentityTo(entityName, AtlasIdentityState.On);
 
                     seederList.ForEach(x =>
