@@ -8,4 +8,5 @@ namespace Core.Services.Interfaces;
 public interface IProductoMixedService : IAtlasBaseServiceMixed<Producto, DtoProductoRequst, DtoProductoResponse>
 {
 
+    public  Task <byte []> GetCodes( IEnumerable<DtoKeyValue> codes ); 
 }

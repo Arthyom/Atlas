@@ -47,6 +47,7 @@ const linkToAdd = `/admin/${props.configs.resource}/create`
     <div class="navbar-center hidden lg:flex">
     </div>
     <div class="navbar-end">
+          <slot name="buttonSloSlot"></slot>
           <input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto mr-2" />
 
           <Link class="btn btn-circle btn-success  avatar" :href="linkToAdd">
