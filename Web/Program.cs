@@ -1,3 +1,4 @@
+using Core.FontResolvers;
 using Core.Helpers;
 using Core.MiddleWares;
 using Core.Services.Implementations;
@@ -5,6 +6,7 @@ using Core.Services.Implementations.Base;
 using Core.Services.Interfaces;
 using Core.Services.Interfaces.Base;
 using InertiaCore.Extensions;
+using PdfSharp.Fonts;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,6 +38,8 @@ builder.Services.AddScoped(typeof(IAtlasBaseServiceMixed<,,>), typeof(AtlasBaseS
 builder.Services.AddScoped(typeof(ISeederFacade<>), typeof(SeederFacade<>));
 
 builder.Services.AddScoped<IProductoService, ProductoService>(); 
+builder.Services.AddScoped<IFontResolver, AtlasFontResolverUbuntu>(); 
+
 
 builder.Services.AddScoped<IProductoMixedService, ProductoMixedService>();    
 
@@ -68,32 +72,9 @@ app.MapControllerRoute(
     pattern: "{controller=Store}/{action=Index}/{id?}"
 );
 
-// app.MapControllerRoute(
-//     name: "admin",
-//     pattern: "admin/{controller}/{action=Index}/{id?}",
-//     defaults: new { controller = "Admin", action = "Index" }
-// );
-
-// app.MapControllerRoute(
-//     name: "json-admin",
-//     pattern: "admin/{controller}/json/{action=List}/{id?}"
-// );
-
-// app.MapControllerRoute(
-//     name: "json-single",
-//     pattern: "{controller}/json/{action=List}/{id?}"
-// );
 
 
-// app.MapControllerRoute(
-//     name: "file-admin",
-//     pattern: "admin/{controller}/file/{action=Get}/{identifier}"
-// );
 
-// app.MapControllerRoute(
-//     name: "file-single",
-//     pattern: "{controller}/file/{action=Get}/{identifier}"
-// );
 
 app.MapFallbackToFile("index.html");
 

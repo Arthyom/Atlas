@@ -24,6 +24,8 @@ export  interface IAtlasDtoProducto{
         precioMayoreo: number;
         categoria: string;
 
+        selected: boolean;
+
         talla?: string;
         color?: string;  
         genero?: string; 
@@ -35,5 +37,11 @@ export  interface IAtlasDtoProducto{
         imagenes?: string[]
 }
 
+
+export  interface IAtlasDtoBarCodeProducto{
+    
+        id: number;
+        nombre: string
+}
 
 

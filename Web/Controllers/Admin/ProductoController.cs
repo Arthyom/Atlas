@@ -3,6 +3,7 @@ using Core.DTOs;
 using Core.Services.Implementations;
 using Core.Services.Interfaces;
 using Core.Services.Interfaces.Base;
+using InertiaCore;
 using Microsoft.AspNetCore.Mvc;
 using Web.Controllers.Base;
 
@@ -18,12 +19,15 @@ namespace Web.Controllers.Admin
 
 
         [HttpPost("BarCode")]
-        public async Task<IActionResult> BarCode([FromBody] DtoProductoBarCodeRequest codes)
+        public async Task<IActionResult> BarCode([FromBody] DtoKeyValueWrapper codes)
         {
             try
             {
-                var list = await _baseServiceExtend.GetCodes(codes);
+                var list = await _baseServiceExtend.GetCodes(codes.Items);
+
+
                 return File(list, "application/pdf");
+                
             }
             catch (Exception ex)
             {

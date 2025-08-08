@@ -1,25 +1,51 @@
 using System;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO.Pipelines;
+using System.Reflection.Metadata;
 using Atlas.Core.Entities;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Core.DTOs;
 using Core.DTOs.Base;
+using Core.Helpers;
 using Core.Services.Implementations.Base;
 using Core.Services.Interfaces;
-using IronBarCode;
 using Microsoft.EntityFrameworkCore;
 using PdfSharp.Drawing;
 using PdfSharp.Pdf;
 using PdfSharp.UniversalAccessibility;
 
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Formats.Png;
+using SixLabors.ImageSharp.PixelFormats;
+using SixLabors.ImageSharp.Processing;
+using ZXing;
+using ZXing.ImageSharp;
+
+using MigraDoc.DocumentObjectModel;
+using MigraDoc.DocumentObjectModel.Tables;
+using MigraDoc.Rendering;
+using MigraDoc;
+using PdfSharp.Fonts;
+using Core.FontResolvers;
+
+
 namespace Core.Services.Implementations;
+
+
 
 public class ProductoMixedService : AtlasBaseServiceMixed<Producto, DtoProductoRequst, DtoProductoResponse>, IProductoMixedService
 {
-    public ProductoMixedService(IUnitOfWork UoW, IMapper mapper) : base(UoW, mapper)
+    private IFontResolver _fontResolver;
+
+    public ProductoMixedService(IUnitOfWork UoW, IMapper mapper, IFontResolver fontResolver) : base(UoW, mapper)
     {
+
+        _fontResolver = fontResolver;
+
+        GlobalFontSettings.FontResolver = _fontResolver;
+
     }
 
 
@@ -31,21 +57,21 @@ public class ProductoMixedService : AtlasBaseServiceMixed<Producto, DtoProductoR
         t.Start();
         var mainResourceCollection = await UoW.GetRepo<Producto>()
         .DbSet
-    //     .Include(x => x.ImagenProductos)
-    //     .ThenInclude(x => x.Imagen)
+        //     .Include(x => x.ImagenProductos)
+        //     .ThenInclude(x => x.Imagen)
 
-    //     .Select(x => new Producto()
-    //     {
-    //         Categoria = x.Categoria,
-    //         ImagenProductos = x.ImagenProductos
+        //     .Select(x => new Producto()
+        //     {
+        //         Categoria = x.Categoria,
+        //         ImagenProductos = x.ImagenProductos
 
-    //         .Select(
+        //         .Select(
 
-    //     z => new ImagenProducto(){Imagen = new Imagen(){Identificador = z.Imagen.Identificador}}
+        //     z => new ImagenProducto(){Imagen = new Imagen(){Identificador = z.Imagen.Identificador}}
 
-    //     ).ToList()
-    // })
-        
+        //     ).ToList()
+        // })
+
         .ProjectTo<DtoProductoResponse>(_Mapper.ConfigurationProvider)
 
         .ToListAsync();
@@ -85,7 +111,7 @@ public class ProductoMixedService : AtlasBaseServiceMixed<Producto, DtoProductoR
         .ToListAsync();
 
         response.MainResource = mainItem;
-        response.Extras = new {editable = false, categorias = c};
+        response.Extras = new { editable = false, categorias = c };
 
         return response;
     }
@@ -157,14 +183,14 @@ public class ProductoMixedService : AtlasBaseServiceMixed<Producto, DtoProductoR
         .ToListAsync();
 
         response.MainResource = mainItem;
-        response.Extras = new {editable = true, categorias = c};
+        response.Extras = new { editable = true, categorias = c };
 
         return response;
     }
 
     public override async Task<AtlasMixedResponse<DtoProductoResponse>> Update(DtoProductoRequst dto, int id)
     {
-         List<Imagen> imagenes = new List<Imagen>();
+        List<Imagen> imagenes = new List<Imagen>();
         List<ImagenProducto> impg = new List<ImagenProducto>();
         Producto np = new Producto()
         {
@@ -231,60 +257,65 @@ public class ProductoMixedService : AtlasBaseServiceMixed<Producto, DtoProductoR
         return response;
     }
 
-    public async Task<byte[]> GetCodes(DtoProductoBarCodeRequest codes)
+    public async Task<byte[]> GetCodes(IEnumerable< DtoKeyValue > codes)
     {
-        string code = Guid.NewGuid().ToString();
-        var r = new Random().Next(1000000000, int.MaxValue);
-        // var v = BarcodeWriter.CreateBarcode(r.ToString(), BarcodeEncoding.EAN13);
-        var v = BarcodeWriter.CreateBarcode(code, BarcodeEncoding.Code128);
+        const string docMargin = "0.5cm", paragraphSpaceAfter = "0.2cm";
+        const double cellWidth = 6.5, borderWidth = 0.3, imageSpaceBefore = 10;
 
+        var doc = new MigraDoc.DocumentObjectModel.Document();
 
-        var pdf = new PdfDocument();
+        var section = doc.AddSection();
+        section.PageSetup.TopMargin = docMargin;
+        section.PageSetup.LeftMargin = docMargin;
+        section.PageSetup.BottomMargin = docMargin;
 
-    //     pdf.Info.Title = "cuyoooooosh";
+        Table table = section.AddTable();
 
-    //     pdf.Info.Subject = "Cuyoooos pdf";
+        table.AddColumn(Unit.FromCentimeter(cellWidth));
+        table.AddColumn(Unit.FromCentimeter(cellWidth));
+        table.AddColumn(Unit.FromCentimeter(cellWidth));
 
+        for (int j = 0; j < codes.Count(); j+=3)
+        {
+            var items = codes.Skip(j).Take(3);
+            Row row = table.AddRow();
 
-    // pdf.ViewerPreferences.FitWindow = true;
-    //         pdf.PageLayout = PdfPageLayout.SinglePage;
+            for (int i = 0; i < items.Count(); i++)
+            {
+                var item = items.ElementAt(i);
+                var id = item.Key.ToString("D7");
+                string code =  $"C4P-05-{id[0]}-{id.Substring(1,3)}-{id.Substring(4,3)}";
 
-        // var page = pdf.AddPage();
+                Cell cell = row.Cells[i];
+                cell.Borders.Width = borderWidth;
+                cell.Borders.Style = BorderStyle.DashLargeGap;
 
-   
-        var ua = UAManager.ForDocument(pdf);
+                var barCodeImage = AtlasHelperBarCode.GetCodeFromText(code);
+                var imageAsText = "base64:" + Convert.ToBase64String(barCodeImage.ToArray());
+                barCodeImage.Close();
 
-        var xgf = XGraphics.FromPdfPage(pdf.AddPage());
-        
+                Paragraph mainParagraph = cell.AddParagraph();
 
-        var sb = ua.StructureBuilder;
+                mainParagraph.Format.SpaceBefore = imageSpaceBefore;
+                mainParagraph.AddImage(imageAsText);
 
+                mainParagraph.AddText(code);
+                mainParagraph.AddLineBreak();
+                mainParagraph.AddText(item.Value);
+                mainParagraph.Format.SpaceAfter = paragraphSpaceAfter;
 
-MemoryStream sms = new MemoryStream(v.ToPngBinaryData());
-        var i = XImage.FromStream(  v.ToPdfStream() );
+                mainParagraph.Format.Alignment = ParagraphAlignment.Center;
+            }
+        }
 
+        PdfDocumentRenderer renderDoc = new PdfDocumentRenderer();
+        renderDoc.Document = doc;
+        renderDoc.RenderDocument();
 
+        MemoryStream ms = new MemoryStream();
+        renderDoc.Save(ms, false);
 
-         sb.BeginElement(PdfIllustrationElementTag.Figure, "A BMW Z3 driving through a sandstone desert.", new XRect(5, 5, i.PointWidth, i.PointHeight));
-                {
-                    // Add the image as usual.
-                    xgf.DrawImage(i, 5, 5);
-                }
-                sb.End();
-
-
-
-             MemoryStream ms = new MemoryStream();
-
-        pdf.Close();
-
-        await pdf.SaveAsync(ms);
-
-
-        return ms.ToArray();
-
-
-        // return await Task.FromResult(v.ToBitmap().GetBytes());
+        return await Task.FromResult(ms.ToArray());
     }
 
 
@@ -292,3 +323,6 @@ MemoryStream sms = new MemoryStream(v.ToPngBinaryData());
 
     #endregion
 }
+
+
+

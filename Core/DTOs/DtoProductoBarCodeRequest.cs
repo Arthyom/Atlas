@@ -5,5 +5,5 @@ namespace Core.DTOs;
 
 public class DtoProductoBarCodeRequest : AtlasBaseDto
 {
-    public string [] Codes { get; set; } = null!;
+    public string  Nombre { get; set; } = null!;
 }
