@@ -24,12 +24,15 @@ defineProps<IAtlasCustomTableConfig>();
               </span>
             </th>
     
-            <th>Acciones</th>
+            <th class="hidden lg:table-cell">Acciones</th>
           </tr>
         </thead>
     
         <tbody>
          <slot></slot>
+         
+
+
         </tbody>
       </table>
     </div>
