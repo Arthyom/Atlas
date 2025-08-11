@@ -17,7 +17,7 @@ const resource = ref('producto')
       <div class="avatar-group -space-x-6 ">
   
         <div class="avatar border-neutral-300" v-for="imagen in imagenes.slice(1,4)">
-          <div class="w-12 md:w-15 lg:w-25">
+          <div class="w-15 md:w-20 lg:w-30">
             <img
               :src="getFileFrom(resource,mode,imagen)"
             />
@@ -25,7 +25,7 @@ const resource = ref('producto')
         </div>
        
         <div class="avatar avatar-placeholder" v-if="imagenes.length >= 5">
-          <div class="bg-neutral text-neutral-content w-12 md:w-15 lg:w-25">
+          <div class="bg-neutral text-neutral-content w-15 md:w-20 lg:w-30">
             <span>{{ imagenes.length -4 }}</span>
           </div>
         </div>
@@ -33,7 +33,7 @@ const resource = ref('producto')
         <template v-if="imagenes.length == 1">
     <div class="avatar-group space-x-6  flex justify-center">
       <div class="avatar avatar-placeholder border-neutral-300">
-          <div class="bg-neutral text-neutral-content w-12 md:w-15 lg:w-25">
+          <div class="bg-neutral text-neutral-content w-15 md:w-20 lg:w-30">
             <span>0</span>
           </div>
       </div>
@@ -45,7 +45,7 @@ const resource = ref('producto')
   <template v-else>
     <div class="avatar-group space-x-6  flex justify-center">
       <div class="avatar avatar-placeholder border-neutral-300">
-          <div class="bg-neutral text-neutral-content w-25">
+          <div class="bg-neutral text-neutral-content w-30">
             <span>0</span>
           </div>
       </div>

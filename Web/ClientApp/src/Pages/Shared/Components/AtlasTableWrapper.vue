@@ -15,13 +15,14 @@ defineProps<IAtlasCustomTableConfig>();
         </AtlasCustomNavTool>
 
       <table class="table">
-        <thead class="text-center text-xl font-bold">
+        <thead class="text-center text-xl font-bold p-0">
           <tr class="bg-base-300">
             <slot name="customTh"></slot>
-            <th v-for="header in configs.headersLabels" :key="header">
-              <span class="hover:underline hover:cursor-pointer hover:text-black">
+            <th class="p-0" v-for="header in configs.headersLabels" :key="header">
+              <span class="hover:underline hover:cursor-pointer hover:text-black" :class="{ 'hidden lg:table-cell' : header === 'Modelo'}">
                 {{ header }}
               </span>
+
             </th>
     
             <th class="hidden lg:table-cell">Acciones</th>
