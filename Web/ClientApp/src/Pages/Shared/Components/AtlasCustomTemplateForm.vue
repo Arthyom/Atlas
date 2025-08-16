@@ -10,6 +10,7 @@ import AtlasCustomSelect from './AtlasCustomSelect.vue';
 import AtlasCustomTextArea from './AtlasCustomTextArea.vue';
 import { onUpdated, h } from 'vue';
 import AtlasCustomInputFileControl from './AtlasCustomInputFileControl.vue';
+import AtlasCustomColorControl from './AtlasCustomColorControl.vue';
 
 const props = defineProps<IAtlasCustomFormWrapper>()
 const emit = defineEmits(['formOk'])
@@ -65,8 +66,20 @@ for (const key in validationSchema) {
 
 
 onUpdated( () =>{
+  if(!!props.configs.initialValues && !meta.value.touched){
+    emit('formOk', {data:values, isValid: true})
+    return;
+  }
+
+  if(!!props.configs.initialValues && meta.value.touched){
+    emit('formOk', {data:values, isValid: meta.value.valid})
+    return;
+  }
+
   if(meta.value.valid)
-    emit('formOk', values)
+    emit('formOk', {data:values, isValid: meta.value.valid})
+  
+  // emit('formOk', {data: null, isValid: meta.value.valid});
 })
 
 </script>
@@ -75,6 +88,7 @@ onUpdated( () =>{
 <div class=" sm:hidden" >
     <div class="bg-base-300 border-base-300 collapse  collapse-arrow border my-4">
         <input type="checkbox" class="peer" />
+
         <div
           class="collapse-title text-xl font-bold"
         >
@@ -116,7 +130,16 @@ onUpdated( () =>{
           </template>
 
         </template> 
+
+        <div class="">
+          <slot></slot>
         </div>
+
+        <div>
+          <slot name ='buttons'></slot>
+        </div>
+        </div>
+    
       </div>
 </div>
 
@@ -154,12 +177,24 @@ onUpdated( () =>{
             <AtlasCustomSelect v-model="field[0].value" v-bind="field[1].value" :props="properties"/>
           </template>
 
+          <template v-else-if="properties[x].typeInput === atlasEnumType.color">
+            <AtlasCustomColorControl v-model="field[0].value" v-bind="field[1].value" :props="properties"></AtlasCustomColorControl>
+          </template>
+
           <template v-else>
             <AtlasCustomInputControl v-model="field[0].value" v-bind="field[1].value" :props="properties"/>
           </template>
 
-        </template> 
-        </div>
+            </template>
+            
+          </div>
+          <div class="">
+            <slot></slot>
+          </div>
+
+          <div>
+            <slot name ='buttons'></slot>
+          </div>
 </div>
 
     

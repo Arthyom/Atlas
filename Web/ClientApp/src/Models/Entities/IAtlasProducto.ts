@@ -30,6 +30,8 @@ export  interface IAtlasDtoProducto{
         color?: string;  
         genero?: string; 
 
+        categoriaColor? : string
+
         existencia?: number ;
         existenciaMinima?: number ;
         existenciaMaxima?: number ;

@@ -58,18 +58,38 @@ where TBaseDtoResponse: AtlasBaseDto
         throw new NotImplementedException();
     }
     
-    public virtual Task<AtlasMixedResponse<TBaseDtoResponse>> Edit(int id)
+    public virtual async Task<AtlasMixedResponse<TBaseDtoResponse>> Edit(int id)
     {
-        throw new NotImplementedException();
+        var respo = new AtlasMixedResponse<TBaseDtoResponse>();
+
+        var item = await repo.DbSet.FirstOrDefaultAsync( x => x.Id == id ) ?? throw new Exception();
+
+        var itemMapped = _Mapper.Map<TBaseDtoResponse>(item);
+
+        respo.MainResource = itemMapped;
+
+        respo.Extras = new { editable = true };
+
+
+    
+        return await Task.FromResult(respo);
     }
 
     public virtual async Task<AtlasMixedResponse<TBaseDtoResponse>> Update(TBaseDtoRequest dto, int id)
     {
-         var respo = new AtlasMixedResponse<TBaseDtoResponse>();
-        // respo.MainResourceCollection =  new List< DtoProductoResponse >().tolis ///await _BaseRepository.DbSet.ToListAsync();
+         var baseEntityMapped = _Mapper.Map<TBaseEntity>(dto);
+
+        repo.Update(baseEntityMapped);
+
+        UoW.SaveChanges();
+
+        var mappedDto = _Mapper.Map<TBaseDtoResponse>(baseEntityMapped);
         
-        return await Task.FromResult( respo );
+        var s = new AtlasMixedResponse<TBaseDtoResponse>(){MainResource = mappedDto};
+        
+        return await Task.FromResult(s);
     }
+    
 
 
 
@@ -88,14 +108,22 @@ where TBaseDtoResponse: AtlasBaseDto
     {
         var respo = new AtlasMixedResponse<TBaseDtoResponse>();
 
-        // respo.MainResource = await _BaseRepository.DbSet.FirstOrDefaultAsync(x => x.Id == id);
+        var item = await repo.DbSet.FirstOrDefaultAsync( x => x.Id == id ) ?? throw new Exception();
 
+        var itemMapped = _Mapper.Map<TBaseDtoResponse>(item);
+
+        respo.MainResource = itemMapped;
+
+        respo.Extras = new { editable = false };
+
+
+    
         return await Task.FromResult(respo);
     }
 
-    public virtual Task<AtlasMixedResponse<TBaseEntity>> Create()
+    public virtual async Task<AtlasMixedResponse<TBaseEntity>> Create()
     {
-        throw new NotImplementedException();
+        return await Task.FromResult(new AtlasMixedResponse<TBaseEntity>() );
     }
 
     public virtual Task<TBaseEntity> Store(TBaseEntity entity)
@@ -103,9 +131,15 @@ where TBaseDtoResponse: AtlasBaseDto
         throw new NotImplementedException();
     }
 
-    public virtual Task<AtlasMixedResponse<TBaseDtoRequest>> Store(TBaseDtoRequest dto)
+    public virtual async Task<AtlasMixedResponse<TBaseDtoRequest>> Store(TBaseDtoRequest dto)
     {
-        throw new NotImplementedException();
+        var baseEntityMapped = _Mapper.Map<TBaseEntity>(dto);
+
+        repo.Insert(baseEntityMapped);
+
+        UoW.SaveChanges();
+        
+        return await Task.FromResult(new AtlasMixedResponse<TBaseDtoRequest>() );
     }
 
     public Task<AtlasMixedResponse<TBaseDtoResponse>> GetAllMaped()

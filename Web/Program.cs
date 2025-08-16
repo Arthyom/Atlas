@@ -38,10 +38,12 @@ builder.Services.AddScoped(typeof(IAtlasBaseServiceMixed<,,>), typeof(AtlasBaseS
 builder.Services.AddScoped(typeof(ISeederFacade<>), typeof(SeederFacade<>));
 
 builder.Services.AddScoped<IProductoService, ProductoService>(); 
-builder.Services.AddScoped<IFontResolver, AtlasFontResolverUbuntu>(); 
+builder.Services.AddScoped<IFontResolver, AtlasFontResolverUbuntu>();
 
 
 builder.Services.AddScoped<IProductoMixedService, ProductoMixedService>();    
+builder.Services.AddScoped<ICategoriaMixedService, CategoriaMixedService>();    
+
 
 
 

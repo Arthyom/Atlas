@@ -4,7 +4,7 @@ import { useAtlasStoreLoading } from '../store/AtlasStoreLoading';
 import { number } from 'yup';
 import { useAtlasComposableLoadingCallbacks } from '@/Models/Composables/AtlasComposableLoadingCallbacks';
 
-const props = defineProps<{id: number}>()
+const props = defineProps<{id: number, resource: string}>()
 
 const {opts} = useAtlasComposableLoadingCallbacks()
 
@@ -12,7 +12,7 @@ const goTo = (target: string) =>{
 
   opts.onStart({});
 
-  router.get(`/admin/producto/${target}/${props.id}`, {}, opts)
+  router.get(`/admin/${props.resource}/${target}/${props.id}`, {}, opts)
 
 }
 

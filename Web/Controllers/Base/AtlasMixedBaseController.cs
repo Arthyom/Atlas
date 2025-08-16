@@ -141,7 +141,11 @@ namespace Web.Controllers.Base
 
                 _baseService.UoW.Commit();
 
-                return Inertia.Render($"{_resourceName}/pages/IndexPage", entityToUpdate);
+                var responseUrl = Request.Path.ToString().Split("/");
+
+                string url = $"/{responseUrl[1]}/{responseUrl[2]}/index";
+
+                return Inertia.Location(url);
             }
             catch (Exception ex)
             {

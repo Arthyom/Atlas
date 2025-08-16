@@ -7,7 +7,8 @@ export enum AtlasEnumInputType{
     select = "select",
     file = "file",
     files = "files",
-    number= "number"
+    number= "number",
+    color = 'color'
 
 }
 

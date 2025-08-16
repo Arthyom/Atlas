@@ -19,6 +19,8 @@ public class ProfileProducto : Profile
         CreateMap<Producto, DtoProductoResponse>()
         .ForMember(x => x.imagenes, opt => opt.MapFrom(src => src.ImagenProductos))
         .ForMember(x => x.Categoria, opt => opt.MapFrom(src => src.Categoria.Nombre))
+        .ForMember(x => x.CategoriaColor, opt => opt.MapFrom(src => src.Categoria.Color))
+
             // .IncludeMembers(p => p.ImagenProductos)
             // .ReverseMap();
 

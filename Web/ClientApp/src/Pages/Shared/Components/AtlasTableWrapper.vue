@@ -22,10 +22,14 @@ defineProps<IAtlasCustomTableConfig>();
               <span class="hover:underline hover:cursor-pointer hover:text-black" :class="{ 'hidden lg:table-cell' : header === 'Modelo'}">
                 {{ header }}
               </span>
-
             </th>
     
-            <th class="hidden lg:table-cell">Acciones</th>
+             <template v-if="configs.headersLabels.length >=2">
+               <th class="hidden md:table-cell">Acciones</th>
+              </template>
+              <template v-else>
+                <th class="table-cell">Acciones</th>
+              </template>
           </tr>
         </thead>
     

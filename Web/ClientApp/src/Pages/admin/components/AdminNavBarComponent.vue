@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { Link } from '@inertiajs/vue3';
+
 </script>
 
 
@@ -60,9 +62,9 @@
     </div>
     <div class="navbar-center hidden lg:flex">
       <ul class="menu menu-horizontal px-1">
-        <li><a>Gorras</a></li>
-        <li><a>Playeras</a></li>
-        <li><a>Mochilas</a></li>
+        <li><Link href="/admin/producto/index">Productos</Link></li>
+        <li><Link href="/admin/categoria/index">Categorias</Link></li>
+        <li><Link href="/admin/productos/index">Vender</Link></li>
 
 
         <!-- <li>

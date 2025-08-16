@@ -12,8 +12,6 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
         modelBuilder.Entity<Categoria>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("Categoria_PK");
-
-            entity.Property(e => e.Id).ValueGeneratedNever();
         });
 
         modelBuilder.Entity<Imagen>(entity =>

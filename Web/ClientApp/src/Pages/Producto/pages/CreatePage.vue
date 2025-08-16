@@ -94,6 +94,7 @@ const configsI = ref<IAtlasCustomFormConfig>({
   ],
 });
 
+console.log('xxxxx...........x', props)
 const saveIsDisabled = computed ( ( ) =>{
   const id = configs.value.initialValues?.id;
   
@@ -104,14 +105,17 @@ const saveIsDisabled = computed ( ( ) =>{
 })
 
 const formOkInfo = (event: any) => {
+  console.log('datos del form', event)
   formInfIsValid.value = true;
-  formInf.value = event;
+  formInf.value = event.data;
   console.log("formInfo", event.color);
 };
 
 const formOkImg = (event: any) => {
+    console.log('datos del form', event)
+
   formImgIsValid.value = true;
-  formImg.value = event
+  formImg.value = event.data
   console.log("formImg", event);
 };
 

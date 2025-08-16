@@ -13,6 +13,10 @@ public partial class Categoria : BaseEntity
     [Unicode(false)]
     public string Nombre { get; set; } = null!;
 
+    [StringLength(30)]
+    [Unicode(false)]
+    public string Color { get; set; } = null!;
+
     [StringLength(100)]
     [Unicode(false)]
     public string Codigo { get; set; } = null!;

@@ -27,8 +27,10 @@ public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
 
     public virtual void Update(T entity)
     {
-        _dbSet.Attach(entity);
-        _appDbContext.Entry(entity).State = EntityState.Modified;
+        // _dbSet.Attach(entity);
+        // _appDbContext.Entry(entity).State = EntityState.Modified;
+
+        _dbSet.Update(entity);
     }
 
 

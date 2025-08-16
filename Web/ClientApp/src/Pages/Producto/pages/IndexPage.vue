@@ -34,8 +34,6 @@ const tableConfig: IAtlasCustomTableConfig = {
 const mode = ref("admin");
 
 const toggleProducts = () => {
-  // const {checked} = (event.target as HTMLInputElement);
-
   if (props.mainResource) props.mainResource.selected = areAllChecked.value;
 
   props.mainResourceCollection.forEach(
@@ -107,17 +105,12 @@ const createBarCodes = async () => {
 
       <template v-slot:buttonSlot>
         <div class="hidden lg:flex mr-4">
-          <button class="btn btn-secondary avatar mr-4" @click="createBarCodes">
-            Playeras
-          </button>
-
-          <button class="btn btn-primary avatar mr-4" @click="createBarCodes">
-            Mochilas
-          </button>
-
-          <button class="btn btn-accent avatar mr-4" @click="createBarCodes">
-            Gorras
-          </button>
+          <template v-for="categoria in props.extras.categorias">
+            <button class="btn  avatar mr-4 text-white" @click="createBarCodes" :style="`background-color: ${categoria.color}`">
+              
+              {{categoria.nombre}}
+            </button>
+          </template>
         </div>
 
         <button class="btn btn-base avatar mr-4" @click="createBarCodes">
@@ -140,15 +133,16 @@ const createBarCodes = async () => {
 
             <td class="">
               <!-- Big screens sections -->
-              <div class="hidden lg:flex items-center gap-3">
+              <div class="hidden md:flex items-center gap-3">
                 <div class=" ">
                   <div class="absolute z-50">
                     <button
                       class="btn btn-xs md:btn-sm lg:btn-md btn-base-100 btn-circle items-center"
                       :class="
                         { 
-                          'btn-error' : resource.existencia! <= resource.existenciaMaxima!,
-                          'btn-info' : resource.existencia! >= resource.existenciaMaxima!,
+                          'btn-error' : resource.existencia! <= resource.existenciaMinima!,
+                          'btn-warning' : resource.existencia! >= resource.existenciaMaxima!,
+                          'btn-info' :  (resource.existencia! > resource.existenciaMinima!  && resource.existencia! < resource.existenciaMaxima!),
                         }
                         "
                       
@@ -158,7 +152,7 @@ const createBarCodes = async () => {
                   </div>
 
                   <div class="avatar-group bg-blck w-full">
-                    <div class="avatar border-accent">
+                    <div class="avatar " :style="`border-color:${resource.categoriaColor}`">
                       <div class="w-20 md:w-30 lg:w-42">
                         <img
                           class=""
@@ -211,7 +205,7 @@ const createBarCodes = async () => {
                       <div class="tooltip" data-tip="Minima">
                         <font-awesome-icon
                           icon="fa-solid fa-up-long"
-                          class="text-info mr-2"
+                          class="text-warning mr-2"
                         />
                         <span> {{ resource.existenciaMaxima }}</span>
                       </div>
@@ -222,7 +216,7 @@ const createBarCodes = async () => {
 
               <!-- Small screens sections -->
               <div
-                class="lg:hidden bg-base-300 border-base-300 shadow-x collapse border"
+                class="md:hidden bg-base-300 border-base-300 shadow-x collapse border"
               >
                 <input type="checkbox" class="peer" />
 
@@ -255,7 +249,7 @@ const createBarCodes = async () => {
                         </div>
 
                         <div class="avatar-group bg-blck w-full">
-                          <div class="avatar border-accent">
+                          <div class="avatar " :style="`border-color: ${resource.categoriaColor}`">
                             <div class="w-20 md:w-30 lg:w-42">
                               <img
                                 class=""
@@ -306,7 +300,7 @@ const createBarCodes = async () => {
                         <div class="tooltip" data-tip="Minima">
                           <font-awesome-icon
                             icon="fa-solid fa-up-long"
-                            class="text-info mr-2"
+                            class="text-warning mr-2"
                           />
                           <span> {{ resource.existenciaMaxima }}</span>
                         </div>
@@ -317,7 +311,7 @@ const createBarCodes = async () => {
 
                 <div class="collapse-content">
                   <div class="mt-4">
-                    <AtlasTableActions :id="resource.id">
+                    <AtlasTableActions :id="resource.id" :resource="tableConfig.configs.resource">
                       <div class="tooltip" data-tip="Etiqueta">
                         <button
                           class="btn bnt-info"
@@ -337,12 +331,12 @@ const createBarCodes = async () => {
               </div>
             </td>
 
-            <td class="hidden lg:table-cell">
+            <td class="hidden md:table-cell">
               <AtlasCustomImageStack v-bind="resource" />
             </td>
 
-            <td class="hidden lg:table-cell">
-              <AtlasTableActions :id="resource.id">
+            <td class="hidden md:table-cell">
+              <AtlasTableActions :id="resource.id" :resource="tableConfig.configs.resource">
                 <div class="tooltip" data-tip="Etiqueta">
                   <button
                     class="btn bnt-info"

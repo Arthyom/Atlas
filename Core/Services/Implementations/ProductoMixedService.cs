@@ -78,7 +78,7 @@ public class ProductoMixedService : AtlasBaseServiceMixed<Producto, DtoProductoR
         t.Stop();
         Console.WriteLine($"-------------------- Total time {t.Elapsed.TotalMilliseconds} ms");
 
-        var c = await UoW.GetRepo<Categoria>().DbSet.Select(x => new Categoria() { Id = x.Id, Nombre = x.Nombre }).ToListAsync();
+        var c = await UoW.GetRepo<Categoria>().DbSet.Select(x => new Categoria() { Id = x.Id, Nombre = x.Nombre, Color = x.Color }).ToListAsync();
 
 
 
@@ -192,21 +192,25 @@ public class ProductoMixedService : AtlasBaseServiceMixed<Producto, DtoProductoR
     {
         List<Imagen> imagenes = new List<Imagen>();
         List<ImagenProducto> impg = new List<ImagenProducto>();
-        Producto np = new Producto()
-        {
-            CategoriaId = dto.CategoriaId,
-            Descripcion = dto.Descripcion,
-            Existencia = dto.Existencia,
-            ExistenciaMaxima = dto.ExistenciaMaxima,
-            ExistenciaMinima = dto.ExistenciaMaxima,
-            Nombre = dto.Nombre,
-            PrecioMayoreo = dto.PrecioMayoreo,
-            PrecioUnitario = dto.PrecioUnitario,
+        // Producto np = new Producto()
+        // {
+        //     CategoriaId = dto.CategoriaId,
+        //     Descripcion = dto.Descripcion,
+        //     Existencia = dto.Existencia,
+        //     ExistenciaMaxima = dto.ExistenciaMaxima,
+        //     ExistenciaMinima = dto.ExistenciaMaxima,
+        //     Nombre = dto.Nombre,
+        //     PrecioMayoreo = dto.PrecioMayoreo,
+        //     PrecioUnitario = dto.PrecioUnitario,
 
-            Talla = dto.Talla,
-            Color = dto.Color,
-            Genero = dto.Genero
-        };
+        //     Id = dto.Id,
+
+        //     Talla = dto.Talla,
+        //     Color = dto.Color,
+        //     Genero = dto.Genero
+        // };
+
+        Producto np = _Mapper.Map<Producto>(dto);
 
         if (dto.imagenes != null)
         {

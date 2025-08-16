@@ -50,6 +50,9 @@ public class DtoProductoResponse : AtlasBaseDto
     
     public string Categoria{ get; set; } = null!;
 
+    public string CategoriaColor{ get; set; } = null!;
+
+
 
     public IEnumerable<string>? imagenes { get; set; }
 }
