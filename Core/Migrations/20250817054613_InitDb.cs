@@ -5,7 +5,7 @@
 namespace Core.Migrations
 {
     /// <inheritdoc />
-    public partial class InitDB : Migration
+    public partial class InitDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,6 +17,7 @@ namespace Core.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nombre = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
+                    Color = table.Column<string>(type: "varchar(30)", unicode: false, maxLength: 30, nullable: false),
                     Codigo = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
                     Descripcion = table.Column<string>(type: "varchar(200)", unicode: false, maxLength: 200, nullable: false)
                 },
@@ -81,6 +82,7 @@ namespace Core.Migrations
                     Talla = table.Column<string>(type: "varchar(20)", unicode: false, maxLength: 20, nullable: true),
                     Color = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: true),
                     Genero = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: true),
+                    Slug = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: true),
                     ExistenciaMinima = table.Column<byte>(type: "tinyint", nullable: false),
                     ExistenciaMaxima = table.Column<byte>(type: "tinyint", nullable: false),
                     CategoriaId = table.Column<int>(type: "int", nullable: false)

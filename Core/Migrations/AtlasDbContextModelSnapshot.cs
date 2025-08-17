@@ -24,7 +24,10 @@ namespace Core.Migrations
             modelBuilder.Entity("Atlas.Core.Entities.Categoria", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Codigo")
                         .IsRequired()

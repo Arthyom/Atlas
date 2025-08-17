@@ -3,24 +3,28 @@
 		"Id" : 1,
 		"Nombre" : "Gorras",
 		"Codigo" : "gorras",
-		"Descripcion" : "Catalogo de gorras"
+		"Descripcion" : "Catalogo de gorras",
+		"Color": "#D41B1B"
 	},
 	{
 		"Id" : 2,
 		"Nombre" : "Mochilas",
 		"Codigo" : "mochilas",
-		"Descripcion" : "Catalogo de mochilas"
+		"Descripcion" : "Catalogo de mochilas",
+		"Color": "#18C8DB"
 	},
 	{
 		"Id" : 3,
 		"Nombre" : "Tenis",
 		"Codigo" : "tenis",
-		"Descripcion" : "Catalogo de tenis"
+		"Descripcion" : "Catalogo de tenis",
+		"Color": "#66DB18"
 	},
 	{
 		"Id" : 4,
 		"Nombre" : "Playeras",
 		"Codigo" : "playeras",
-		"Descripcion" : "Catalogo de playeras"
+		"Descripcion" : "Catalogo de playeras",
+		"Color": "#AE18DB"
 	}
 ]
