@@ -1,8 +1,6 @@
-using System;
 using Atlas.Core.Entities;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Core.DTOs;
 using Core.DTOs.Base;
 using Core.DTOs.Categoria;
 using Core.Services.Implementations.Base;
