@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Core.DTOs.Base;
 using Microsoft.EntityFrameworkCore;
 
-namespace Core.DTOs;
+namespace Core.DTOs.Categoria;
 
 public class DtoCategoriaResponse : AtlasBaseDto
 {

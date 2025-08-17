@@ -29,6 +29,7 @@ using MigraDoc.Rendering;
 using MigraDoc;
 using PdfSharp.Fonts;
 using Core.FontResolvers;
+using Core.DTOs.Categoria;
 
 
 namespace Core.Services.Implementations;
