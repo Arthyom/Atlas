@@ -1,5 +1,5 @@
 using System;
-using Core.Models.Entities.BaseEntity;
+using Core.Models.Entities.Base;
 
 namespace Core.Services.Interfaces.Base;
 

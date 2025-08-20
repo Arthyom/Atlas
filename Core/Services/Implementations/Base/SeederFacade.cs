@@ -2,7 +2,7 @@ using System;
 using System.Reflection;
 using Atlas.Core.Entities;
 using Core.Models.Context;
-using Core.Models.Entities.BaseEntity;
+using Core.Models.Entities.Base;
 using Core.Services.Interfaces;
 using Core.Services.Interfaces.Base;
 using Microsoft.EntityFrameworkCore;

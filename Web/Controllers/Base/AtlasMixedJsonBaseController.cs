@@ -1,6 +1,6 @@
 using System;
 using Core.DTOs.Base;
-using Core.Models.Entities.BaseEntity;
+using Core.Models.Entities.Base;
 using Core.Services.Interfaces.Base;
 using Microsoft.AspNetCore.Mvc;
 

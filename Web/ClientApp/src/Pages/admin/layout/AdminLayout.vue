@@ -1,29 +1,35 @@
 <script setup lang="ts">
-import AtlasInfiniteLoader from '@/Pages/Shared/Components/AtlasInfiniteLoader.vue';
-import AdminFooterComponent from '../components/AdminFooterComponent.vue';
-import AdminNavBarComponent from '../components/AdminNavBarComponent.vue';
-import { useAtlasStoreLoading } from '@/Pages/Shared/store/AtlasStoreLoading';
+import AtlasInfiniteLoader from "@/Pages/Shared/Components/AtlasInfiniteLoader.vue";
+import AdminFooterComponent from "../components/AdminFooterComponent.vue";
+import AdminNavBarComponent from "../components/AdminNavBarComponent.vue";
+import { useAtlasStoreLoading } from "@/Pages/Shared/store/AtlasStoreLoading";
+import AtlasSideBarComponent from "@/Pages/Shared/Components/AtlasSideBarComponent.vue";
+import { IAtlasCustomLinks } from "../../../Models/Interfaces/IAtlasCustomLink";
+import { adminLinkItems } from "../data/links.data";
 
-const vs = useAtlasStoreLoading()
-
+const vs = useAtlasStoreLoading();
 </script>
 
 <template>
+  <div class="drawer drawer-end">
+    <input id="my-drawer-4" type="checkbox" class="drawer-toggle" />
 
+    <div class="drawer-content ">
+      <AtlasInfiniteLoader></AtlasInfiniteLoader>
 
-<AtlasInfiniteLoader ></AtlasInfiniteLoader>
+      <div class="sticky top-0 z-20">
+        <AdminNavBarComponent></AdminNavBarComponent>
+      </div>
 
-
-<AdminNavBarComponent></AdminNavBarComponent>
-
-    <div class="h-full">
-        <div class="flex flex-col justify-center   bg-red-500">
-            <slot></slot>
-
+      <div class="h-full ">
+        <div class="flex flex-col  justify-center bg-red-500">
+          <slot></slot>
         </div>
+      </div>
+
+      <AdminFooterComponent></AdminFooterComponent>
     </div>
 
-
-<AdminFooterComponent></AdminFooterComponent>
-    
+    <AtlasSideBarComponent v-bind="adminLinkItems"></AtlasSideBarComponent>
+  </div>
 </template>

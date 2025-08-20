@@ -1,6 +1,6 @@
 using System;
 using Core.Models.Context;
-using Core.Models.Entities.BaseEntity;
+using Core.Models.Entities.Base;
 using Core.Services.Interfaces;
 using Core.Services.Interfaces.Base;
 

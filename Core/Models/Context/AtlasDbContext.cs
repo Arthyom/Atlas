@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Atlas.Core.Entities;
+using Core.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Core.Models.Context;
@@ -15,6 +16,10 @@ public partial class AtlasDbContext : DbContext
         : base(options)
     {
     }
+
+    public virtual DbSet<ProductoVenta> ProductoVenta { get; set; }
+
+    public virtual DbSet<Venta> Venta { get; set; }
 
     public virtual DbSet<Categoria> Categoria { get; set; }
 

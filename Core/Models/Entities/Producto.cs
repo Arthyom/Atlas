@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Core.Models.Entities.BaseEntity;
+using Core.Models.Entities;
+using Core.Models.Entities.Base;
 using Microsoft.EntityFrameworkCore;
 
 namespace Atlas.Core.Entities;
@@ -10,7 +11,7 @@ namespace Atlas.Core.Entities;
 [Table("Producto")]
 public partial class Producto : BaseEntity
 {
-  
+
     [StringLength(100)]
     [Unicode(false)]
     public string Nombre { get; set; } = null!;
@@ -55,4 +56,7 @@ public partial class Producto : BaseEntity
 
     [InverseProperty("Producto")]
     public virtual ICollection<ImagenProducto> ImagenProductos { get; set; } = new List<ImagenProducto>();
+    
+    [InverseProperty("Producto")]
+    public virtual ICollection<ProductoVenta> ProductoVenta { get; set; } = new List<ProductoVenta>();
 }

@@ -10,7 +10,7 @@ const props = defineProps<IAtlasMixedResponse<IDtoCategoria>>();
 
 const tableConfig: IAtlasCustomTableConfig = {
   configs: {
-    title: "Listado de Categorias",
+    title: "Categorias",
     resource: "Categoria",
     headersLabels: ["Nombre", "Productos"],
   },

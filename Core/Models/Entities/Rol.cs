@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Core.Models.Entities.BaseEntity;
+using Core.Models.Entities.Base;
 using Microsoft.EntityFrameworkCore;
 
 namespace Atlas.Core.Entities;

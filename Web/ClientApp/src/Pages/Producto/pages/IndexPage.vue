@@ -27,7 +27,7 @@ const tableConfig: IAtlasCustomTableConfig = {
   configs: {
     headersLabels: ["Titulo", "Modelo"],
     resource: "producto",
-    title: "Listado de productos",
+    title: "Productos",
   },
 };
 
@@ -91,7 +91,7 @@ const createBarCodes = async () => {
   <AdminLayout>
     <AtlasTableWrapper :configs="tableConfig.configs">
       <template v-slot:customTh>
-        <th class="">
+        <th class="hidden md:table-cell">
           <label>
             <input
               type="checkbox"
@@ -104,16 +104,19 @@ const createBarCodes = async () => {
       </template>
 
       <template v-slot:buttonSlot>
-        <div class="hidden lg:flex mr-4">
-          <template v-for="categoria in props.extras.categorias">
-            <button class="btn  avatar mr-4 text-white" @click="createBarCodes" :style="`background-color: ${categoria.color}`">
-              
-              {{categoria.nombre}}
+        <div class="flex flex-col md:gap-1 md:flex-row  md:mr-4">
+          <div v-for="categoria in props.extras.categorias">
+            <button
+              class="btn avatar md:mr-4 text-white w-full "
+              @click="createBarCodes"
+              :style="`background-color: ${categoria.color}`"
+            >
+              {{ categoria.nombre }}
             </button>
-          </template>
+          </div>
         </div>
 
-        <button class="btn btn-base avatar mr-4" @click="createBarCodes">
+        <button class="btn btn-base avatar md:mr-4" @click="createBarCodes">
           <font-awesome-icon icon="fas fa-table-cells"></font-awesome-icon>
         </button>
       </template>
@@ -121,7 +124,7 @@ const createBarCodes = async () => {
       <template v-slot:default>
         <template v-for="resource in props.mainResourceCollection">
           <tr>
-            <td>
+            <td class="hidden md:table-cell">
               <label>
                 <input
                   type="checkbox"
@@ -135,7 +138,7 @@ const createBarCodes = async () => {
               <!-- Big screens sections -->
               <div class="hidden md:flex items-center gap-3">
                 <div class=" ">
-                  <div class="absolute z-50">
+                  <div class="absolute z-15">
                     <button
                       class="btn btn-xs md:btn-sm lg:btn-md btn-base-100 btn-circle items-center"
                       :class="
@@ -145,14 +148,16 @@ const createBarCodes = async () => {
                           'btn-info' :  (resource.existencia! > resource.existenciaMinima!  && resource.existencia! < resource.existenciaMaxima!),
                         }
                         "
-                      
                     >
                       {{ resource.existencia }}
                     </button>
                   </div>
 
                   <div class="avatar-group bg-blck w-full">
-                    <div class="avatar " :style="`border-color:${resource.categoriaColor}`">
+                    <div
+                      class="avatar"
+                      :style="`border-color:${resource.categoriaColor}`"
+                    >
                       <div class="w-20 md:w-30 lg:w-42">
                         <img
                           class=""
@@ -218,38 +223,49 @@ const createBarCodes = async () => {
               <div
                 class="md:hidden bg-base-300 border-base-300 shadow-x collapse border"
               >
-                <input type="checkbox" class="peer" />
+                <input type="checkbox" class="peer"  :checked="resource.selected" @change="resource.selected = !resource.selected"/>
 
                 <div
                   class="p-2 collapse-title peer-checked:bg-black peer-checked:text-white"
                 >
                   <div class="flex flex-col items-center gap-2">
-                    <div class="text-xl w-full font-bold">
-                      {{ resource.nombre }}
+                    <div class="flex w-full">
+                      <div class="mr-2">
+                        <label class="">
+                          <input
+                            type="checkbox"
+                            class="checkbox checkbox-info"
+                            v-model="resource.selected"
+                          />
+                        </label>
+                      </div>
+                      <div class="text-xl w-full font-bold">
+                        {{ resource.nombre }}
+                      </div>
                     </div>
 
                     <div class="flex w-full">
+                      <div></div>
                       <div class="">
-                        <div class="absolute top-10 left-1 z-50">
+                        <div class="absolute top-10 left-1 z-10">
                           <button
                             class="btn btn-base-100 btn-circle items-center"
-
                             :class="
                         { 
                           'btn-error' : resource.existencia! <= resource.existenciaMaxima!,
                           'btn-info' : resource.existencia! >= resource.existenciaMaxima!,
                         }
                         "
-              
-              
-
                           >
                             {{ resource.existencia }}
                           </button>
                         </div>
 
                         <div class="avatar-group bg-blck w-full">
-                          <div class="avatar " :style="`border-color: ${resource.categoriaColor}`">
+                          <div
+                            class="avatar"
+                            :style="`border-color: ${resource.categoriaColor}`"
+                          >
                             <div class="w-20 md:w-30 lg:w-42">
                               <img
                                 class=""
@@ -311,7 +327,10 @@ const createBarCodes = async () => {
 
                 <div class="collapse-content">
                   <div class="mt-4">
-                    <AtlasTableActions :id="resource.id" :resource="tableConfig.configs.resource">
+                    <AtlasTableActions
+                      :id="resource.id"
+                      :resource="tableConfig.configs.resource"
+                    >
                       <div class="tooltip" data-tip="Etiqueta">
                         <button
                           class="btn bnt-info"
@@ -336,7 +355,10 @@ const createBarCodes = async () => {
             </td>
 
             <td class="hidden md:table-cell">
-              <AtlasTableActions :id="resource.id" :resource="tableConfig.configs.resource">
+              <AtlasTableActions
+                :id="resource.id"
+                :resource="tableConfig.configs.resource"
+              >
                 <div class="tooltip" data-tip="Etiqueta">
                   <button
                     class="btn bnt-info"

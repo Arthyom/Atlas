@@ -1,6 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-using Core.Models.Entities.BaseEntity;
+using Core.Models.Entities.Base;
 
 namespace Core.DTOs.Base;
 

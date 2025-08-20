@@ -162,8 +162,8 @@ const cancelForm = () =>{
 <template>
   <AdminLayout>
     
-    <div class="bg-base-100 card m-5">
-      <div class="sm:grid sm:grid-cols-3 mx-4 gap-6">
+    <div class="bg-base-100 md:card md:m-5 " >
+      <div class="sm:grid sm:grid-cols-3 mx-2 md:mx-4 gap-6">
         <div class="sm:col-span-2">
           <AtlasCustomTemplateForm :configs="configs" @form-ok="formOkInfo" />
         </div>
@@ -171,7 +171,7 @@ const cancelForm = () =>{
           <AtlasCustomTemplateForm :configs="configsI" @form-ok="formOkImg" />
         </div>
       </div>
-      <div class="flex gap-2 m-4">
+      <div class="flex gap-2 m-2">
         
         <button
           class="btn btn-success flex-1"

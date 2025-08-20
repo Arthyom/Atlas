@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import StoreFrontFooterComponent from "./components/StoreFrontFooterComponent.vue";
 import StoreFrontNavBarComponent from "./components/StoreFrontNavBarComponent.vue";
-import StoreFrontSideBarComponent from "./components/StoreFrontSideBarComponent.vue";
+import StoreFrontSideBarComponent from "../../Shared/Components/AtlasSideBarComponent.vue";
 </script>
 
 <template>

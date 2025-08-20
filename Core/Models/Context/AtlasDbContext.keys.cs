@@ -1,5 +1,6 @@
 using System;
 using Atlas.Core.Entities;
+using Core.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Core.Models.Context;
@@ -9,6 +10,26 @@ public partial class AtlasDbContext : DbContext
 
 protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        
+        modelBuilder.Entity<ProductoVenta>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("ProductoVenta_PK");
+
+            entity.HasOne(d => d.Producto).WithMany(p => p.ProductoVenta)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("ProductoVenta_Producto_FK");
+
+            entity.HasOne(d => d.Venta).WithMany(p => p.ProductoVenta)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("ProductoVenta_Venta_FK");
+        });
+
+        modelBuilder.Entity<Venta>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("Venta_PK");
+        });
+
+
         modelBuilder.Entity<Categoria>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("Categoria_PK");

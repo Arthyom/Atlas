@@ -1,7 +1,7 @@
 using System;
 using Atlas.Core.Entities;
 using Core.DTOs.Base;
-using Core.Models.Entities.BaseEntity;
+using Core.Models.Entities.Base;
 
 namespace Core.Services.Interfaces.Base;
 

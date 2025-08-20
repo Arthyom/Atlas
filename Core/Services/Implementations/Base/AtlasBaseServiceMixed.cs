@@ -3,7 +3,7 @@ using Atlas.Core.Entities;
 using AutoMapper;
 using Core.DTOs;
 using Core.DTOs.Base;
-using Core.Models.Entities.BaseEntity;
+using Core.Models.Entities.Base;
 using Core.Services.Interfaces;
 using Core.Services.Interfaces.Base;
 using Microsoft.EntityFrameworkCore;

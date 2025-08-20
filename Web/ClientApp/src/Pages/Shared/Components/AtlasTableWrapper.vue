@@ -6,16 +6,20 @@ defineProps<IAtlasCustomTableConfig>();
 </script>
 
 <template>
-    <div class="bg-base-100 rounded-lg shadow-lg">
-        
-        <AtlasCustomNavTool :configs="configs">
-          <template #buttonSloSlot>
-            <slot name="buttonSlot" ></slot>
-          </template>
-        </AtlasCustomNavTool>
+    <div class="bg-base-100 md:shadow-lg">
 
-      <table class="table">
-        <thead class="text-center text-xl font-bold p-0">
+    <div class="sticky top-16 z-20 ">
+      <AtlasCustomNavTool :configs="configs" class="">
+        <template #buttonSloSlot>
+          <slot name="buttonSlot" ></slot>
+        </template>
+      </AtlasCustomNavTool>
+    </div>
+
+    
+      
+      <table class="table  ">
+        <thead class="text-center text-xl font-bold p-0 ">
           <tr class="bg-base-300">
             <slot name="customTh"></slot>
             <th class="p-0" v-for="header in configs.headersLabels" :key="header">
@@ -33,7 +37,7 @@ defineProps<IAtlasCustomTableConfig>();
           </tr>
         </thead>
     
-        <tbody>
+        <tbody class="">
          <slot></slot>
          
 
@@ -41,4 +45,6 @@ defineProps<IAtlasCustomTableConfig>();
         </tbody>
       </table>
     </div>
+
+
 </template>
