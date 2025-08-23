@@ -11,7 +11,8 @@ public static class AtlasHelperBarCode
     {
         ZXing.Common.EncodingOptions Options = new ZXing.Common.EncodingOptions()
         {
-            Height = 90
+            Height = 90,
+            Width = 300
         };
 
         PngEncoder encoder = new PngEncoder()

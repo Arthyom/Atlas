@@ -31,6 +31,7 @@ using PdfSharp.Fonts;
 using Core.FontResolvers;
 using Core.DTOs.Categoria;
 using System.Numerics;
+using System.Text;
 
 
 namespace Core.Services.Implementations;
@@ -289,26 +290,27 @@ public class ProductoMixedService : AtlasBaseServiceMixed<Producto, DtoProductoR
             for (int i = 0; i < items.Count(); i++)
             {
                 var item = items.ElementAt(i);
-                var id = item.Key.ToString("D7");
-                // string code =  $"34905{id[0]}{id.Substring(1,3)}{id.Substring(4,3)}";
+                // var id = Encoding.UTF8.GetBytes( item.Key.ToString("D11") );
 
-                string code = new BigInteger( Guid.NewGuid().ToByteArray() ).ToString().Replace("-","").Substring(0,11);
+                string code = item.Key.ToString("D11");
 
                 Cell cell = row.Cells[i];
                 cell.Borders.Width = borderWidth;
                 cell.Borders.Style = BorderStyle.DashLargeGap;
 
-                var barCodeImage = AtlasHelperBarCode.GetCodeFromText(code);
+                var barCodeImage = AtlasHelperBarCode.GetCodeFromText( code );
                 var imageAsText = "base64:" + Convert.ToBase64String(barCodeImage.ToArray());
                 barCodeImage.Close();
 
                 Paragraph mainParagraph = cell.AddParagraph();
 
                 mainParagraph.Format.SpaceBefore = imageSpaceBefore;
-                mainParagraph.AddImage(imageAsText);
-                mainParagraph.AddLineBreak();
+                var toScaleImage = mainParagraph.AddImage(imageAsText);
 
+                toScaleImage.Width = Unit.FromCentimeter(8);
+                toScaleImage.LockAspectRatio = true;;
 
+                // mainParagraph.AddLineBreak();
                 mainParagraph.AddText(code);
                 mainParagraph.AddLineBreak();
                 mainParagraph.AddText(item.Value);

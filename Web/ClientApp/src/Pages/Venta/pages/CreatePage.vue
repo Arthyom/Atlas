@@ -74,15 +74,16 @@ const {getFirstFileForProducto} = useAtlasComposableUseFilesFetcher()
 
 const {swipeNext, swipePrev, step} = AtlasComposableCustomSwipper('swipper')
 
-const onDecode = async (e:any) => {
-  const r = await getById(1013)
+const onDecode = async (e:string) => {
+  let id: number =  +e.substring(0,11)
+  const r = await getById(id)
   if(!!r){
     const beepS = new Audio("/beep.mp3");
     addNewProduct(r)
     
     beepS.play();
   }
-  console.log("was decoded",r);
+  console.log("was decoded",e);
 };
 
 const onLoaded = (e:any) => {
