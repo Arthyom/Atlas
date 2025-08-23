@@ -5,6 +5,7 @@ import path from "path";
 import { mkdirSync } from "fs";
 import tailwindcss from '@tailwindcss/vite'
 
+
 const outDir = "../wwwroot/build";
 
 mkdirSync(outDir, {recursive: true});

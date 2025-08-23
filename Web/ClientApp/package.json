@@ -38,6 +38,7 @@
     "tailwindcss": "^4.1.11",
     "vee-validate": "^4.15.1",
     "vue-barcode-reader": "^1.0.3",
+    "vue-swipe": "^2.4.0",
     "yup": "^1.6.1"
   }
 }

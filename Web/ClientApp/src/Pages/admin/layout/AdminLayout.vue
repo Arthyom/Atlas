@@ -11,23 +11,20 @@ const vs = useAtlasStoreLoading();
 </script>
 
 <template>
-  <div class="drawer drawer-end">
+  <div class="drawer drawer-end  ">
     <input id="my-drawer-4" type="checkbox" class="drawer-toggle" />
 
-    <div class="drawer-content ">
+    <div class="drawer-content h-dvh ">
       <AtlasInfiniteLoader></AtlasInfiniteLoader>
 
       <div class="sticky top-0 z-20">
         <AdminNavBarComponent></AdminNavBarComponent>
       </div>
 
-      <div class="h-full ">
-        <div class="flex flex-col  justify-center bg-red-500">
-          <slot></slot>
-        </div>
+      <div class="   ">
+        <slot></slot>
       </div>
 
-      <AdminFooterComponent></AdminFooterComponent>
     </div>
 
     <AtlasSideBarComponent v-bind="adminLinkItems"></AtlasSideBarComponent>

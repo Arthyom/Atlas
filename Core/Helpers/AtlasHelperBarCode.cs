@@ -11,7 +11,7 @@ public static class AtlasHelperBarCode
     {
         ZXing.Common.EncodingOptions Options = new ZXing.Common.EncodingOptions()
         {
-            Height = 50
+            Height = 90
         };
 
         PngEncoder encoder = new PngEncoder()
@@ -21,7 +21,7 @@ public static class AtlasHelperBarCode
 
         ZXing.ImageSharp.BarcodeWriter<Rgba32> codeWriter = new ZXing.ImageSharp.BarcodeWriter<Rgba32>
         {
-            Format = BarcodeFormat.CODE_128,
+            Format = BarcodeFormat.UPC_A,
             Options = Options
         };
 

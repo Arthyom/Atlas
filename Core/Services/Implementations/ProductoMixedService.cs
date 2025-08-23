@@ -30,6 +30,7 @@ using MigraDoc;
 using PdfSharp.Fonts;
 using Core.FontResolvers;
 using Core.DTOs.Categoria;
+using System.Numerics;
 
 
 namespace Core.Services.Implementations;
@@ -289,7 +290,9 @@ public class ProductoMixedService : AtlasBaseServiceMixed<Producto, DtoProductoR
             {
                 var item = items.ElementAt(i);
                 var id = item.Key.ToString("D7");
-                string code =  $"C4P-05-{id[0]}-{id.Substring(1,3)}-{id.Substring(4,3)}";
+                // string code =  $"34905{id[0]}{id.Substring(1,3)}{id.Substring(4,3)}";
+
+                string code = new BigInteger( Guid.NewGuid().ToByteArray() ).ToString().Replace("-","").Substring(0,11);
 
                 Cell cell = row.Cells[i];
                 cell.Borders.Width = borderWidth;
@@ -303,10 +306,13 @@ public class ProductoMixedService : AtlasBaseServiceMixed<Producto, DtoProductoR
 
                 mainParagraph.Format.SpaceBefore = imageSpaceBefore;
                 mainParagraph.AddImage(imageAsText);
+                mainParagraph.AddLineBreak();
+
 
                 mainParagraph.AddText(code);
                 mainParagraph.AddLineBreak();
                 mainParagraph.AddText(item.Value);
+
                 mainParagraph.Format.SpaceAfter = paragraphSpaceAfter;
 
                 mainParagraph.Format.Alignment = ParagraphAlignment.Center;

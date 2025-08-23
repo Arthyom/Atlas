@@ -12,6 +12,12 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 // Import css resources here instead in vite.config.ts under laravel settings
 import './app.css';
 
+import { register } from 'swiper/element/bundle';
+
+register()
+
+
+
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Inertia';
 
 const pinia = createPinia()

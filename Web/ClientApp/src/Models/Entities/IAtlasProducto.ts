@@ -36,9 +36,15 @@ export  interface IAtlasDtoProducto{
         existenciaMinima?: number ;
         existenciaMaxima?: number ;
 
-        imagenes?: string[]
+        imagenes?: string[];
+
+        cantidad: number;
 }
 
+export interface IAtlasDtoContainer<T>{
+
+        mainType: T;
+}
 
 export  interface IAtlasDtoBarCodeProducto{
     
