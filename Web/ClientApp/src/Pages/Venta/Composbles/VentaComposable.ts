@@ -9,6 +9,12 @@ export const useVentaComposable = ( intialList: IAtlasDtoProducto[]) =>{
 
     const _cantidad = ref(0)
 
+    const _pago = ref(0)
+
+    const _cambio = ref(0)
+
+    const _metodoPago = ref('efectivo')
+
     const total = computed( () => {
         let total = 0;
 
@@ -18,6 +24,7 @@ export const useVentaComposable = ( intialList: IAtlasDtoProducto[]) =>{
             }
         })
 
+        _total.value = total
         return total;
     })
 
@@ -56,6 +63,37 @@ export const useVentaComposable = ( intialList: IAtlasDtoProducto[]) =>{
         _productos.push(newItem)
     }
 
+    const setPago = (pago: number) =>{
+        _pago.value=pago;
+    }
+
+    const setCambio = (cambio: number) =>{
+        _cambio.value = cambio
+    }
+
+
+    const cambio = computed( () =>  {
+        const cambio = _pago.value > 0 && _pago.value >= _total.value ? _pago.value - _total.value : 0
+        _cambio.value = cambio;
+
+        return cambio;
+    })
+
+    const metodoPago = computed ( () => _metodoPago.value)
+
+    const isValidPayment = computed (  ()=> _total.value <= _pago.value  &&  0 < _pago.value )
+
+    const getDetails = ()=>{
+        return {
+            pago: _pago.value,
+            metodoPago: _metodoPago.value,
+            cambio: _cambio.value,
+            productos:  _productos,
+            total: _total.value
+        }
+    }
+
+
 
     return{
 
@@ -63,11 +101,18 @@ export const useVentaComposable = ( intialList: IAtlasDtoProducto[]) =>{
         total,
         productos,
         cantidad,
+        cambio,
+        metodoPago,
+        isValidPayment,
+
 
         reduceAmount,
         increaseAmount,
         toggleProduct,
-        addNewProduct
+        addNewProduct,
+        setPago,
+        setCambio,
+        getDetails
 
     }
 }

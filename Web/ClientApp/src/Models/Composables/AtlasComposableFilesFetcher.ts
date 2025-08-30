@@ -13,11 +13,39 @@ export const useAtlasComposableUseFilesFetcher = () =>{
         return `/${mode}/producto/file/${productoLike.imagenes[0]}`
     }
 
+    const getLastImage = (producto: IAtlasDtoProducto) =>{
+        const {imagenes} = producto;
+
+        if(!imagenes) return '';
+
+        const len = imagenes.length
+        
+        return imagenes[len];
+    }
+
+    
+    const getImageAt = (producto: IAtlasDtoProducto, at : number) =>{
+
+        const {imagenes} = producto;
+        
+        if(!imagenes) return '';
+        
+        const len = imagenes.length
+
+        console.log('sssss')
+        if( at <0 )
+            at = len +at
+        
+        return imagenes[at];
+    }
+
     const noFile = () =>{
         return 'https://www.repro.cam.ac.uk/sites/default/files/images/profile/no-photo.png'
     }
 
     return {
+        getImageAt,
+        getLastImage,
         getFileFrom,
         noFile,
         getFirstFileForProducto

@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import IAtlasProducto from "@/Models/Entities/IAtlasProducto";
+import IAtlasProducto, { IAtlasDtoProducto } from "@/Models/Entities/IAtlasProducto";
 import Producto from "@/Models/Entities/IAtlasProducto";
+import IAtlasMixedResponse from "@/Models/Interfaces/IAtlasMixedResponse";
 import { atlasUseCartStore } from "@/Pages/cart/store/cart.store";
 import StoreFrontLayOutPage from "@/Pages/layouts/store-front/StoreFrontLayOutPage.vue";
 import ProductComponent from "@/Pages/Producto/components/ProductComponent.vue";
 import {Link} from "@inertiajs/vue3";
+import ShopProduct from "../components/ShopProduct.vue";
 
-const ps : IAtlasProducto[ ] = [
-  {categoriaId: 1, id: 1, descripcion: 's', nombre: 'sss',precioMayore: 1, precioUnitario:0}
-]
+const props = defineProps<IAtlasMixedResponse<IAtlasDtoProducto>>()
 
 </script>
 
@@ -16,8 +16,8 @@ const ps : IAtlasProducto[ ] = [
   <StoreFrontLayOutPage>
     <div class="flex flex-col">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4   ">
-        <template v-for="product in ps" :key="product.id">
-          <ProductComponent v-bind="product"></ProductComponent>
+        <template v-for="producto in props.mainResourceCollection" :key="product">
+          <ShopProduct v-bind="producto" ></ShopProduct>
         </template>
       </div>
     </div>

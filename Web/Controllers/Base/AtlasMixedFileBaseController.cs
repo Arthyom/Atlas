@@ -11,7 +11,7 @@ namespace Web.Controllers.Base
     where TBaseDtoRequest : AtlasBaseDto
     where TBaseDtoResponse : AtlasBaseDto
     {
-        public AtlasMixedFileBaseController(IAtlasBaseServiceMixed<TBaseEntity, TBaseDtoRequest, TBaseDtoResponse> baseService) : base(baseService)
+        public AtlasMixedFileBaseController(IAtlasBaseServiceMixed<TBaseEntity, TBaseDtoRequest, TBaseDtoResponse> baseService, string? resourceName = null) : base(baseService, resourceName)
         {
         }
 

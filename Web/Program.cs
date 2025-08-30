@@ -50,7 +50,10 @@ builder.Services.AddScoped<IVentaMixedService, VentaMixedService>();
 
 
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews( options =>
+{
+    options.MaxModelBindingCollectionSize = 8024;
+});
 
 
 var app = builder.Build();

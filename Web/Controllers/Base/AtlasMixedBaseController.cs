@@ -13,7 +13,7 @@ namespace Web.Controllers.Base
     {
 
 
-        public AtlasMixedBaseController(IAtlasBaseServiceMixed<TBaseEntity, TBaseDtoRequest, TBaseDtoResponse> baseService) : base(baseService)
+        public AtlasMixedBaseController(IAtlasBaseServiceMixed<TBaseEntity, TBaseDtoRequest, TBaseDtoResponse> baseService, string? resourceName =null) : base(baseService, resourceName)
         {
         }
 

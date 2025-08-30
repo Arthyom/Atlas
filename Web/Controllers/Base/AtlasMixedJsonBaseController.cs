@@ -12,15 +12,18 @@ where TBaseEntity : BaseEntity
 where TBaseDtoRequest : AtlasBaseDto
 where TBaseDtoResponse : AtlasBaseDto
 {
-    protected readonly string _resourceName;
+    protected  string _resourceName;
 
     protected IAtlasBaseServiceMixed<TBaseEntity, TBaseDtoRequest, TBaseDtoResponse> _baseService;
 
 
 
-    public AtlasMixedJsonBaseController(IAtlasBaseServiceMixed<TBaseEntity, TBaseDtoRequest, TBaseDtoResponse> baseService)
+    public AtlasMixedJsonBaseController(IAtlasBaseServiceMixed<TBaseEntity, TBaseDtoRequest, TBaseDtoResponse> baseService, string? resourceName = null)
     {
         _baseService = baseService;
+        if( !string.IsNullOrEmpty(resourceName) )
+            _resourceName = resourceName;
+        else
         _resourceName = typeof(TBaseEntity).Name;
     }
 

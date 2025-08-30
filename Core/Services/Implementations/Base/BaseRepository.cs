@@ -22,6 +22,7 @@ public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
 
     public virtual void Insert(T entity)
     {
+        entity.CreatedAt = DateTime.Now;
         _appDbContext.Add(entity);
     }
 

@@ -3,7 +3,7 @@ import IAtlasProducto from '@/Models/Entities/IAtlasProducto';
 import Producto from '@/Models/Entities/IAtlasProducto';
 import { atlasUseCartStore } from '@/Pages/cart/store/cart.store';
 
-defineProps<IAtlasProducto>()
+const props = defineProps<IAtlasProducto>()
 
 const { addProduct } = atlasUseCartStore()
 

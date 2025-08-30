@@ -1,4 +1,4 @@
-import { IAtlasKeyValue } from "../Interfaces/IAtlasKeyValue"
+import { IAtlasKeyValue } from '../Interfaces/IAtlasKeyValue';
 
 export const useAtlasComposableMapKeyValue = () =>{
 
@@ -8,7 +8,23 @@ export const useAtlasComposableMapKeyValue = () =>{
     }
 
 
+    const expandBasedOnValue = ( collection: IAtlasKeyValue[]) =>{
+        const newCollection : IAtlasKeyValue[] = []
+
+        collection.forEach( x => {
+            let amount: number =  +x.value
+            
+            for (let index = 0; index < amount; index++) {
+                newCollection.push({key: x.key, value: x.value})
+            }
+        })
+
+        return newCollection;
+    }
+
+
     return{
-        mapToKeyValue
+        mapToKeyValue,
+        expandBasedOnValue
     }
 }

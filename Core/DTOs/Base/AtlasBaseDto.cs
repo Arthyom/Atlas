@@ -8,4 +8,6 @@ public class AtlasBaseDto
 {
     [Key]
     public virtual int Id { get; set; }
+
+    public DateTime CreatedAt { get; set; }
 }

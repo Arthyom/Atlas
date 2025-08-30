@@ -4,6 +4,7 @@ using Core.Models.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Core.Migrations
 {
     [DbContext(typeof(AtlasDbContext))]
-    partial class AtlasDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250829051330_AddColumnFolioToVentaProducto")]
+    partial class AddColumnFolioToVentaProducto
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,7 +66,7 @@ namespace Core.Migrations
                     b.HasKey("Id")
                         .HasName("Categoria_PK");
 
-                    b.ToTable("Categoria", (string)null);
+                    b.ToTable("Categoria");
                 });
 
             modelBuilder.Entity("Atlas.Core.Entities.Imagen", b =>
@@ -93,7 +96,7 @@ namespace Core.Migrations
                     b.HasKey("Id")
                         .HasName("Imagen_PK");
 
-                    b.ToTable("Imagen", (string)null);
+                    b.ToTable("Imagen");
                 });
 
             modelBuilder.Entity("Atlas.Core.Entities.ImagenProducto", b =>
@@ -123,7 +126,7 @@ namespace Core.Migrations
 
                     b.HasIndex("ProductoId");
 
-                    b.ToTable("ImagenProducto", (string)null);
+                    b.ToTable("ImagenProducto");
                 });
 
             modelBuilder.Entity("Atlas.Core.Entities.Permiso", b =>
@@ -155,7 +158,7 @@ namespace Core.Migrations
                     b.HasKey("Id")
                         .HasName("Permiso_PK");
 
-                    b.ToTable("Permiso", (string)null);
+                    b.ToTable("Permiso");
                 });
 
             modelBuilder.Entity("Atlas.Core.Entities.Producto", b =>
@@ -227,7 +230,7 @@ namespace Core.Migrations
 
                     b.HasIndex("CategoriaId");
 
-                    b.ToTable("Producto", (string)null);
+                    b.ToTable("Producto");
                 });
 
             modelBuilder.Entity("Atlas.Core.Entities.Rol", b =>
@@ -259,7 +262,7 @@ namespace Core.Migrations
                     b.HasKey("Id")
                         .HasName("NewTable_PK");
 
-                    b.ToTable("Rol", (string)null);
+                    b.ToTable("Rol");
                 });
 
             modelBuilder.Entity("Atlas.Core.Entities.RolPermiso", b =>
@@ -289,7 +292,7 @@ namespace Core.Migrations
 
                     b.HasIndex("RolId");
 
-                    b.ToTable("RolPermiso", (string)null);
+                    b.ToTable("RolPermiso");
                 });
 
             modelBuilder.Entity("Atlas.Core.Entities.Usuario", b =>
@@ -332,7 +335,7 @@ namespace Core.Migrations
 
                     b.HasIndex("RolId");
 
-                    b.ToTable("Usuario", (string)null);
+                    b.ToTable("Usuario");
                 });
 
             modelBuilder.Entity("Core.Models.Entities.ProductoVenta", b =>
@@ -362,7 +365,7 @@ namespace Core.Migrations
 
                     b.HasIndex("VentaId");
 
-                    b.ToTable("ProductoVenta", (string)null);
+                    b.ToTable("ProductoVenta");
                 });
 
             modelBuilder.Entity("Core.Models.Entities.Venta", b =>
@@ -398,7 +401,7 @@ namespace Core.Migrations
                     b.HasKey("Id")
                         .HasName("Venta_PK");
 
-                    b.ToTable("Venta", (string)null);
+                    b.ToTable("Venta");
                 });
 
             modelBuilder.Entity("Atlas.Core.Entities.ImagenProducto", b =>

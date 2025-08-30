@@ -1,6 +1,7 @@
 using System;
 using Atlas.Core.Entities;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Core.DTOs;
 using Core.DTOs.Base;
 using Core.Models.Entities.Base;
@@ -148,10 +149,16 @@ where TBaseDtoResponse: AtlasBaseDto
     }
 
     public virtual async Task<AtlasMixedResponse<TBaseDtoResponse>> GetAll()
-    {
-         var respo = new AtlasMixedResponse<TBaseDtoResponse>();
-        // respo.MainResourceCollection =  new List< DtoProductoResponse >().tolis ///await _BaseRepository.DbSet.ToListAsync();
-        
-        return await Task.FromResult( respo );
+    {        
+        AtlasMixedResponse<TBaseDtoResponse> response = new AtlasMixedResponse<TBaseDtoResponse>();
+
+        var items = await _BaseRepository
+                                .DbSet
+                                .ProjectTo<TBaseDtoResponse>( _Mapper.ConfigurationProvider )
+                                .ToListAsync();
+
+        response.MainResourceCollection = items;
+
+        return response;
     }
 }
