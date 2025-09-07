@@ -2,10 +2,13 @@
 import { useAtlasComposableUseFilesFetcher } from "@/Models/Composables/AtlasComposableFilesFetcher";
 import IAtlasProducto, { IAtlasDtoProducto } from "@/Models/Entities/IAtlasProducto";
 import IAtlasMixedResponse from "@/Models/Interfaces/IAtlasMixedResponse";
+import { useCartStore } from "@/Pages/Cart/store/cart.store";
+import { useAtlasCartStore } from "@/Pages/Shared/store/AtlasCartStore";
 
 const props = defineProps<IAtlasDtoProducto>();
 
 const {getFirstFileForProducto, getFileFrom, getImageAt, getLastImage} = useAtlasComposableUseFilesFetcher()
+const { length, addProduct } = useAtlasCartStore()
 </script>
 
 <template>
@@ -17,7 +20,7 @@ const {getFirstFileForProducto, getFileFrom, getImageAt, getLastImage} = useAtla
         <div :id="imagen" class="carousel-item relative w-full" v-for="(imagen,i) in props.imagenes" :key="imagen">
           <img
             :src="getFileFrom('producto','store', imagen)"
-            class="w-full"
+            class="min-h-60 max-h-60 w-full"
           />
           <div
             class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between"
@@ -29,58 +32,30 @@ const {getFirstFileForProducto, getFileFrom, getImageAt, getLastImage} = useAtla
           </div>
         </div>
 
-        <div id="slide2" class="carousel-item relative w-full">
-          <img
-            src="https://img.daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.webp"
-            class="w-full"
-          />
-          <div
-            class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between"
-          >
-            <a href="#slide1" class="btn btn-circle">❮</a>
-            <a href="#slide3" class="btn btn-circle">❯</a>
-          </div>
-        </div>
-
-        <div id="slide3" class="carousel-item relative w-full">
-          <img
-            src="https://img.daisyui.com/images/stock/photo-1414694762283-acccc27bca85.webp"
-            class="w-full"
-          />
-          <div
-            class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between"
-          >
-            <a href="#slide2" class="btn btn-circle">❮</a>
-            <a href="#slide4" class="btn btn-circle">❯</a>
-          </div>
-        </div>
-
-        <div id="slide4" class="carousel-item relative w-full">
-          <img
-            src="https://img.daisyui.com/images/stock/photo-1665553365602-b2fb8e5d1707.webp"
-            class="w-full"
-          />
-          <div
-            class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between"
-          >
-            <a href="#slide3" class="btn btn-circle">❮</a>
-            <a href="#slide1" class="btn btn-circle">❯</a>
-          </div>
-        </div>
-
       </div>
     </figure>
 
-    <div class="card-body">
-        <div class="grid grid-cols-3">
-            <div>{{ props.nombre }}</div>
-            <div>{{ props.precioUnitario }}</div>
-            <div>
-                <button class="btn btn-circle"> S</button>
-                 <button class="btn btn-circle"> x</button>
+    <div class="card-body p-2 ">
+        <div class="grid grid-cols-3  xl:grid-cols-5 content-start bg-red-300 m">
+            <div class="col-span-2  md:justify-center xl:col-span-4">
+             <span class=" text-2xl font-bold">{{ props.nombre }}</span> 
+            </div>
+            <div class="flex flex-col justify-center items-end  bg-red-700">
+              <span class="text-2xl font-bold">{{ props.precioUnitario }}</span>
+            </div>
+            <div class="col-span-3 xl:col-span-5 grid grid-cols-3 w-full justify-items-center md:place-self-center bg-blue-500 gap-4">
+                <button class="btn btn-circle btn-secondary"> 
+                  <font-awesome-icon icon="fas fa-eye"></font-awesome-icon>
+                </button>
+                <button class="btn btn-circle btn-primary"> 
+                  <font-awesome-icon icon="fas fa-dollar"></font-awesome-icon>
+                </button>
+                <button class="btn btn-circle btn-accent" @click="addProduct(props)">
+                  <font-awesome-icon icon="fas fa-car"></font-awesome-icon>
+                </button>
             </div>
 
-            <div class="col-span-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea harum laborum fuga unde! Porro placeat modi pariatur saepe tempore laudantium natus, deserunt quae qui mollitia, fugiat voluptate voluptas facilis ab.</div>
+
 
         </div>
       <!-- <button class="card-title text-primary hover:underline color-red-500">

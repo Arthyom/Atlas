@@ -42,8 +42,10 @@ builder.Services.AddScoped<IFontResolver, AtlasFontResolverUbuntu>();
 
 
 builder.Services.AddScoped<IProductoMixedService, ProductoMixedService>();
-builder.Services.AddScoped<ICategoriaMixedService, CategoriaMixedService>();   
+builder.Services.AddScoped<ICategoriaMixedService, CategoriaMixedService>();
 builder.Services.AddScoped<IVentaMixedService, VentaMixedService>();    
+builder.Services.AddScoped<IShopMixedService, ShopMixedService>();    
+
  
 
 

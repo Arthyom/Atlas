@@ -2,6 +2,8 @@
 import StoreFrontFooterComponent from "./components/StoreFrontFooterComponent.vue";
 import StoreFrontNavBarComponent from "./components/StoreFrontNavBarComponent.vue";
 import StoreFrontSideBarComponent from "../../Shared/Components/AtlasSideBarComponent.vue";
+import { StoreLinkItems } from "@/Pages/admin/data/links.data";
+
 </script>
 
 <template>
@@ -11,7 +13,9 @@ import StoreFrontSideBarComponent from "../../Shared/Components/AtlasSideBarComp
     <div class="drawer-content">
         
       <div class="h-screen flex flex-col bg-red-s400">
-        <StoreFrontNavBarComponent></StoreFrontNavBarComponent>
+        <div class="sticky top-0 z-20 w-full">
+          <StoreFrontNavBarComponent></StoreFrontNavBarComponent>
+        </div>
 
         <div class="flex-1 m-5">
           <slot></slot>
@@ -20,6 +24,6 @@ import StoreFrontSideBarComponent from "../../Shared/Components/AtlasSideBarComp
       </div>
     </div>
     
-    <StoreFrontSideBarComponent></StoreFrontSideBarComponent>
+    <StoreFrontSideBarComponent v-bind="StoreLinkItems"></StoreFrontSideBarComponent>
   </div>
 </template>

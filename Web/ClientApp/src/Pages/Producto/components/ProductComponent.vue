@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import IAtlasProducto from '@/Models/Entities/IAtlasProducto';
 import Producto from '@/Models/Entities/IAtlasProducto';
-import { atlasUseCartStore } from '@/Pages/cart/store/cart.store';
+import { atlasUseCartStore } from '@/Pages/Cart/store/cart.store';
 
 const props = defineProps<IAtlasProducto>()
 

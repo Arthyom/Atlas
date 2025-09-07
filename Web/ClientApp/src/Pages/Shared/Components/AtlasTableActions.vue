@@ -23,19 +23,19 @@ const goTo = (target: string) =>{
 
   <div class="flex justify-center gap-1">
             <slot></slot>
-            <div class="tooltip" data-tip="Ver" v-if="avoidView">
+            <div class="tooltip" data-tip="Ver" v-if="!avoidView">
               <button class="btn" @click="goTo('view')">
                 <font-awesome-icon icon="fa-solid fa-eye"></font-awesome-icon>
               </button>
             </div>
-            <div class="tooltip" data-tip="Editar" v-if="avoidEdit">
+            <div class="tooltip" data-tip="Editar" v-if="!avoidEdit">
               <button class="btn bnt-info" @click="goTo('edit')">
                 <font-awesome-icon
                   icon="fa-solid fa-pencil"
                 ></font-awesome-icon>
               </button>
             </div>
-            <div class="tooltip" data-tip="Borrar" v-if="avoidDelete">
+            <div class="tooltip" data-tip="Borrar" v-if="!avoidDelete">
               <button class="btn bnt-info">
                 <font-awesome-icon icon="fa-solid fa-trash"></font-awesome-icon>
               </button>

@@ -1,6 +1,7 @@
 using Atlas.Core.Entities;
 using Core.DTOs;
 using Core.DTOs.Categoria;
+using Core.Services.Interfaces;
 using Core.Services.Interfaces.Base;
 using InertiaCore;
 using Microsoft.AspNetCore.Mvc;

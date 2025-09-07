@@ -7,3 +7,14 @@ export const  adminLinkItems : IAtlasCustomLinks = {
         {label: 'Venta', path: '/admin/venta/index'}
     ]
 } ;
+
+
+export const  StoreLinkItems : IAtlasCustomLinks = {
+    linkItems : [
+        {label: 'Gorras',  path:'/admin/producto/index'},
+        {label: 'Perfumes',  path:'/admin/categoria/index'},
+        {label: 'Playeras', path: '/admin/venta/index'},
+        {label: 'Admin', path: '/admin/index'}
+
+    ]
+} ;

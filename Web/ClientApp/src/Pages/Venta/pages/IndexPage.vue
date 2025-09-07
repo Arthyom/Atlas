@@ -42,6 +42,9 @@ const props = defineProps<IAtlasMixedResponse<IDtoVenta>>();
             <AtlasTableActions
               :id="resource.id"
               :resource="tableConfig.configs.resource"
+              :avoid-delete="true"
+              :avoid-edit="true"
+              :avoid-view="true"
             >
               <div class="tooltip" data-tip="Etiqueta">
                 <button class="btn bnt-info" @click="">
