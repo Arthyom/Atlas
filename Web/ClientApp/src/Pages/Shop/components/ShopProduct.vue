@@ -2,7 +2,6 @@
 import { useAtlasComposableUseFilesFetcher } from "@/Models/Composables/AtlasComposableFilesFetcher";
 import IAtlasProducto, { IAtlasDtoProducto } from "@/Models/Entities/IAtlasProducto";
 import IAtlasMixedResponse from "@/Models/Interfaces/IAtlasMixedResponse";
-import { useCartStore } from "@/Pages/Cart/store/cart.store";
 import { useAtlasCartStore } from "@/Pages/Shared/store/AtlasCartStore";
 
 const props = defineProps<IAtlasDtoProducto>();
