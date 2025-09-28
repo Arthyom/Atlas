@@ -10,5 +10,9 @@ export interface IAtlasCustomControl{
     additionalData?: any[];
     genericFunction?: any;
     icon?: string;
-    placeHolder?: string 
+    placeHolder?: string;
+    customClassControl?: string;
+    customClassLable? : string;
+    customClassContainer?: string;
+    customClassError?: string
 }

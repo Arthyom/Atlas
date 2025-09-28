@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import { IAtlasCustomControl } from "@/Models/Interfaces/IAtlasCustomControl";
 
-defineProps<IAtlasCustomControl>();
+const props = defineProps<IAtlasCustomControl>();
 </script>
 
 <template>
-  <div class="lg:col-span-4 sm:col-span-3">
+  <div class="flex flex-col lg:col-span-4 sm:col-span-3" :class="customClassContainer">
     
-    <div class="flex flex-col ">
-      <label class="font-bold text-lg "
+      <label class="font-bold text-lg " :class="customClassLable"
         >{{ label }}<span class="text-error" v-if="isRequired">*</span></label
       >
       <textarea
@@ -21,10 +20,10 @@ defineProps<IAtlasCustomControl>();
         @keydown="genericFunction"
         class="input  w-full h-full"
         :class="{'input-error': error}"
+        
         rows="6"
       >
       </textarea>
-      <p class="pt-1 text-muted text-error">{{ error }}</p>
-    </div>
+      <p class="pt-1 text-muted text-error" :class="customClassError">{{ error }}</p>
   </div>
 </template>

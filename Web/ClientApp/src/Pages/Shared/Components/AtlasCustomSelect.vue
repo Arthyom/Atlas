@@ -9,8 +9,8 @@ defineProps<IAtlasCustomControl>();
 
 
 <template>
-    <div class="flex flex-col ">
-    <label class="font-bold text-lg" >{{ label }}<span class="text-error" v-if="isRequired">*</span></label>
+    <div class="flex flex-col " :class="customClassContainer">
+    <label class="font-bold text-lg" :class="customClassLable">{{ label }}<span class="text-error" v-if="isRequired">*</span></label>
 
     <select class="select w-full"
       :class="{'input-error':error}"
@@ -38,6 +38,6 @@ defineProps<IAtlasCustomControl>();
         @blur="$emit('blur')"
       />
     </label> -->
-    <p class="pt-1 text-muted text-error">{{ error }}</p>
+    <p class="pt-1 text-muted text-error" :class="customClassError">{{ error }}</p>
   </div>
 </template>

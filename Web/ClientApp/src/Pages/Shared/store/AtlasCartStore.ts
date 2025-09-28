@@ -87,6 +87,11 @@ export const useAtlasCartStore = defineStore('atlas-cart-store', () =>{
         
     }
 
+
+    const destroyCart = () =>{
+        _product.value = []
+    }
+
     return {
 
         products,
@@ -99,7 +104,8 @@ export const useAtlasCartStore = defineStore('atlas-cart-store', () =>{
         increase,
         decrease,
         exclude,
-        restore
+        restore,
+        destroyCart
 
     }
 }) 

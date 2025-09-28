@@ -50,7 +50,10 @@ for (const key in validationSchema) {
     additionalData: properties[i].additionalData,
     icon: properties[i].icon,
     placeHolder: properties[i].placeHolder,
-
+    customClassControl: properties[i].customClassControl,
+    customClassLable: properties[i].customClassLable,
+    customClassContainer: properties[i].customClassContainer,
+    customClassError : properties[i].customClassError,
   }
 
 
@@ -86,16 +89,17 @@ onUpdated( () =>{
 
 <template>
 <div class=" sm:hidden" >
-    <div class="bg-base-300 border-base-300 collapse  collapse-arrow border my-4">
+    <div class="bg-base-300 border-base-300 collapse  collapse-arrow border my-4" >
         <input type="checkbox" class="peer" />
 
         <div
           class="collapse-title text-xl font-bold"
+          :class="props.configs.customClassTitle"
         >
           {{props.configs.sectionTitle}}
         </div>
         <div
-          class="collapse-content bg-base-100  "
+          class="collapse-content bg-base-100  " :class="props.configs.customClassContainer"
         >
           <template v-for="(field, x) in fields">
 
@@ -144,16 +148,19 @@ onUpdated( () =>{
 </div>
 
 
-<div class="hidden sm:block bg-base-100  w-full h-full rounded-md" >
+<div class="hidden sm:block bg-base-100  w-full h-full rounded-md"  >
     <div class=" ">
-        <h1 class="mt-4 mb-1 text-3xl font-bold  text-slate-600">{{ props.configs.sectionTitle }}</h1> 
-        <hr class=""/>
+        <h1 class="mt-4 mb-1 text-3xl font-bold  text-slate-600"
+        :class="props.configs.customClassTitle"
+        >{{ props.configs.sectionTitle }}</h1> 
+        <hr class="" :class="props.configs.customClassDivider"/>
       </div>
 
-       <div class="grid sm:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
+       <div class="grid sm:grid-cols-3 lg:grid-cols-4 gap-4 mt-4" :class="props.configs.customClassContainer">
            <template v-for="(field, x) in fields">
 
           <template v-if="properties[x].typeInput === atlasEnumType.area">
+
             <AtlasCustomTextArea v-model="field[0].value" v-bind="field[1].value" :props="properties"/>
           </template>
 

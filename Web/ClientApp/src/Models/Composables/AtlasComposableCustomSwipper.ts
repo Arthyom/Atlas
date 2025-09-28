@@ -16,6 +16,10 @@ export const AtlasComposableCustomSwipper = (selector: string) => {
     _step.value--;
   };    
 
+  const swipeAt = (at:number) =>{
+    _swipper.value?.swiper.slideTo(at)
+  }
+
   const step = computed( () => _step.value)
 
   return {
@@ -23,5 +27,6 @@ export const AtlasComposableCustomSwipper = (selector: string) => {
     
     swipeNext,
     swipePrev
+    ,swipeAt
   };
 };

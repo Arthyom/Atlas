@@ -1,58 +1,119 @@
 <script setup lang="ts">
-import StoreFrontLayOutPage from '@/Pages/layouts/store-front/StoreFrontLayOutPage.vue';
-import { useCartStore } from '../store/cart.store';
-import { AtlasComposableCustomSwipper } from '@/Models/Composables/AtlasComposableCustomSwipper';
-import AtlasCustomProductControl from '@/Pages/Shared/Components/AtlasCustomProductControl.vue';
-import { useAtlasCartStore } from '@/Pages/Shared/store/AtlasCartStore';
-import { storeToRefs } from 'pinia';
+import StoreFrontLayOutPage from "@/Pages/layouts/store-front/StoreFrontLayOutPage.vue";
+import { AtlasComposableCustomSwipper } from "@/Models/Composables/AtlasComposableCustomSwipper";
+import AtlasCustomProductControl from "@/Pages/Shared/Components/AtlasCustomProductControl.vue";
+import { useAtlasCartStore } from "@/Pages/Shared/store/AtlasCartStore";
+import { storeToRefs } from "pinia";
+import CartLayoutPage from "../layout/CartLayoutPage.vue";
+import CartPaymentFormComponent from "../components/CartPaymentFormComponent.vue";
+import CartFinishingFormComponent from "../components/CartFinishingFormComponent.vue";
+import CartAddressFormComponent from "../components/CartAddressFormComponent.vue";
+import CartButtonSwipperComponent from "../components/CartButtonSwipperComponent.vue";
+import AtlasCustomModalControl from "@/Pages/Shared/Components/AtlasCustomModalControl.vue";
+import { reactive, ref } from "vue";
+import { ICartDireccion, ICartMetodoPago } from "../interfaces/CartDireccion.interface";
 
-const {products, totalProductos} = storeToRefs( useAtlasCartStore() )
-const { swipeNext, swipePrev, step } = AtlasComposableCustomSwipper("swipper");
+const { products, totalProductos, totalPago } = storeToRefs(useAtlasCartStore());
+const { swipeNext, swipePrev, swipeAt, step } = AtlasComposableCustomSwipper("swipper");
+const showModal = ref(false);
+const form = reactive<{address?:ICartDireccion, payMethod?:ICartMetodoPago}>({})
 
+const setAddress= (addresss: any)=>{
+  form.address = addresss.data
+}
+
+const setPaymentMethod= (payment: any)=>{
+
+  console.log('paymento,', payment)
+  form.payMethod = payment.data
+}
 </script>
 
 <template>
 
-    <StoreFrontLayOutPage>
+  <AtlasCustomModalControl v-if="showModal" @close-modal="showModal=$event" @close-ok="useAtlasCartStore().destroyCart()">
+    <template #title>
+      info
+    </template>
 
-         <div class="w-full">
-            
-            <ul
-        class="sticky top-16 z-21 steps steps-horizontal w-full pt-3 bg-white"
-      >
-        <li class="step" :class="{ 'step-info': step == 1 || step > 1 }">
-          Productos
-        </li>
-        <li class="step" :class="{ 'step-info': step >= 2 }">Direccion</li>
-        <li class="step" :class="{ 'step-info': step >= 3 }">Pago</li>
-        <li class="step" :class="{ 'step-info': step >= 3 }">Terminar</li>
-
-      </ul>
+    <template #body>
+      Realmente desea eliminar el carrito de compras actual?
+    </template>
+  </AtlasCustomModalControl>
+  
+  <CartLayoutPage
+  @swipe-prev="swipePrev"
+  @swipe-next="swipeNext"
+  @destroy-cart="showModal=true"
+  
+  :step="step"
+  :total-pago="totalPago"
+  :total-productos="totalProductos"
+  >
+    <div class="flex flex-col w-full">
       <div>
         <swiper-container
-          ef="swipper"
+          ref="swipper"
           class="w-full"
           slides-per-view="1"
           speed="500"
           css-mode="true"
         >
-        <swiper-slide>
-            <span>Total en el carrito {{ totalProductos }}</span>
+          <swiper-slide>
+            <CartButtonSwipperComponent
+              :show-next="true"
+              @swipe-next="swipeNext"
+            ></CartButtonSwipperComponent>
             <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
-                <template v-for="p in products">
-                    <AtlasCustomProductControl v-bind="p"></AtlasCustomProductControl>
-                </template>
+              <template v-for="p in products">
+                <AtlasCustomProductControl
+                  v-bind="p"
+                ></AtlasCustomProductControl>
+              </template>
             </div>
-        </swiper-slide>
-        <swiper-slide>2</swiper-slide>
-        <swiper-slide>3</swiper-slide>
-        <swiper-slide>4</swiper-slide>
+          </swiper-slide>
 
+          <swiper-slide>
+            <CartButtonSwipperComponent
+              :show-next="true"
+              :show-prev="true"
+              @swipe-next="swipeNext"
+              @swipe-prev="swipePrev"
+            >
+            </CartButtonSwipperComponent>
+
+            <CartAddressFormComponent @emit-address="setAddress($event)"></CartAddressFormComponent>
+          </swiper-slide>
+
+          <swiper-slide>
+            <CartButtonSwipperComponent
+              :show-next="true"
+              :show-prev="true"
+              @swipe-next="swipeNext"
+              @swipe-prev="swipePrev"
+            >
+            </CartButtonSwipperComponent>
+            <CartPaymentFormComponent @emit-payment="setPaymentMethod($event)"></CartPaymentFormComponent>
+          </swiper-slide>
+
+          <swiper-slide>
+            <CartButtonSwipperComponent
+              :show-prev="true"
+              :show-finish="true"
+              @swipe-next="swipeNext"
+              @swipe-prev="swipePrev"
+            >
+            </CartButtonSwipperComponent>
+            <CartFinishingFormComponent
+             @edit-at="swipeAt($event)" 
+             :metodo-pago="form.payMethod"
+             :direccion="form.address"
+             :total="totalPago" 
+             :products="products" >
+            </CartFinishingFormComponent>
+          </swiper-slide>
         </swiper-container>
       </div>
-
-         </div>
-
-    </StoreFrontLayOutPage>
-
+    </div>
+  </CartLayoutPage>
 </template>

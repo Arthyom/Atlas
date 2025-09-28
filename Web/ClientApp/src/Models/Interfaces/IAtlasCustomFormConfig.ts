@@ -1,4 +1,5 @@
 import { IAtlasCustomControl } from './IAtlasCustomControl';
+import { string } from 'yup';
 export interface IAtlasCustomFormConfig{
     validationSchema?: any,
     initialValues?: any,
@@ -7,7 +8,11 @@ export interface IAtlasCustomFormConfig{
     resource: string,
 
     formSchema:  IAtlasFormSchema[],
-    sectionTitle?: string
+    sectionTitle?: string,
+    customClassTitle?: string,
+    customClassContainer?: string,
+    customClassDivider?:string
+
 }
 
 

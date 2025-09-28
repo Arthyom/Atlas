@@ -29,7 +29,19 @@ export const atlasCompsUseCustomControlState = () => {
     customControll: IAtlasCustomControl
   ) => {
 
-    const {label, typeInput, additionalData, isRequired, isVisible, genericFunction} = customControll;
+    const {
+      label, 
+      typeInput, 
+      additionalData, 
+      isRequired, 
+      isVisible, 
+      genericFunction, 
+      customClassContainer,
+      customClassControl,
+      customClassError,
+      customClassLable,
+
+    } = customControll;
     
     return ({
      error: state.errors[0],
@@ -39,6 +51,10 @@ export const atlasCompsUseCustomControlState = () => {
      isRequired,
      isVisible,
      genericFunction,
+      customClassContainer,
+      customClassControl,
+      customClassError,
+      customClassLable,
    });
   }
   
