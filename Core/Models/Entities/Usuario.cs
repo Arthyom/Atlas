@@ -22,6 +22,10 @@ public partial class Usuario : BaseEntity
     [Unicode(false)]
     public string Nombre { get; set; } = null!;
 
+    [StringLength(6)]
+    [Unicode(false)]
+    public string Cp { get; set; } = null!;
+
     public int RolId { get; set; }
 
     [ForeignKey("RolId")]

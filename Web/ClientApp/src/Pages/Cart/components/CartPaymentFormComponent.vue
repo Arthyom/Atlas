@@ -71,9 +71,4 @@ const showSubForms = (data:any) =>{
    
       </div>
    </div>
-
-  <div class="flex p-4 gap-2">
-    <button class="flex-1 btn btn-info">Aceptar</button>
-    <button class="flex-1 btn btn-info">Cancelar</button>
-  </div>
 </template>

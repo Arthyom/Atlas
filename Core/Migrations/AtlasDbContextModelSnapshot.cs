@@ -63,7 +63,7 @@ namespace Core.Migrations
                     b.HasKey("Id")
                         .HasName("Categoria_PK");
 
-                    b.ToTable("Categoria", (string)null);
+                    b.ToTable("Categoria");
                 });
 
             modelBuilder.Entity("Atlas.Core.Entities.Imagen", b =>
@@ -93,7 +93,7 @@ namespace Core.Migrations
                     b.HasKey("Id")
                         .HasName("Imagen_PK");
 
-                    b.ToTable("Imagen", (string)null);
+                    b.ToTable("Imagen");
                 });
 
             modelBuilder.Entity("Atlas.Core.Entities.ImagenProducto", b =>
@@ -123,7 +123,7 @@ namespace Core.Migrations
 
                     b.HasIndex("ProductoId");
 
-                    b.ToTable("ImagenProducto", (string)null);
+                    b.ToTable("ImagenProducto");
                 });
 
             modelBuilder.Entity("Atlas.Core.Entities.Permiso", b =>
@@ -155,7 +155,7 @@ namespace Core.Migrations
                     b.HasKey("Id")
                         .HasName("Permiso_PK");
 
-                    b.ToTable("Permiso", (string)null);
+                    b.ToTable("Permiso");
                 });
 
             modelBuilder.Entity("Atlas.Core.Entities.Producto", b =>
@@ -227,7 +227,7 @@ namespace Core.Migrations
 
                     b.HasIndex("CategoriaId");
 
-                    b.ToTable("Producto", (string)null);
+                    b.ToTable("Producto");
                 });
 
             modelBuilder.Entity("Atlas.Core.Entities.Rol", b =>
@@ -259,7 +259,7 @@ namespace Core.Migrations
                     b.HasKey("Id")
                         .HasName("NewTable_PK");
 
-                    b.ToTable("Rol", (string)null);
+                    b.ToTable("Rol");
                 });
 
             modelBuilder.Entity("Atlas.Core.Entities.RolPermiso", b =>
@@ -289,7 +289,7 @@ namespace Core.Migrations
 
                     b.HasIndex("RolId");
 
-                    b.ToTable("RolPermiso", (string)null);
+                    b.ToTable("RolPermiso");
                 });
 
             modelBuilder.Entity("Atlas.Core.Entities.Usuario", b =>
@@ -299,6 +299,12 @@ namespace Core.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Cp")
+                        .IsRequired()
+                        .HasMaxLength(6)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(6)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -332,7 +338,63 @@ namespace Core.Migrations
 
                     b.HasIndex("RolId");
 
-                    b.ToTable("Usuario", (string)null);
+                    b.ToTable("Usuario");
+                });
+
+            modelBuilder.Entity("Core.Models.Entities.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ApiAcountId")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("ApiCustomerId")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("ApiId")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("ApiNumber")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("ApiStatus")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("ApiType")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id")
+                        .HasName("Order_PK");
+
+                    b.ToTable("Order");
                 });
 
             modelBuilder.Entity("Core.Models.Entities.ProductoVenta", b =>
@@ -362,7 +424,7 @@ namespace Core.Migrations
 
                     b.HasIndex("VentaId");
 
-                    b.ToTable("ProductoVenta", (string)null);
+                    b.ToTable("ProductoVenta");
                 });
 
             modelBuilder.Entity("Core.Models.Entities.Venta", b =>
@@ -398,7 +460,7 @@ namespace Core.Migrations
                     b.HasKey("Id")
                         .HasName("Venta_PK");
 
-                    b.ToTable("Venta", (string)null);
+                    b.ToTable("Venta");
                 });
 
             modelBuilder.Entity("Atlas.Core.Entities.ImagenProducto", b =>

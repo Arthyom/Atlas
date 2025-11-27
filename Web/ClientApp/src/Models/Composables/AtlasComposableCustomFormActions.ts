@@ -2,28 +2,37 @@ import { router, useForm } from "@inertiajs/vue3";
 import { useAtlasComposableLoadingCallbacks } from "./AtlasComposableLoadingCallbacks";
 import { computed, ref } from "vue";
 import { string } from "yup";
+import axios from "axios";
 
 const { opts } = useAtlasComposableLoadingCallbacks();
 
-export const useAtlasComposableCustomFormActions = ( resource: string, isAdmin = true, formValues: any = null, initialValues: any = null) => {
+export const useAtlasComposableCustomFormActions = ( resource: string, isAdmin = true, formValues: any = null, initialValues: any = null, url: string | null = null ) => {
   const _formValues = ref( formValues )
   const _props = ref(initialValues);
+  
   const _formConfs = computed( ()=> {  
     
     const hasId = _props.value?.mainResource?.id;
 
     const confs = {resource, url: ''}
-    if(isAdmin)
+
+    if(url){
+      confs.url = url
+      return confs
+    }
+
+    if(isAdmin && !url){
       if(!!hasId)
         confs.url = `/admin/${resource}/update/${hasId}`
       else
         confs.url = `/admin/${resource}/store`
-
-    else
-      if(!!hasId)
+    }
+    else{
+      if(!!hasId && !url)
         confs.url = `/store/${resource}/update/${hasId}`
       else
         confs.url = `/store/${resource}/store`
+    }
 
       return confs;
 
@@ -83,6 +92,32 @@ export const useAtlasComposableCustomFormActions = ( resource: string, isAdmin =
     });
   };
 
+  const submitCustomAjaxmWithData = async (data:any) => {
+
+    try {
+      
+      opts.onStart({});
+      const f = { ...data};
+  
+      // const form = useForm(f);
+  
+      // return form.post(_formConfs.value?.url, {
+      //   _method: "post",
+      //   // forceFormData: true,
+      //   opts,
+      // });
+  
+      const response = await axios.post(_formConfs.value.url , data)
+      opts.onFinish({})
+  
+      return response;
+      
+    } catch (error) {
+     opts.onError({}) 
+    }
+
+  };
+
   const setCustomFormValues = (formValues: any) => {
     _formValues.value = formValues
   };
@@ -93,7 +128,7 @@ export const useAtlasComposableCustomFormActions = ( resource: string, isAdmin =
     isSaveEnabled,
 
 
-    
+    submitCustomAjaxmWithData,
     cancelCustomForm,
     submitCustomForm,
     submitCustomFormWithData,

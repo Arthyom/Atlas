@@ -1,4 +1,5 @@
 using Core.FontResolvers;
+using Core.Handlers;
 using Core.Helpers;
 using Core.MiddleWares;
 using Core.Services.Implementations;
@@ -43,12 +44,28 @@ builder.Services.AddScoped<IFontResolver, AtlasFontResolverUbuntu>();
 
 builder.Services.AddScoped<IProductoMixedService, ProductoMixedService>();
 builder.Services.AddScoped<ICategoriaMixedService, CategoriaMixedService>();
-builder.Services.AddScoped<IVentaMixedService, VentaMixedService>();    
-builder.Services.AddScoped<IShopMixedService, ShopMixedService>();    
+builder.Services.AddScoped<IVentaMixedService, VentaMixedService>();
+builder.Services.AddScoped<IShopMixedService, ShopMixedService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IUsuarioMixedService, UsuarioMixedService>();
 
- 
 
 
+
+/// looks wire since doesn't has interface
+builder.Services.AddScoped<AtlasHandlerEcartToken, AtlasHandlerEcartToken>();
+builder.Services.AddScoped<TokenProvider, TokenProvider>();
+
+builder.Services.AddSession();
+
+
+
+builder.Services.AddHttpClient("PaymentServiceCliente")
+    .AddHttpMessageHandler<AtlasHandlerEcartToken>()
+;
+
+builder.Services.AddHttpClient("TokenProvider")
+;
 
 
 
@@ -87,8 +104,9 @@ app.ApplySeeders();
 
 app.MapFallbackToFile("index.html");
 
-
+app.UseSession();
 app.UseMiddleware<AuthSharedMiddleWrare>();
+
 
 app.Run();
 

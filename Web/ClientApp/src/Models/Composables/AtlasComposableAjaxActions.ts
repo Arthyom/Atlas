@@ -6,19 +6,30 @@ import axios from "axios";
 import  IAtlasMixedResponse from "../Interfaces/IAtlasMixedResponse";
 
 
-export const useAtlasComposableAjaxActions = (resourcer: string, mode = 'admin') =>{
+export const useAtlasComposableAjaxActions = <TTipe>(resourcer: string, mode = 'admin', url: string | null) =>{
 
     const { opts } = useAtlasComposableLoadingCallbacks();
+
+    const _state = ref<any>()
+
+        const _states = ref<any[]>()
 
     const _resource = ref(resourcer);
     const _mode = ref(mode);
 
-    const url = computed( () => `/${_mode.value}/${_resource.value}`)
+    const _url = computed( () => {
+
+        if(url){
+            return url
+        }
+        
+        return `/${_mode.value}/${_resource.value}`
+    })
 
 
     const getById = async(id:number)  =>{
         try {     
-            const path = `${url.value}/json/${id}`
+            const path = `${_url.value}/json/${id}`
     
             opts.onStart({})
             const response = await axios.get<IAtlasMixedResponse<IAtlasDtoProducto>>(path)
@@ -34,9 +45,37 @@ export const useAtlasComposableAjaxActions = (resourcer: string, mode = 'admin')
         }
     }
 
+
+    const getUrl = async<Tout>()  =>{
+        try {     
+            opts.onStart({})
+            const response = await axios.get<Tout>(_url.value)
+           await setTimeout(() => {
+                
+                opts.onFinish({})
+            }, 2000);
+
+
+            _state.value = response.data
+    
+            return response.data;
+        } catch (error) {
+            opts.onError({})
+        }
+    }
+
+    const getState = computed( () => _state.value)
+        const getStates = computed( () => _states.value)
+
+    // getUrl<TTipe>()
+
     return{
 
         url,
-        getById
+
+        getState,
+        getStates,
+        getById,
+        getUrl
     }
 }

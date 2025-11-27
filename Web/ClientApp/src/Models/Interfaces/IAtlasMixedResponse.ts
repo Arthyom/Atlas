@@ -7,3 +7,5 @@ export default interface IAtlasMixedResponse <TValue> {
     extras?: any;
 
 }
+
+

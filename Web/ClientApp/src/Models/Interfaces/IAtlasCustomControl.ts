@@ -14,5 +14,13 @@ export interface IAtlasCustomControl{
     customClassControl?: string;
     customClassLable? : string;
     customClassContainer?: string;
-    customClassError?: string
+    customClassError?: string;
+    returnObjectValue?:boolean;
+    keyLabel?:string;
+    min?:number;
+    max?:number;
+    formatFunction?: any;
+    hasKey?:string | undefined;
+    showControl?:boolean;
+    // ref?:string;
 }

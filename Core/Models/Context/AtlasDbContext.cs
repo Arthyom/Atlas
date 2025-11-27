@@ -17,6 +17,9 @@ public partial class AtlasDbContext : DbContext
     {
     }
 
+    public virtual DbSet<Order> Order { get; set; }
+
+
     public virtual DbSet<ProductoVenta> ProductoVenta { get; set; }
 
     public virtual DbSet<Venta> Venta { get; set; }

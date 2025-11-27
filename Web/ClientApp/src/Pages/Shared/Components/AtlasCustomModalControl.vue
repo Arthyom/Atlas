@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { onMounted, onUpdated } from 'vue';
+import { boolean } from 'yup';
 
+  defineProps<{isValidOk?:boolean}>()
 
    onMounted( ()=>{
        const e = document.getElementById('my_modal_1') as HTMLDialogElement
@@ -24,7 +26,7 @@ import { onMounted, onUpdated } from 'vue';
         <form method="dialog">
           <!-- if there is a button in form, it will close the modal -->
           <button class="btn" @click="$emit('close-modal', false)">Cancel</button>
-           <button class="btn" @click="$emit('close-ok', true)">Ok</button>
+           <button :disabled="!isValidOk" class="btn" @click="$emit('close-ok', true)">Ok</button>
 
         </form>
       </div>

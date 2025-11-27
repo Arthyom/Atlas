@@ -35,9 +35,11 @@ where TBaseDtoResponse : AtlasBaseDto
     public Task<TBaseEntity> Store(TBaseEntity entity);
     public Task<AtlasMixedResponse<TBaseDtoRequest>> Store(TBaseDtoRequest entity);
 
-    
+    public Task<AtlasMixedResponse<TBaseDtoResponse>> Apply(TBaseDtoRequest entity);
 
-    public  Task<AtlasMixedResponse<TBaseDtoResponse>> Update(TBaseDtoRequest dto, int id);
+
+
+    public Task<AtlasMixedResponse<TBaseDtoResponse>> Update(TBaseDtoRequest dto, int id);
 
     public Task<AtlasMixedResponse<TBaseDtoResponse>> Edit(int id);
 

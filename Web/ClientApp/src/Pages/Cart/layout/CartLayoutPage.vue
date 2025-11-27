@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { Link, router } from '@inertiajs/vue3';
 
-defineProps<{step:number, totalPago:number, totalProductos:number}>()
+defineProps<{ configs: { label: string, fun: any }[],   step:number, totalPago:number, totalProductos:number}>()
 
 
 const goBack = () =>{
@@ -30,18 +30,13 @@ const goBack = () =>{
   <ul
         class="steps steps-horizontal w-full pt-3 bg-white text-xs font-light md:text-lg md:font-normal"
       >
-        <li class="step" :class="{ 'step-info': step == 1 || step > 1 }">
-          <span class="">Productos</span>
+
+      <li class="step" 
+          v-for="conf in configs"
+          :class="{ 'step-info': conf.fun(step) }">
+          <span class="">{{ conf.label }}</span>
         </li>
-        <li class="step text" :class="{ 'step-info': step >= 2 }">
-          <span class=" ">Direccion</span>
-        </li>
-        <li class="step" :class="{ 'step-info': step >= 3 }">
-          <span class=" ">Pago</span>
-        </li>
-        <li class="step" :class="{ 'step-info': step >= 4 }">
-          <span class="">Finalizar</span>
-        </li>
+
       </ul>
 
       <div class="flex flex-col text-center py-3">

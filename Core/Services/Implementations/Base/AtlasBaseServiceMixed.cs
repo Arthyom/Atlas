@@ -161,4 +161,15 @@ where TBaseDtoResponse: AtlasBaseDto
 
         return response;
     }
+
+    public virtual async Task<AtlasMixedResponse<TBaseDtoResponse>> Apply(TBaseDtoRequest dto)
+    {
+         var baseEntityMapped = _Mapper.Map<TBaseEntity>(dto);
+
+        repo.Insert(baseEntityMapped);
+
+        UoW.SaveChanges();
+        
+        return await Task.FromResult(new AtlasMixedResponse<TBaseDtoResponse>() );
+    }
 }

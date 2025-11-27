@@ -19,13 +19,17 @@ defineProps<IAtlasCustomTableConfig>();
     
       
       <table class="table  ">
-        <thead class="text-center text-xl font-bold p-0 ">
+        <thead class="text-center text-xl font-bold  ">
           <tr class="bg-base-300">
             <slot name="customTh"></slot>
-            <th class="p-0" v-for="header in configs.headersLabels" :key="header">
-              <span class="hover:underline hover:cursor-pointer hover:text-black" :class="{ 'hidden lg:table-cell' : header === 'Modelo'}">
-                {{ header }}
-              </span>
+            <th class="hidden md:table-cell" v-for="header in configs.headersLabels" :key="header">
+              <div class="flex flex-col">
+                <!-- <span class="hover:underline hover:cursor-pointer hover:text-black hidden" :class="{ 'hidden lg:table-cell' : header === 'Modelo'}"> -->
+                <span class="hover:underline hover:cursor-pointer hover:text-black hidden md:table-cell " >
+                  {{ header }}
+                </span>
+
+              </div>
             </th>
     
              <template v-if="configs.headersLabels.length >=2">

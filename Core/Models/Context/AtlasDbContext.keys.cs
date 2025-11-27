@@ -10,6 +10,10 @@ public partial class AtlasDbContext : DbContext
 
 protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Order>(entity =>
+        {
+            entity.HasKey( e => e.Id).HasName("Order_PK");
+        });
         
         modelBuilder.Entity<ProductoVenta>(entity =>
         {

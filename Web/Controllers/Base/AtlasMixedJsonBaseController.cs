@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Web.Controllers.Base;
 
 [Route("{approachType?}/{controller}")]
-public class AtlasMixedJsonBaseController<TBaseEntity, TBaseDtoRequest, TBaseDtoResponse> : Controller
+public  class AtlasMixedJsonBaseController<TBaseEntity, TBaseDtoRequest, TBaseDtoResponse> : Controller
 where TBaseEntity : BaseEntity
 where TBaseDtoRequest : AtlasBaseDto
 where TBaseDtoResponse : AtlasBaseDto
@@ -27,6 +27,28 @@ where TBaseDtoResponse : AtlasBaseDto
         _resourceName = typeof(TBaseEntity).Name;
     }
 
+
+
+      [HttpPost("json/save")]
+        public virtual async Task<IActionResult> Save([FromBody] TBaseDtoRequest entityToCreate)
+        {
+            try
+            {
+                _baseService.UoW.Begin();
+
+                var response = await _baseService.Apply(entityToCreate);
+
+                _baseService.UoW.Commit();
+                
+                return Ok(response);
+                // return Inertia.Render($"{_resourceName}/pages/IndexPage", entityToCreate);
+            }
+            catch (Exception ex)
+            {
+                _baseService.UoW.RollBack();
+                return Problem(ex.Message);
+            }
+        }
 
     // GET: CityHallBaseJsonController
     [HttpGet("json")]

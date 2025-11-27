@@ -3,9 +3,14 @@ import IAtlasProducto, {
   IAtlasDtoProducto,
 } from "@/Models/Entities/IAtlasProducto";
 import { string } from "yup";
-import { ICartDireccion, ICartMetodoPago } from "../interfaces/CartDireccion.interface";
+import { ICartDireccion, ICartMetodoPago, ICartPropietario } from "../interfaces/CartDireccion.interface";
 
-const props = defineProps<{direccion?:ICartDireccion, metodoPago?:ICartMetodoPago,  products?: IAtlasDtoProducto[], total: number }>();
+const props = defineProps<{
+  propietario?: ICartPropietario
+  direccion?:ICartDireccion, 
+  metodoPago?:ICartMetodoPago,  
+  products?: IAtlasDtoProducto[], 
+  total: number }>();
 
 const hideString = (source?:string, toShowLast:number = 4, replaceChar: string = '*') =>{
   if(!source) return ''
@@ -26,10 +31,11 @@ const hideString = (source?:string, toShowLast:number = 4, replaceChar: string =
     <h1 class="text-2xl font-bold text-center">Revision</h1>
 
     <div class="grid grid-cols-1 gap-4">
-      <div class="card w-full bg-base-100 card-sm shadow-sm">
+
+       <div class="card w-full bg-base-100 card-sm shadow-sm">
         <div class="card-body">
           <div class="card-title flex w-full">
-            <span class="">Direccion</span>
+            <span class="">Propietario</span>
             <div class="flex justify-end w-full">
               <button
                 @click="$emit('editAt', 1)"
@@ -42,28 +48,56 @@ const hideString = (source?:string, toShowLast:number = 4, replaceChar: string =
           <div class="flex flex-col">
             <div>
               <span>
-                {{ direccion?.direccion }} <b>#</b>{{ direccion?.exterior  }}
-                <span class="m-2" v-if="!!direccion?.interior"><b>Int: </b>{{ direccion?.interior }}</span>
+                {{ propietario?.nombre }} {{ propietario?.apellidoP }} {{ propietario?.apellidoM }}
               </span>
-              <span class="m-2">
-                <b >Colonia: </b>{{ direccion?.coloniaId }} <span class="m-2"><b>CP: </b>{{ direccion?.cp }}</span>
+
+               <span>
+                {{ propietario?.telefono }} 
+              </span>
+
+              <span>
+                {{ propietario?.email }} 
               </span>
             </div>
 
-            <span v-if="!!direccion?.entreCalles">
-              <b>Entre Calles:</b> {{ direccion?.entreCalles }}
-            </span>
            
-
-
-              {{ direccion?.municipioId }}, {{ direccion?.estadoId }}, {{ direccion?.paisId }}
-
+          
 
           </div>
         </div>
       </div>
 
       <div class="card w-full bg-base-100 card-sm shadow-sm">
+        <div class="card-body">
+          <div class="card-title flex w-full">
+            <span class="">Direccion</span>
+            <div class="flex justify-end w-full">
+              <button
+                @click="$emit('editAt', 2)"
+                class="btn btn-sm btn-ghost text-blue-800 justify-end"
+              >
+                <font-awesome-icon icon="fas fa-edit"></font-awesome-icon>
+              </button>
+            </div>
+          </div>
+          <div class="flex flex-col">
+            <div>
+              <p>
+                {{ direccion?.direccionPrimaria }}  {{ direccion?.direccionSecundaria }} {{ direccion?.municipio }}
+                <span class="m-2"><b>CP: </b>{{ direccion?.cp }}</span>
+              </p>
+             
+            </div>
+
+           
+              {{ direccion?.ciudad }}, {{ direccion?.estado }}, {{ direccion?.pais }}
+
+
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="card w-full bg-base-100 card-sm shadow-sm">
         <div class="card-body">
           <div class="card-title flex w-full">
             <span class="flex-1">Metodo de Pago</span>
@@ -91,7 +125,7 @@ const hideString = (source?:string, toShowLast:number = 4, replaceChar: string =
             </span>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <div class="card w-full bg-base-100 card-sm shadow-sm">
         <div class="card-body">

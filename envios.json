@@ -1,0 +1,514 @@
+{
+_type: "export",
+__export_format: 4,
+__export_date: "2021-06-16T21:19:26.097Z",
+__export_source: "insomnia.desktop.app:v2021.3.0",
+resources: [
+{
+_id: "req_4c5720f8844549318276052a7c90993d",
+parentId: "fld_30d40700af7f403a84b77d9440474896",
+modified: 1623869001073,
+created: 1623782276258,
+url: "{{ _.base_url }}{{ _.path }}/pickup",
+name: "Pickup",
+description: "",
+method: "POST",
+body: {
+mimeType: "application/json",
+text: "{
+	"date":"{{ _.fecha_recoleccion }}",
+	"time":"{{ _.periodo_B }}",
+	"reference":"794643132890"
+}"
+},
+parameters: [ ],
+headers: [
+{
+name: "Content-Type",
+value: "application/json",
+id: "pair_4edc163e04a24d3484539ecba5076ce5"
+}
+],
+authentication: {
+type: "bearer",
+token: "{{ _.token }}"
+},
+metaSortKey: -1623782276258,
+isPrivate: false,
+settingStoreCookies: true,
+settingSendCookies: true,
+settingDisableRenderRequestBody: false,
+settingEncodeUrl: true,
+settingRebuildPath: true,
+settingFollowRedirects: "global",
+_type: "request"
+},
+{
+_id: "fld_30d40700af7f403a84b77d9440474896",
+parentId: "fld_4622060152984a4496a97258aa7d15b7",
+modified: 1623868585061,
+created: 1623782257540,
+name: "Pickup",
+description: "",
+environment: { },
+environmentPropertyOrder: { },
+metaSortKey: -1623782257540,
+_type: "request_group"
+},
+{
+_id: "fld_4622060152984a4496a97258aa7d15b7",
+parentId: "fld_b60270e54a464a22bf122d42abd1100f",
+modified: 1623878337698,
+created: 1623625144082,
+name: "API",
+description: "",
+environment: { },
+environmentPropertyOrder: { },
+metaSortKey: -1623625144082,
+_type: "request_group"
+},
+{
+_id: "fld_b60270e54a464a22bf122d42abd1100f",
+parentId: "wrk_11a6c23664554e01a3a1f9b1ad13b24f",
+modified: 1623878327172,
+created: 1623624921037,
+name: "EnviosPerros",
+description: "",
+environment: { },
+environmentPropertyOrder: null,
+metaSortKey: -1623624921037,
+_type: "request_group"
+},
+{
+_id: "wrk_11a6c23664554e01a3a1f9b1ad13b24f",
+parentId: null,
+modified: 1623688220286,
+created: 1622772113512,
+name: "EnviosPerros",
+description: "",
+scope: "collection",
+_type: "workspace"
+},
+{
+_id: "req_2abadeed0ee74685bfe04b33a605f659",
+parentId: "fld_5c1e220db8314842bedddee109ec1829",
+modified: 1623868649952,
+created: 1623780954718,
+url: "{{ _.base_url }}{{ _.path }}/cancel/order",
+name: "OrderCancel",
+description: "",
+method: "POST",
+body: {
+mimeType: "application/json",
+text: "{
+	"referens":["794643132802 "]
+}"
+},
+parameters: [ ],
+headers: [
+{
+name: "Content-Type",
+value: "application/json",
+id: "pair_289711717fbf41f4a68ee7ac92a2ea92"
+}
+],
+authentication: {
+type: "bearer",
+token: "{{ _.token }}"
+},
+metaSortKey: -1623780954718,
+isPrivate: false,
+settingStoreCookies: true,
+settingSendCookies: true,
+settingDisableRenderRequestBody: false,
+settingEncodeUrl: true,
+settingRebuildPath: true,
+settingFollowRedirects: "global",
+_type: "request"
+},
+{
+_id: "fld_5c1e220db8314842bedddee109ec1829",
+parentId: "fld_4622060152984a4496a97258aa7d15b7",
+modified: 1623868543481,
+created: 1623684787285,
+name: "Labels",
+description: "",
+environment: { },
+environmentPropertyOrder: { },
+metaSortKey: -1623684787285,
+_type: "request_group"
+},
+{
+_id: "req_5ccbd7763423415d82bdc6e643be90fa",
+parentId: "fld_5c1e220db8314842bedddee109ec1829",
+modified: 1623868280059,
+created: 1623684849263,
+url: "{{ _.base_url }}{{ _.path }}/orders",
+name: "Order",
+description: "",
+method: "POST",
+body: {
+mimeType: "application/json",
+text: "{  
+   "deliveryType":"{{ _.deliveryType_EEx }}",
+   "packageSize":
+        {
+           "type":"{{ _.type_sobre }}",
+           "depth":"{{ _.depth }}",
+           "width":"{{ _.width }}",
+           "height":"{{ _.height }}",
+           "weight":"{{ _.weight }}",
+           "description":"papeles"
+        }, 
+   "origin":
+       {
+           "company_origin":"Eviosperros",
+           "street_origin":"Eje Central Lázaro Cárdenas ",
+           "interior_number_origin":"",
+           "outdoor_number_origin":"2",
+           "zip_code_origin":"06000",
+           "neighborhood_origin":"Madero",
+           "city_origin":"Cuauhtémoc",
+           "state_origin":"Ciudad de México",
+           "references_origin":"porton blanco",
+           "name_origin":"Alex Lora",
+           "email_origin":"ejemplo@gmail.com",
+           "phone_origin":"2291234567",
+           "save_origin":"false"
+			
+       },
+    "destination": {
+           "company_dest":"Test company",
+           "street_dest":"Dr José Ma. Coss",
+           "interior_number_dest":"",
+           "outdoor_number_dest":"445",
+           "zip_code_dest":"64000",
+           "neighborhood_dest":"Calle diego montemayor",
+           "city_dest":"Nuevo León",
+           "state_dest":"Monterrey",
+           "references_dest":"puerta negra",
+           "name_dest":"Gabriel García Márquez",
+           "email_dest":"ejemplo@gmail.com",
+           "phone_dest":"2291234569",
+           "save_dest":"false",
+			 		"ocurre":"false"
+       }
+}"
+},
+parameters: [ ],
+headers: [
+{
+name: "Content-Type",
+value: "application/json",
+id: "pair_6d62b2ee1d89458f80b2da462a49448b"
+}
+],
+authentication: {
+type: "bearer",
+token: "{{ _.token }}"
+},
+metaSortKey: -1622773859354.5,
+isPrivate: false,
+settingStoreCookies: true,
+settingSendCookies: true,
+settingDisableRenderRequestBody: false,
+settingEncodeUrl: true,
+settingRebuildPath: true,
+settingFollowRedirects: "global",
+_type: "request"
+},
+{
+_id: "req_00a14464bfb94f6bb3b831682c60a05e",
+parentId: "fld_5c1e220db8314842bedddee109ec1829",
+modified: 1623868697047,
+created: 1623684799456,
+url: "{{ _.base_url }}{{ _.path }}/guide/order",
+name: "Guía",
+description: "",
+method: "GET",
+body: {
+mimeType: "application/json",
+text: "{  
+    "reference":"794643132890"
+}"
+},
+parameters: [ ],
+headers: [
+{
+name: "Content-Type",
+value: "application/json",
+id: "pair_266ad417d4bd4eec927856e986de92e6"
+}
+],
+authentication: {
+type: "bearer",
+token: "{{ _.token }}"
+},
+metaSortKey: -1622773859304.5,
+isPrivate: false,
+settingStoreCookies: true,
+settingSendCookies: true,
+settingDisableRenderRequestBody: false,
+settingEncodeUrl: true,
+settingRebuildPath: false,
+settingFollowRedirects: "global",
+_type: "request"
+},
+{
+_id: "req_05fb2fb7e0ee446bbb24193c5280737b",
+parentId: "fld_45e6e7abd3f045c791d25e64e0191c95",
+modified: 1623645152984,
+created: 1623625177908,
+url: "{{ _.base_url }}{{ _.path }}/shipping/rates",
+name: "ShippingRates",
+description: "",
+method: "POST",
+body: {
+mimeType: "application/json",
+text: "
+{ 
+    "depth":"{{ _.depth }}",
+    "width":"{{ _.width }}",
+    "height":"{{ _.height }}",
+    "weight":"{{ _.weight }}",
+    "origin":{
+    "codePostal":"{{ _.codePostal_origin }}"
+    },
+    "destination":{
+    "codePostal":"{{ _.codePostal_dest }}"
+    }
+}"
+},
+parameters: [ ],
+headers: [
+{
+name: "Content-Type",
+value: "application/json",
+id: "pair_083ab8f906844dc4b1bd4349f9501957"
+}
+],
+authentication: {
+type: "bearer",
+token: "{{ _.token }}"
+},
+metaSortKey: -1623643529927,
+isPrivate: false,
+settingStoreCookies: true,
+settingSendCookies: true,
+settingDisableRenderRequestBody: false,
+settingEncodeUrl: true,
+settingRebuildPath: true,
+settingFollowRedirects: "global",
+_type: "request"
+},
+{
+_id: "fld_45e6e7abd3f045c791d25e64e0191c95",
+parentId: "fld_4622060152984a4496a97258aa7d15b7",
+modified: 1623645205921,
+created: 1623644801996,
+name: "Cotizaciones",
+description: "",
+environment: { },
+environmentPropertyOrder: { },
+metaSortKey: -1623644801996,
+_type: "request_group"
+},
+{
+_id: "env_d4758b6065083cbb195426cd0228199761ef13a9",
+parentId: "wrk_11a6c23664554e01a3a1f9b1ad13b24f",
+modified: 1622772113559,
+created: 1622772113559,
+name: "Base Environment",
+data: { },
+dataPropertyOrder: null,
+color: null,
+isPrivate: false,
+metaSortKey: 1622772113559,
+_type: "environment"
+},
+{
+_id: "jar_d4758b6065083cbb195426cd0228199761ef13a9",
+parentId: "wrk_11a6c23664554e01a3a1f9b1ad13b24f",
+modified: 1623722298876,
+created: 1622772113562,
+name: "Default Jar",
+cookies: [
+{
+key: "XSRF-TOKEN",
+value: "eyJpdiI6IkN1UGFMbkFJUGtNTUdGTnlnS2J1bEE9PSIsInZhbHVlIjoibUtCZGc0NTArZFo0eWEwOXJXZm9qYjUyZllxK2tFTFhqeGFVSFVZTDJmUW9rU1hyT0Rid0kvNWdYR1ZOdGtoY0NLRTlZS0lZWXZwL3lsbTJxQjhtYWs5RU4vTHluN0dUQW1xdFpPNU5oeUxXd2VzZk1YN09EMkV6dldvQTZIejIiLCJtYWMiOiJhYWE1MTM4OTI4NmE1ZmFlY2ZmNTM4NWZjNjI4MmY5NGI0NDdhNmU4ODNmNWJiM2U4NGZjOGYxZTc4NTY0NjA5In0%3D",
+expires: "2021-06-15T03:58:18.000Z",
+maxAge: 7200,
+domain: "127.0.0.1",
+path: "/",
+hostOnly: true,
+creation: "2021-06-04T02:06:41.098Z",
+lastAccessed: "2021-06-15T01:58:18.876Z",
+id: "5286610613369074"
+},
+{
+key: "enviosperros_session",
+value: "eyJpdiI6IkVraWtTdVpHVzF3MmxacTBHeDgvd1E9PSIsInZhbHVlIjoiSUVtTzNLTE1DaWZPcExBTitUVEZZRFo4WFh0VTBOZU95OU9aZ1NLSEcyTk1rY29Td1UvT0NXYmFXbXpGdVBrbTBxZ0hTeU9ZS2hxU1FzYXZTTVVHREwwYzh4bWtXbWcxWUVvYWJHNHRIbHJ0RVFxWjR4NTZJYUo1M2lhMmFuSnQiLCJtYWMiOiI3MjNjOTRjNWU5YzJiNmNlOTIyZDMxY2UyOWUxZTMxYTJmZWU5MjJkZDU1OWE5YjYyM2UzOWFhMGYxM2JlZmViIn0%3D",
+expires: "2021-06-15T03:58:18.000Z",
+maxAge: 7200,
+domain: "127.0.0.1",
+path: "/",
+httpOnly: true,
+hostOnly: true,
+creation: "2021-06-04T02:06:41.098Z",
+lastAccessed: "2021-06-15T01:58:18.876Z",
+id: "09346874372175584"
+},
+{
+key: "XSRF-TOKEN",
+value: "eyJpdiI6Im1DTHBOQStuZnhaOFBlbHZ2ZHRCc2c9PSIsInZhbHVlIjoieVdPSEtsaHNFRjVHU2xLY25TUVo3ZXBkRDNMajROVE5PTTQwNFlTQnNwdVBGUE5aN0M4RkVIelVZeXFiM2FUazk0MW4zcU15SCtvcGtKNllOZGU0ZTUyWHFXdHZoald3RzdubGU5ck9XMTdBZy9qdmc4N25iWXc1Zm9Pa2xUWmEiLCJtYWMiOiIxMzljZTIxMDQ5M2Q3NmFkMWUxYzhkY2QzYmY5ZGM3NzE1MzdjMDdlNTMzNzEzZDI4MmVmNWI5ZGRmZmRlMWNjIn0%3D",
+expires: "2021-06-14T01:20:20.000Z",
+maxAge: 7200,
+domain: "staging-app.enviosperros.com",
+path: "/",
+hostOnly: true,
+creation: "2021-06-13T23:20:22.887Z",
+lastAccessed: "2021-06-13T23:20:22.888Z",
+id: "13799210819887708"
+},
+{
+key: "enviosperros_session",
+value: "eyJpdiI6Imh0MEFyeWRPQkxsdUdkRVRKbU0xTkE9PSIsInZhbHVlIjoiakxveHY0LzI4cVhpQ1p6RGRaS1QvK3B0TjZJMTdOODJwY0ozVUF3ZkFsblRoZFhWUHlXMndSYkVwaG9LOEdKK25iVkhsWE50WUhLYWtBRy8vZHVpYUx0Vk1rK3AzUXN4bVZRakVWNDk3czN0TFlydk9RQXpXMXZNL1NOVC9MdmIiLCJtYWMiOiIzMWZmMzk5NDBiMTFhZmQxMzIzMmZlZjliYzU5ZDExYjNhNWM2YTkzNDcwNzI4OTljZjNkMDA2ZjA2NGQzMDA1In0%3D",
+expires: "2021-06-14T01:20:20.000Z",
+maxAge: 7200,
+domain: "staging-app.enviosperros.com",
+path: "/",
+httpOnly: true,
+hostOnly: true,
+creation: "2021-06-13T23:20:22.888Z",
+lastAccessed: "2021-06-13T23:20:22.888Z",
+id: "17403985196705407"
+}
+],
+_type: "cookie_jar"
+},
+{
+_id: "spc_f890f7ae783e444f838d2ffe011857e9",
+parentId: "wrk_11a6c23664554e01a3a1f9b1ad13b24f",
+modified: 1622772113513,
+created: 1622772113513,
+fileName: "Insomnia",
+contents: "",
+contentType: "yaml",
+_type: "api_spec"
+},
+{
+_id: "env_721d784bafed4e218e13087eb320f021",
+parentId: "env_d4758b6065083cbb195426cd0228199761ef13a9",
+modified: 1623869084945,
+created: 1623868478572,
+name: "Staging",
+data: {
+base_url: "https://staging-app.enviosperros.com",
+path: "/api/v1",
+token: "HpNLq4N27rdvqCMTuNQrgi6lIH0TfyvWYfMvUZq5",
+depth: "2",
+width: "2",
+height: "2",
+weight: "1",
+codePostal_origin: "91726",
+codePostal_dest: "94295",
+deliveryType_EEx: "ESTAFETA_EXPRESS",
+deliveryType_EEc: "ESTAFETA_ECONOMICO",
+deliveryType_FEc: "FEDEX_EXPRESS_SAVER",
+deliveryType_FEx: "STANDARD_OVERNIGHT",
+type_caja: "Caja",
+type_sobre: "Sobre",
+fecha_recoleccion: "15/06/2021",
+periodo_A: 0,
+periodo_B: 1,
+periodo_C: 2,
+periodo_D: 3
+},
+dataPropertyOrder: {
+&: [
+"base_url",
+"path",
+"token",
+"depth",
+"width",
+"height",
+"weight",
+"codePostal_origin",
+"codePostal_dest",
+"deliveryType_EEx",
+"deliveryType_EEc",
+"deliveryType_FEc",
+"deliveryType_FEx",
+"type_caja",
+"type_sobre",
+"fecha_recoleccion",
+"periodo_A",
+"periodo_B",
+"periodo_C",
+"periodo_D"
+]
+},
+color: "#0fb0f5",
+isPrivate: false,
+metaSortKey: 1623868478572,
+_type: "environment"
+},
+{
+_id: "env_e51e68c27dd0473ab5749d8b374c6d81",
+parentId: "env_d4758b6065083cbb195426cd0228199761ef13a9",
+modified: 1623869157634,
+created: 1623868734018,
+name: "Production",
+data: {
+base_url: "https://app.enviosperros.com",
+path: "/api/v1",
+token: "",
+depth: "",
+width: "",
+height: "",
+weight: "",
+codePostal_origin: "",
+codePostal_dest: "",
+deliveryType_EEx: "",
+deliveryType_EEc: "",
+deliveryType_FEc: "",
+deliveryType_FEx: "",
+type_caja: "",
+type_sobre: "",
+fecha_recoleccion: "",
+periodo_A: 0,
+periodo_B: 1,
+periodo_C: 2,
+periodo_D: 3
+},
+dataPropertyOrder: {
+&: [
+"base_url",
+"path",
+"token",
+"depth",
+"width",
+"height",
+"weight",
+"codePostal_origin",
+"codePostal_dest",
+"deliveryType_EEx",
+"deliveryType_EEc",
+"deliveryType_FEc",
+"deliveryType_FEx",
+"type_caja",
+"type_sobre",
+"fecha_recoleccion",
+"periodo_A",
+"periodo_B",
+"periodo_C",
+"periodo_D"
+]
+},
+color: "#e60a41",
+isPrivate: false,
+metaSortKey: 1623868734018,
+_type: "environment"
+}
+]
+}

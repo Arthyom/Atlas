@@ -17,6 +17,7 @@ export interface IAtlasCustomFormConfig{
 
 
 export interface IAtlasFormSchema{
+    key?: string,
     schema: any,
     config?: IAtlasCustomControl,
 }
