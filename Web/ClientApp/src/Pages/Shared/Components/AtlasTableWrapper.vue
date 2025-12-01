@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import IAtlasCustomTableConfig from "@/Models/Interfaces/IAtlasCustomTableConfig";
 import AtlasCustomNavTool from "./AtlasCustomNavTool.vue";
+import { config } from "@fortawesome/fontawesome-svg-core";
 
 defineProps<IAtlasCustomTableConfig>();
 </script>
 
 <template>
-    <div class="bg-base-100 md:shadow-lg">
+    <div class="bg-base-100 shadow-lg">
 
-    <div class="sticky top-16 z-20 ">
+    <div class="sticky top-16 z-20 " >
       <AtlasCustomNavTool :configs="configs" class="">
         <template #buttonSloSlot>
           <slot name="buttonSlot" ></slot>
@@ -19,7 +20,7 @@ defineProps<IAtlasCustomTableConfig>();
     
       
       <table class="table  ">
-        <thead class="text-center text-xl font-bold  ">
+        <thead class="text-center text-xl font-bold  " v-if="!configs.hideHeaders">
           <tr class="bg-base-300">
             <slot name="customTh"></slot>
             <th class="hidden md:table-cell" v-for="header in configs.headersLabels" :key="header">
@@ -31,13 +32,16 @@ defineProps<IAtlasCustomTableConfig>();
 
               </div>
             </th>
+
+            <template v-if="!configs.hideActions">
+              <template v-if="configs.headersLabels.length >=2">
+                <th class="hidden md:table-cell">Acciones</th>
+               </template>
+               <template v-else>
+                 <th class="table-cell">Acciones</th>
+               </template>
+            </template>
     
-             <template v-if="configs.headersLabels.length >=2">
-               <th class="hidden md:table-cell">Acciones</th>
-              </template>
-              <template v-else>
-                <th class="table-cell">Acciones</th>
-              </template>
           </tr>
         </thead>
     

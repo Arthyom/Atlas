@@ -47,7 +47,7 @@ const linkToAdd = `/admin/${props.configs.resource}/create`;
           <a class="btn btn-ghost text-xl">{{ configs.title }}</a>
         </div>
         <div class="navbar-center hidden lg:flex"></div>
-        <div class="navbar-end">
+        <div class="navbar-end" v-if="configs.showAddButton">
           <div class="flex  w-full">
 
             <slot name="buttonSloSlot"></slot>
@@ -72,7 +72,7 @@ const linkToAdd = `/admin/${props.configs.resource}/create`;
             <div
               tabindex="0"
               role="button"
-              class="btn btn-ghost lg:hidden text-2xl"
+              class="btn btn-ghost lg:hidden text-sm md:text-2xl"
             >
               {{ configs.title }}
             </div>
@@ -95,7 +95,7 @@ const linkToAdd = `/admin/${props.configs.resource}/create`;
         </div>
 
         <div class="navbar-center hidden lg:flex"></div>
-        <div class="navbar-end">
+        <div class="navbar-end" v-if="configs.showAddButton">
           <div class="flex flex-row">
             <div>
               <Link class="btn btn-circle btn-success avatar" :href="linkToAdd">

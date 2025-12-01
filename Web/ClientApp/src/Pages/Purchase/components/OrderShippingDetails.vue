@@ -7,6 +7,9 @@ import { ref } from 'vue';
 import { IAtlasCustomFormConfig } from '@/Models/Interfaces/IAtlasCustomFormConfig';
 import * as yup from 'yup';
 import AtlasCustomTemplateForm from '@/Pages/Shared/Components/AtlasCustomTemplateForm.vue';
+import OrderShippingRates from './Shipping/OrderShippingRates.vue';
+import { dataEnviosPerrosShippingRate } from '@/Data/EnviosPerrosShippingRates.data';
+import { IApiEPShippingRate } from '@/Models/Interfaces/ExternalApis/EnviosPerros/IEnviosPerros.interface';
 
 
 
@@ -30,6 +33,8 @@ import AtlasCustomTemplateForm from '@/Pages/Shared/Components/AtlasCustomTempla
   const setOkValue = (response: any) =>{
     formPackageDimsIsValid.value = response?.isValid
   }
+
+  const epShippingRates: IApiEPShippingRate[] = dataEnviosPerrosShippingRate
 </script>
 
 
@@ -45,11 +50,16 @@ import AtlasCustomTemplateForm from '@/Pages/Shared/Components/AtlasCustomTempla
 
         <template #body>
             <AtlasCustomTemplateForm 
+              v-if="false"
                 @form-ok="setOkValue($event)" 
                 :configs="formPackageDims"
             >
-
             </AtlasCustomTemplateForm>
+
+
+            <OrderShippingRates v-bind:rates="epShippingRates">
+
+            </OrderShippingRates>
         </template>
 
     </AtlasCustomModalControl>

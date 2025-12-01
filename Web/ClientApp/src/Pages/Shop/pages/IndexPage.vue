@@ -3,7 +3,7 @@ import IAtlasProducto, { IAtlasDtoProducto } from "@/Models/Entities/IAtlasProdu
 import Producto from "@/Models/Entities/IAtlasProducto";
 import IAtlasMixedResponse from "@/Models/Interfaces/IAtlasMixedResponse";
 import StoreFrontLayOutPage from "@/Pages/layouts/store-front/StoreFrontLayOutPage.vue";
-import ProductComponent from "@/Pages/Producto/components/ProductComponent.vue";
+// import ProductComponent from "@/Pages/Producto/components/ProductComponent.vue";
 import {Link} from "@inertiajs/vue3";
 import ShopProduct from "../components/ShopProduct.vue";
 

@@ -13,7 +13,7 @@ import { boolean } from 'yup';
 <template>
   <!-- <button class="btn" onclick="my_modal_1.showModal()">open modal</button> -->
   <dialog id="my_modal_1" class="modal">
-    <div class="modal-box">
+    <div class="modal-box px-2">
       <h3 class="text-lg font-bold">
         <slot name="title">
 
