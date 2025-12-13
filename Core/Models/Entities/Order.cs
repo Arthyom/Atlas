@@ -9,16 +9,17 @@ namespace Core.Models.Entities;
 
 public partial class Order : BaseEntity
 {
-    [NotMapped]
-    public Customer Customer { get; set; } = null!;
+    // [NotMapped]
+    // public Customer Customer { get; set; } = null!;
 
-    [NotMapped]
-    public Address Address { get; set; } = null!;
+    // [NotMapped]
+    // public Address Address { get; set; } = null!;
 
-    [NotMapped]
-    public IEnumerable<Producto> Items { get; set; } = null!;
+    // [NotMapped]
+    // public IEnumerable<Producto> Items { get; set; } = null!;
 
-    [NotMapped]
+    [StringLength(4)]
+    [Unicode(false)]
     public string Currency { get; set; } = null!;
 
     [NotMapped]
@@ -38,6 +39,8 @@ public partial class Order : BaseEntity
     [Unicode(false)]
     public string ApiCustomerId {get; set;} = null!;
 
+    public int DireccionId {get; set;}
+
     [StringLength(100)]
     [Unicode(false)]
     public string ApiType {get;set;} = null!;
@@ -49,4 +52,18 @@ public partial class Order : BaseEntity
     [StringLength(100)]
     [Unicode(false)]
     public string ApiStatus { get; set; } = null!;
+
+    public int EnvioId { get; set; } 
+
+    public virtual Customer Customer { get; set; } = null!;
+
+
+    // public virtual Direccion Address { get; set; } = null!;
+
+    public virtual Direccion Direccion { get; set; } = null!;
+
+    public virtual ICollection<Producto> Productos { get; set; } = new List<Producto>();
+
+    public virtual ICollection<Envio> Envios { get; set; } = new List<Envio>();
+
 }

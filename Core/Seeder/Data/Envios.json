@@ -1,0 +1,54 @@
+[
+    {
+        "currency": "mnx",
+        "email": "aa",
+        "first_name": "alfredo",
+        "folio": "1232323ASDSD",
+        "state": "Created",
+        "last_name": "lastname",
+        "notify_url": "",
+        "phone": "444444444",
+        "items": [
+            {
+                "id": 1013,
+                "name": "test",
+                "price": 45.33,
+                "quantity": 2
+            },
+            {
+                "id": 1013,
+                "name": "test",
+                "price": 45.33,
+                "quantity": 2
+            },
+            {
+                "id": 1013,
+                "name": "test",
+                "price": 45.33,
+                "quantity": 2
+            },
+            {
+                "id": 1013,
+                "name": "test",
+                "price": 45.33,
+                "quantity": 2
+            }
+        ],
+        "shipping_address": {
+            "address1": "address 1",
+            "address2": "address 2",
+            "city": "ciudad",
+            "country": {
+                "code": "MX",
+                "name": "pais"
+            },
+            "first_name": "first name",
+            "last_name": "last name",
+            "phone": "44444444444444",
+            "postal_code": 3888,
+            "state": {
+                "code": "GUA"
+            }
+        }
+    }
+]

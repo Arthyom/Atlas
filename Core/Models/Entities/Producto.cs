@@ -59,4 +59,12 @@ public partial class Producto : BaseEntity
     
     [InverseProperty("Producto")]
     public virtual ICollection<ProductoVenta> ProductoVenta { get; set; } = new List<ProductoVenta>();
+
+
+    public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
+
+
+    // [ForeignKey("ProductoId")]
+    // [InverseProperty("ImagenProductos")]
+    // public virtual Order Order { get; set; } = null!;
 }

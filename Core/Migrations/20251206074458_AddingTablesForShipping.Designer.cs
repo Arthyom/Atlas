@@ -4,6 +4,7 @@ using Core.Models.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,16 +12,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Core.Migrations
 {
     [DbContext(typeof(AtlasDbContext))]
-    partial class AtlasDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251206074458_AddingTablesForShipping")]
+    partial class AddingTablesForShipping
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "9.0.6")
-                .HasAnnotation("Proxies:ChangeTracking", false)
-                .HasAnnotation("Proxies:CheckEquality", false)
-                .HasAnnotation("Proxies:LazyLoading", true)
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -344,47 +344,6 @@ namespace Core.Migrations
                     b.ToTable("Usuario");
                 });
 
-            modelBuilder.Entity("Core.Models.Entities.Customer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ApiCustomerId")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirtName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Customer");
-                });
-
             modelBuilder.Entity("Core.Models.Entities.Destino", b =>
                 {
                     b.Property<int>("Id")
@@ -418,68 +377,57 @@ namespace Core.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("City")
+                    b.Property<string>("CityOrigin")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Company")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CountryCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CountryName")
+                    b.Property<string>("CompanyOrigin")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Email")
+                    b.Property<string>("EmailOrigin")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("InteriorNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
+                    b.Property<string>("InteriorNumberOrigin")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Neighborhood")
+                    b.Property<string>("NameOrigin")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("OutdoorNumber")
+                    b.Property<string>("NeighborhoodOrigin")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Phone")
+                    b.Property<string>("OutdoorNumberOrigin")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("References")
+                    b.Property<string>("PhoneOrigin")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("State")
+                    b.Property<string>("ReferencesOrigin")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("StateCode")
+                    b.Property<string>("StateOrigin")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Street")
+                    b.Property<string>("StreetOrigin")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ZipCode")
+                    b.Property<string>("ZipCodeOrigin")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -506,9 +454,6 @@ namespace Core.Migrations
                     b.Property<int>("DestinationId")
                         .HasColumnType("int");
 
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
                     b.Property<int>("OriginId")
                         .HasColumnType("int");
 
@@ -524,8 +469,6 @@ namespace Core.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("DestinationId");
-
-                    b.HasIndex("OrderId");
 
                     b.HasIndex("OriginId");
 
@@ -581,28 +524,11 @@ namespace Core.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Currency")
-                        .IsRequired()
-                        .HasMaxLength(4)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(4)");
-
-                    b.Property<int>("DireccionId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("EnvioId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id")
                         .HasName("Order_PK");
-
-                    b.HasIndex("ApiCustomerId")
-                        .IsUnique();
-
-                    b.HasIndex("DireccionId");
 
                     b.ToTable("Order");
                 });
@@ -673,35 +599,6 @@ namespace Core.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Paquete");
-                });
-
-            modelBuilder.Entity("Core.Models.Entities.ProductoOrder", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductoId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("ProductoId");
-
-                    b.ToTable("ProductoOrder");
                 });
 
             modelBuilder.Entity("Core.Models.Entities.ProductoVenta", b =>
@@ -850,12 +747,6 @@ namespace Core.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Core.Models.Entities.Order", "Order")
-                        .WithMany("Envios")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Core.Models.Entities.Origen", "Origen")
                         .WithMany()
                         .HasForeignKey("OriginId")
@@ -870,31 +761,9 @@ namespace Core.Migrations
 
                     b.Navigation("Destino");
 
-                    b.Navigation("Order");
-
                     b.Navigation("Origen");
 
                     b.Navigation("Paquete");
-                });
-
-            modelBuilder.Entity("Core.Models.Entities.Order", b =>
-                {
-                    b.HasOne("Core.Models.Entities.Customer", "Customer")
-                        .WithOne("Order")
-                        .HasForeignKey("Core.Models.Entities.Order", "ApiCustomerId")
-                        .HasPrincipalKey("Core.Models.Entities.Customer", "ApiCustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Core.Models.Entities.Direccion", "Direccion")
-                        .WithMany("Orders")
-                        .HasForeignKey("DireccionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Customer");
-
-                    b.Navigation("Direccion");
                 });
 
             modelBuilder.Entity("Core.Models.Entities.Origen", b =>
@@ -907,21 +776,6 @@ namespace Core.Migrations
                         .HasConstraintName("Origen_Direccion_FK");
 
                     b.Navigation("Direccion");
-                });
-
-            modelBuilder.Entity("Core.Models.Entities.ProductoOrder", b =>
-                {
-                    b.HasOne("Core.Models.Entities.Order", null)
-                        .WithMany()
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Atlas.Core.Entities.Producto", null)
-                        .WithMany()
-                        .HasForeignKey("ProductoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Core.Models.Entities.ProductoVenta", b =>
@@ -970,22 +824,6 @@ namespace Core.Migrations
                     b.Navigation("RolPermisos");
 
                     b.Navigation("Usuarios");
-                });
-
-            modelBuilder.Entity("Core.Models.Entities.Customer", b =>
-                {
-                    b.Navigation("Order")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Core.Models.Entities.Direccion", b =>
-                {
-                    b.Navigation("Orders");
-                });
-
-            modelBuilder.Entity("Core.Models.Entities.Order", b =>
-                {
-                    b.Navigation("Envios");
                 });
 
             modelBuilder.Entity("Core.Models.Entities.Venta", b =>

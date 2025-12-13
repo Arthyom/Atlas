@@ -37,4 +37,5 @@ public static string UserLoggedKeySession = "AppCityHallLoggedUser";
         // typeof(Ingreso).Name,
         ];
 
+    
 }

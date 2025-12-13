@@ -16,6 +16,23 @@ public partial class AtlasDbContext : DbContext
         : base(options)
     {
     }
+    
+    public virtual DbSet<ProductoOrder> ProductoOrder { get; set; }
+
+    public virtual DbSet<Paquete> Paquete { get; set; }
+
+    public virtual DbSet<Envio> Envio { get; set; }
+
+    public virtual DbSet<Direccion> Direccion { get; set; }
+
+    public virtual DbSet<Origen> Origen { get; set; }
+
+    public virtual DbSet<Destino> Destino { get; set; }
+
+
+
+
+
 
     public virtual DbSet<Order> Order { get; set; }
 

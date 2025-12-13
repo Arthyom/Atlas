@@ -163,8 +163,7 @@ const setComplexValues = (event: any) => {
           <template
             v-else-if="properties[x].typeInput === atlasEnumType.select"
           >
-            <pre>
-            </pre>
+         
               <AtlasCustomSelect
                 @emit-object="setComplexValues($event)"
                 v-model="field[0].value"

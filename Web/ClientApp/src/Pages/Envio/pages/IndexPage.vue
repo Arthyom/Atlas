@@ -15,69 +15,69 @@ import { EnumPurchaseModalType } from "../Enums/ModalType.enum";
 import { IPurchaseModalConf } from "../interfaces/IPurchaseModalConf.interface";
 import OrderOverViewDetails from "../components/OrderOverViewDetails.vue";
 
-// const props = defineProps<IAtlasMixedResponse<IDtoApiOrders>>();
+const props = defineProps<IAtlasMixedResponse<IDtoApiOrders>>();
 
 const modalConf = reactive<IPurchaseModalConf>({});
 
 const selectedIndex = ref(0)
 
-const response = ref<IAtlasMixedResponse<IDtoApiOrders>>({
-  mainResourceCollection: [
-    {
-      currency: "mnx",
-      email: "aa",
-      first_name: "alfredo",
-      folio: "1232323ASDSD",
-      state: "Created",
-      last_name: "lastname",
-      notify_url: "",
-      phone: "444444444",
-      items: [
-        {
-          id: 1013,
-          name: 'test',
-          price: 45.33,
-          quantity: 2
-        },
-        {
-          id: 1013,
-          name: 'test',
-          price: 45.33,
-          quantity: 2
-        },
-        {
-          id: 1013,
-          name: 'test',
-          price: 45.33,
-          quantity: 2
-        },
-        {
-          id: 1013,
-          name: 'test',
-          price: 45.33,
-          quantity: 2
-        },
+// const response = ref<IAtlasMixedResponse<IDtoApiOrders>>({
+//   mainResourceCollection: [
+//     {
+//       currency: "mnx",
+//       email: "aa",
+//       first_name: "alfredo",
+//       folio: "1232323ASDSD",
+//       state: "Created",
+//       last_name: "lastname",
+//       notify_url: "",
+//       phone: "444444444",
+//       items: [
+//         {
+//           id: 1013,
+//           name: 'test',
+//           price: 45.33,
+//           quantity: 2
+//         },
+//         {
+//           id: 1013,
+//           name: 'test',
+//           price: 45.33,
+//           quantity: 2
+//         },
+//         {
+//           id: 1013,
+//           name: 'test',
+//           price: 45.33,
+//           quantity: 2
+//         },
+//         {
+//           id: 1013,
+//           name: 'test',
+//           price: 45.33,
+//           quantity: 2
+//         },
 
-    ],
-      shipping_address: {
-        address1: "address 1",
-        address2: "address 2",
-        city: "ciudad",
-        country: {
-          code: "MX",
-          name: "pais",
-        },
-        first_name: "first name",
-        last_name: "last name",
-        phone: "44444444444444",
-        postal_code: 3888,
-        state: {
-          code: "GUA",
-        },
-      },
-    },
-  ],
-});
+//     ],
+//       shipping_address: {
+//         address1: "address 1",
+//         address2: "address 2",
+//         city: "ciudad",
+//         country: {
+//           code: "MX",
+//           name: "pais",
+//         },
+//         first_name: "first name",
+//         last_name: "last name",
+//         phone: "44444444444444",
+//         postal_code: 3888,
+//         state: {
+//           code: "GUA",
+//         },
+//       },
+//     },
+//   ],
+// });
 
 const tableConfig: IAtlasCustomTableConfig = {
   configs: {
@@ -106,11 +106,11 @@ const checkModalType = (typeInput: EnumPurchaseModalType) => {
 };
 
 const getItemsFromCollection = (index:number) =>{
-  return response.value.mainResourceCollection[index].items;
+  return props.mainResourceCollection[index].productos;
 }
 
 const getMainItemFromResponse = (index:number) =>{
-  return response.value.mainResourceCollection[index];
+  return props.mainResourceCollection[index];
 }
 </script>
 
@@ -125,7 +125,7 @@ const getMainItemFromResponse = (index:number) =>{
   </OrderOverViewDetails>
 
   <OrderItemsDetails
-    :items="getItemsFromCollection(selectedIndex)"
+    :productos="getItemsFromCollection(selectedIndex)"
     @close-form="hideForm"
     v-if="checkModalType(EnumPurchaseModalType.OrderItemsDetails)"
   >
@@ -151,7 +151,7 @@ const getMainItemFromResponse = (index:number) =>{
 
       <template v-slot:default>
         <tr
-          v-for="(itemResource,i) in response.mainResourceCollection"
+          v-for="(itemResource,i) in props.mainResourceCollection"
           :key="itemResource.folio"
         >
           <td class="md:hidden">

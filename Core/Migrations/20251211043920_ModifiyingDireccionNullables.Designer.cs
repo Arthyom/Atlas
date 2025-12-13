@@ -4,6 +4,7 @@ using Core.Models.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,16 +12,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Core.Migrations
 {
     [DbContext(typeof(AtlasDbContext))]
-    partial class AtlasDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251211043920_ModifiyingDireccionNullables")]
+    partial class ModifiyingDireccionNullables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "9.0.6")
-                .HasAnnotation("Proxies:ChangeTracking", false)
-                .HasAnnotation("Proxies:CheckEquality", false)
-                .HasAnnotation("Proxies:LazyLoading", true)
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -506,9 +506,6 @@ namespace Core.Migrations
                     b.Property<int>("DestinationId")
                         .HasColumnType("int");
 
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
                     b.Property<int>("OriginId")
                         .HasColumnType("int");
 
@@ -524,8 +521,6 @@ namespace Core.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("DestinationId");
-
-                    b.HasIndex("OrderId");
 
                     b.HasIndex("OriginId");
 
@@ -588,9 +583,6 @@ namespace Core.Migrations
                         .HasColumnType("varchar(4)");
 
                     b.Property<int>("DireccionId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("EnvioId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -850,12 +842,6 @@ namespace Core.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Core.Models.Entities.Order", "Order")
-                        .WithMany("Envios")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Core.Models.Entities.Origen", "Origen")
                         .WithMany()
                         .HasForeignKey("OriginId")
@@ -869,8 +855,6 @@ namespace Core.Migrations
                         .IsRequired();
 
                     b.Navigation("Destino");
-
-                    b.Navigation("Order");
 
                     b.Navigation("Origen");
 
@@ -981,11 +965,6 @@ namespace Core.Migrations
             modelBuilder.Entity("Core.Models.Entities.Direccion", b =>
                 {
                     b.Navigation("Orders");
-                });
-
-            modelBuilder.Entity("Core.Models.Entities.Order", b =>
-                {
-                    b.Navigation("Envios");
                 });
 
             modelBuilder.Entity("Core.Models.Entities.Venta", b =>

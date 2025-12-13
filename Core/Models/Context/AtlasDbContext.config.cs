@@ -7,7 +7,11 @@ public partial class AtlasDbContext : DbContext
 {
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Server=localhost;Database=Atlas_5;User Id=sa;Password=2010_F?!;TrustServerCertificate=true");
+    {
+        optionsBuilder.UseLazyLoadingProxies().UseSqlServer("Server=localhost;Database=Atlas_5;User Id=sa;Password=2010_F?!;TrustServerCertificate=true");
+
+        
+    }
 
     
 }

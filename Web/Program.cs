@@ -48,6 +48,8 @@ builder.Services.AddScoped<IVentaMixedService, VentaMixedService>();
 builder.Services.AddScoped<IShopMixedService, ShopMixedService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IUsuarioMixedService, UsuarioMixedService>();
+builder.Services.AddScoped<IShippingMixedService, ShippingMixedService>();
+
 
 
 
@@ -58,7 +60,7 @@ builder.Services.AddScoped<TokenProvider, TokenProvider>();
 
 builder.Services.AddSession();
 
-
+builder.Services.AddHttpClient("ShippingServiceCliente");
 
 builder.Services.AddHttpClient("PaymentServiceCliente")
     .AddHttpMessageHandler<AtlasHandlerEcartToken>()
@@ -66,6 +68,8 @@ builder.Services.AddHttpClient("PaymentServiceCliente")
 
 builder.Services.AddHttpClient("TokenProvider")
 ;
+
+
 
 
 

@@ -6,5 +6,6 @@ export interface IPurchaseModalConf{
     isVisible?: boolean;
     modalType?: EnumPurchaseModalType,
     items?: IDtoApiItem[],
+    productos?: IAtlasDtoProducto[],
     selected?: boolean
 }

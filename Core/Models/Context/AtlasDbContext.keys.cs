@@ -10,9 +10,30 @@ public partial class AtlasDbContext : DbContext
 
 protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Origen>(entity =>
+        {
+            entity.HasOne(d => d.Direccion)
+                .WithOne()
+                .OnDelete(DeleteBehavior.NoAction)
+                .HasConstraintName("Origen_Direccion_FK");
+        });
+
+         modelBuilder.Entity<Destino>(entity =>
+        {
+            entity.HasOne(d => d.Direccion)
+                .WithOne()
+                .OnDelete(DeleteBehavior.NoAction)
+                .HasConstraintName("Destino_Direccion_FK");
+        });
+
         modelBuilder.Entity<Order>(entity =>
         {
             entity.HasKey( e => e.Id).HasName("Order_PK");
+
+            entity
+            .HasOne(d => d.Direccion)
+            .WithMany(p => p.Orders)
+            .HasForeignKey(d => d.DireccionId);
         });
         
         modelBuilder.Entity<ProductoVenta>(entity =>
@@ -69,6 +90,11 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
             entity.HasOne(d => d.Categoria).WithMany(p => p.Productos)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("Producto_Categoria_FK");
+
+            entity
+            .HasMany<Order>(d => d.Orders)
+            .WithMany(p => p.Productos)
+            .UsingEntity<ProductoOrder>();
         });
 
         modelBuilder.Entity<Rol>(entity =>
@@ -97,6 +123,19 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("Usuario_Rol_FK");
         });
+
+        modelBuilder.Entity<Customer>(entity =>
+        {
+            entity
+
+                .HasOne<Order>(d => d.Order)
+                .WithOne(s => s.Customer)
+                .HasPrincipalKey<Customer>(s => s.ApiCustomerId)
+                .HasForeignKey<Order>(d => d.ApiCustomerId);
+
+        });
+
+        
 
         OnModelCreatingPartial(modelBuilder);
     }
