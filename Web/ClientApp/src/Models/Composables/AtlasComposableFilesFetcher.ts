@@ -1,4 +1,4 @@
-import { IAtlasDtoProducto } from "../Entities/IAtlasProducto"
+import { IDtoProducto } from "@/Pages/Producto/DTOs/IDtoProducto"
 
 export const useAtlasComposableUseFilesFetcher = () =>{
 
@@ -7,13 +7,13 @@ export const useAtlasComposableUseFilesFetcher = () =>{
         return `/${mode}/${resource}/file/${identifier}`
     }
 
-     const getFirstFileForProducto = (  productoLike: IAtlasDtoProducto, mode = 'store',) =>{
+     const getFirstFileForProducto = (  productoLike: IDtoProducto, mode = 'store',) =>{
         if(!productoLike.imagenes) return noFile()
         if(productoLike.imagenes.length == 0) return noFile()
         return `/${mode}/producto/file/${productoLike.imagenes[0]}`
     }
 
-    const getLastImage = (producto: IAtlasDtoProducto) =>{
+    const getLastImage = (producto: IDtoProducto) =>{
         const {imagenes} = producto;
 
         if(!imagenes) return '';
@@ -24,7 +24,7 @@ export const useAtlasComposableUseFilesFetcher = () =>{
     }
 
     
-    const getImageAt = (producto: IAtlasDtoProducto, at : number) =>{
+    const getImageAt = (producto: IDtoProducto, at : number) =>{
 
         const {imagenes} = producto;
         

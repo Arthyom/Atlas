@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import AtlasCustomModalControl from '@/Pages/Shared/Components/AtlasCustomModalControl.vue';
 import { EnumPurchaseModalType } from '../Enums/ModalType.enum';
-import { IPurchaseModalConf } from '../interfaces/IPurchaseModalConf.interface';
 
 
 </script>

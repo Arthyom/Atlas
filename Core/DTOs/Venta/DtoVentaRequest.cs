@@ -11,5 +11,5 @@ public class DtoVentaRequest : AtlasBaseDto
     
     public decimal Pago { get; set; }
 
-    public List<DtoKeyValue> Productos { get; set; } = new List<DtoKeyValue>();
+    public List<AtlasDtoKeyValue> Productos { get; set; } = new List<AtlasDtoKeyValue>();
 }

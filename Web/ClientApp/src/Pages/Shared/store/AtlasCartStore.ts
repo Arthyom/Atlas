@@ -1,10 +1,10 @@
-import { IAtlasDtoProducto } from "@/Models/Entities/IAtlasProducto";
+import { IDtoProducto } from "@/Pages/Producto/DTOs/IDtoProducto";
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
 
 export const useAtlasCartStore = defineStore('atlas-cart-store', () =>{
 
-    const _product = ref<IAtlasDtoProducto[]>([])
+    const _product = ref<IDtoProducto[]>([])
 
 
     const products = computed( () => _product.value )
@@ -27,7 +27,7 @@ export const useAtlasCartStore = defineStore('atlas-cart-store', () =>{
         return total;
     })
 
-    const addProduct = (newProduct: IAtlasDtoProducto) =>{
+    const addProduct = (newProduct: IDtoProducto) =>{
         
         const isIn = _product.value.find( x => x.id === newProduct.id);
 
@@ -42,7 +42,7 @@ export const useAtlasCartStore = defineStore('atlas-cart-store', () =>{
         }
     }
 
-    const increase = (producto: IAtlasDtoProducto)=>{
+    const increase = (producto: IDtoProducto)=>{
         const prod = _product.value.find( x => x.id === producto.id ) 
 
         if(!prod)
@@ -53,7 +53,7 @@ export const useAtlasCartStore = defineStore('atlas-cart-store', () =>{
             prod.cantidad++
     }
 
-    const decrease = (producto: IAtlasDtoProducto)=>{
+    const decrease = (producto: IDtoProducto)=>{
         const prod = _product.value.find( x => x.id === producto.id ) 
 
         if(!prod)
@@ -63,7 +63,7 @@ export const useAtlasCartStore = defineStore('atlas-cart-store', () =>{
             prod.cantidad--   
     }
 
-    const exclude = (producto: IAtlasDtoProducto) =>{
+    const exclude = (producto: IDtoProducto) =>{
         const prod = _product.value.find( x => x.id === producto.id ) 
 
          if(!prod)
@@ -73,7 +73,7 @@ export const useAtlasCartStore = defineStore('atlas-cart-store', () =>{
             prod.selected = true
     }
 
-    const restore = (producto: IAtlasDtoProducto) =>{
+    const restore = (producto: IDtoProducto) =>{
         const prod = _product.value.find( x => x.id === producto.id ) 
 
          if(!prod)
@@ -83,7 +83,7 @@ export const useAtlasCartStore = defineStore('atlas-cart-store', () =>{
             prod.selected = false
     }
 
-    const popProduct = (product: IAtlasDtoProducto) =>{
+    const popProduct = (product: IDtoProducto) =>{
         
     }
 

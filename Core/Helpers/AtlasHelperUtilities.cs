@@ -29,9 +29,9 @@ namespace Core.Helpers
 
 
 
-        public static IEnumerable<DtoKeyValue> MapBaseEntityToKeyValue<TOut>(this IEnumerable<TOut> collection, string valueName) where TOut : BaseEntity
+        public static IEnumerable<AtlasDtoKeyValue> MapBaseEntityToKeyValue<TOut>(this IEnumerable<TOut> collection, string valueName) where TOut : BaseEntity
         {
-            List<DtoKeyValue> mappedCollection = new List<DtoKeyValue>();
+            List<AtlasDtoKeyValue> mappedCollection = new List<AtlasDtoKeyValue>();
             foreach (var item in collection)
             {
                 if (item != null)
@@ -40,16 +40,16 @@ namespace Core.Helpers
                     var prop = type.GetProperty(valueName) ?? throw new Exception("");
                     var value = (string)prop.GetValue(item) ?? throw new Exception("");
 
-                    mappedCollection.Add(new DtoKeyValue() { Id = item.Id, Value = value });
+                    mappedCollection.Add(new AtlasDtoKeyValue() { Id = item.Id, Value = value });
                 }
             }
 
             return mappedCollection;
         }
         
-        public static IEnumerable<DtoKeyValue> MapBaseEntityToExplicitKeyValue<TOut>(this IEnumerable<TOut> collection, string idToUse, string explicitValue) where TOut : BaseEntity
+        public static IEnumerable<AtlasDtoKeyValue> MapBaseEntityToExplicitKeyValue<TOut>(this IEnumerable<TOut> collection, string idToUse, string explicitValue) where TOut : BaseEntity
         {
-            List<DtoKeyValue> mappedCollection = new List<DtoKeyValue>();
+            List<AtlasDtoKeyValue> mappedCollection = new List<AtlasDtoKeyValue>();
             foreach (var item in collection)
             {
                 if (item != null)
@@ -58,7 +58,7 @@ namespace Core.Helpers
                     var prop = type.GetProperty(idToUse) ?? throw new Exception("");
                     var value = prop.GetValue(item) ?? throw new Exception("");
 
-                    mappedCollection.Add(new DtoKeyValue() { Id = Convert.ToInt32( value ), Value = explicitValue });
+                    mappedCollection.Add(new AtlasDtoKeyValue() { Id = Convert.ToInt32( value ), Value = explicitValue });
                 }
             }
             

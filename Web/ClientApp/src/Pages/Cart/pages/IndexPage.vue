@@ -18,13 +18,14 @@ import {
 import { Link, router } from "@inertiajs/vue3";
 import CartPaymentFormOwnerComponent from "../components/CartPaymentFormOwnerComponent.vue";
 import { ICartPropietario } from '../interfaces/CartDireccion.interface';
-import { IAtlasCartPaymentForm } from "@/Models/Entities/IAtlasCartPaymentForm";
+// import { IAtlasCartPaymentForm } from "@/Models/DTOs/APIs/Ecart/IDtoECartPaymentForm";
 import { AtlasHelperProducto } from "@/Models/Helpers/AtlasHelper";
 import axios from "axios";
 import { useAtlasComposableCustomFormActions } from "@/Models/Composables/AtlasComposableCustomFormActions";
 import { useAtlasComposableAjaxActions } from "@/Models/Composables/AtlasComposableAjaxActions";
-import { IDtoExtApiCountryResponse } from "@/Models/Interfaces/ExternalApis/CountryInfo/Country.interface";
+import { IDtoExtApiCountryResponse } from "@/Models/DTOs/APIs/CountryInfo/Country.interface";
 import AtlasInfiniteLoader from "@/Pages/Shared/Components/AtlasInfiniteLoader.vue";
+import { IDtoPaymentForm } from "@/Models/DTOs/APIs/Ecart/IDtoECartPaymentForm";
 
 const confs = [
   {label:'Productos', fun: (step: number) => step == 1 || step > 1},
@@ -43,7 +44,7 @@ const { products, totalProductos, totalPago } = storeToRefs(
 const { swipeNext, swipePrev, swipeAt, step } =
   AtlasComposableCustomSwipper("swipper");
 const showModal = ref(false);
-const form = reactive<IAtlasCartPaymentForm>({});
+const form = reactive<IDtoPaymentForm>({});
 
 const setAddress = (addresss: any) => {
   console.log("adreeeeess", addresss);

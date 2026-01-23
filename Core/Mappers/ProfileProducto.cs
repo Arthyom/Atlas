@@ -22,7 +22,7 @@ public class ProfileProducto : Profile
         .ForMember(x => x.CategoriaColor, opt => opt.MapFrom(src => src.Categoria.Color))
 
             // .IncludeMembers(p => p.ImagenProductos)
-            // .ReverseMap();
+            .ReverseMap();
 
 
             ;

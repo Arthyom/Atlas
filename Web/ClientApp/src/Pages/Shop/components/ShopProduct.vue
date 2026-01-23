@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { useAtlasComposableUseFilesFetcher } from "@/Models/Composables/AtlasComposableFilesFetcher";
-import IAtlasProducto, { IAtlasDtoProducto } from "@/Models/Entities/IAtlasProducto";
+import  { IDtoProducto } from "@/Pages/Producto/DTOs/IDtoProducto";
 import IAtlasMixedResponse from "@/Models/Interfaces/IAtlasMixedResponse";
 import { useAtlasCartStore } from "@/Pages/Shared/store/AtlasCartStore";
 
-const props = defineProps<IAtlasDtoProducto>();
+const props = defineProps<IDtoProducto>();
 
 const {getFirstFileForProducto, getFileFrom, getImageAt, getLastImage} = useAtlasComposableUseFilesFetcher()
 const { length, addProduct } = useAtlasCartStore()

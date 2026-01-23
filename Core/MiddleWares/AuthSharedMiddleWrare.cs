@@ -24,10 +24,18 @@ public class AuthSharedMiddleWrare
           Cp = "38800"  
         };
 
-        httpContext.Session.SetString("CurrentUser", JsonConvert.SerializeObject( u) );
+        // httpContext.Session.SetString("CurrentUser", JsonConvert.SerializeObject( u) );
 
-        InertiaCore.Inertia.Share( "User", u );
-        await _next( httpContext);
+        // InertiaCore.Inertia.Share( "User", u );
+        
+        // if( u.Cp == "38000")
+        // {
+        //     await _next( httpContext);
+        //     return;
+        // }
+        //     // httpContext.Response.Redirect("/auth/index");
+            // return;
+        //    await _next(httpContext.Response.Redirect(""))
     }
 
 }

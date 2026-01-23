@@ -32,6 +32,21 @@
    <Content Include="Seeder/Data/*">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
    </Content>
+</ItemGroup>
+
+
+<ItemGroup>
+  <Folder Include="DTOs/Customer/" />
+  <Folder Include="DTOs/Direccion/Destino/" />
+  <Folder Include="DTOs/Direccion/Origen/" />
+  <Folder Include="DTOs/Paquete/" />
+  <Folder Include="DTOs/Shared/" />
+  <Folder Include="Resolvers/" />
+</ItemGroup>
+
+
+<ItemGroup>
+  <None Include="DTOs/Orden/DtoApiECartOrderResponse.cs" />
 </ItemGroup> 
 
 </Project>

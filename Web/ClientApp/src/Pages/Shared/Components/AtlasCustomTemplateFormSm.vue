@@ -1,0 +1,283 @@
+<script setup lang="ts">
+import { atlasCompsUseCustomControlState } from "@/Models/Composables/AtlasComposableCustomControl";
+import { IAtlasCustomFormWrapper } from "@/Models/Interfaces/IAtlasCustomFormWrapper";
+import { useForm } from "vee-validate";
+import { AtlasEnumInputType } from "@/Models/Enums/AtlasEnumInputType";
+import AtlasCustomInputControl from "./AtlasCustomInputControl.vue";
+import * as yup from "yup";
+import { IAtlasCustomControl } from "@/Models/Interfaces/IAtlasCustomControl";
+import AtlasCustomSelect from "./AtlasCustomSelect.vue";
+import AtlasCustomTextArea from "./AtlasCustomTextArea.vue";
+import { onUpdated, h } from "vue";
+import AtlasCustomInputFileControl from "./AtlasCustomInputFileControl.vue";
+import AtlasCustomColorControl from "./AtlasCustomColorControl.vue";
+
+
+const props = defineProps<IAtlasCustomFormWrapper>();
+const emit = defineEmits(["formOk"]);
+
+const fields: any[] = [];
+const validationSchema: any = {};
+const properties: IAtlasCustomControl[] = [];
+const atlasEnumType = AtlasEnumInputType;
+
+const { conf } = atlasCompsUseCustomControlState();
+
+const { values, defineField, errors, meta } = useForm({
+  validationSchema,
+  initialValues: props.configs.initialValues,
+});
+
+
+  props.configs.formSchema.forEach((i) => {
+    for (const key in i.schema) {
+      validationSchema[key] = i.schema[key];
+    }
+    properties.push(i.config ?? {});
+  });
+
+  let i = 0,
+    min = undefined,
+    max = undefined;
+  for (const key in validationSchema) {
+    const controlConf = validationSchema[key];
+
+    validationSchema[key].tests.forEach((element: any) => {
+      // console.log('elemtnos',  element.OPTIONS)
+      if (element.OPTIONS.params?.min) min = element.OPTIONS.params?.min;
+
+      if (element.OPTIONS.params?.max) max = element.OPTIONS.params?.max;
+    });
+
+    console.log("min max", min, max);
+    console.log("ssssssss", key, validationSchema[key].tests);
+
+    const controlConfTemplate: IAtlasCustomControl = {
+      label: controlConf.spec.label ? controlConf.spec.label : key,
+      isRequired: !controlConf.spec.optional,
+      typeInput: properties[i].typeInput
+        ? properties[i].typeInput
+        : controlConf.type,
+      additionalData: properties[i].additionalData,
+      icon: properties[i].icon,
+      placeHolder: properties[i].placeHolder,
+      customClassControl: properties[i].customClassControl,
+      customClassLable: properties[i].customClassLable,
+      customClassContainer: properties[i].customClassContainer,
+      customClassError: properties[i].customClassError,
+      returnObjectValue: properties[i].returnObjectValue,
+      keyLabel: properties[i].keyLabel,
+      max,
+      min,
+      formatFunction: properties[i].formatFunction,
+      genericFunction: properties[i].genericFunction,
+      hasKey: properties[i].hasKey,
+      showControl: properties[i].showControl
+      // ref: properties[i].ref
+    };
+
+    let field = defineField(key, {
+      props: (state: any) => conf(state, controlConfTemplate),
+    });
+
+    i++;
+
+    fields.push(field);
+  }
+
+
+onUpdated(() => {
+  if (!!props.configs.initialValues && !meta.value.touched) {
+    emit("formOk", { data: values, isValid: true });
+    return;
+  }
+
+  if (!!props.configs.initialValues && meta.value.touched) {
+    emit("formOk", { data: values, isValid: meta.value.valid });
+    return;
+  }
+
+  if (meta.value.valid)
+    emit("formOk", { data: values, isValid: meta.value.valid });
+
+  // emit('formOk', {data: null, isValid: meta.value.valid});
+});
+
+const setComplexValues = (event: any) => {
+  values[event.keyLabel] = event;
+};
+</script>
+
+<template>
+  <div class="sm:hidden">
+    <div
+      class="bg-base-300 border-base-300 collapse collapse-arrow border "
+    >
+      <input type="checkbox" class="peer" checked="true" />
+
+      <div
+        class="collapse-title text-[8px]"
+        :class="props.configs.customClassTitle"
+      >
+        <span>
+          {{ props.configs.sectionTitle }}
+        </span>
+
+      </div>
+      <div
+        class="collapse-content bg-base-100"
+        :class="props.configs.customClassContainer"
+      >
+        <template v-for="(field, x) in fields">
+          <template v-if="properties[x].typeInput === atlasEnumType.area">
+            <AtlasCustomTextArea
+              :key="x"
+              v-model="field[0].value"
+              v-bind="field[1].value"
+              :props="properties"
+            />
+          </template>
+
+          <template v-else-if="properties[x].typeInput === atlasEnumType.check">
+          </template>
+
+          <template v-else-if="properties[x].typeInput === atlasEnumType.file">
+            <AtlasCustomInputFileControl
+              :key="x"
+              v-model="field[0].value"
+              v-bind="field[1].value"
+              :props="properties"
+            />
+          </template>
+
+          <template v-else-if="properties[x].typeInput === atlasEnumType.files">
+            <AtlasCustomInputFileControl
+              :key="x"
+              :multiple="true"
+              v-model="field[0].value"
+              v-bind="field[1].value"
+              :props="properties"
+            />
+          </template>
+
+          <template v-else-if="properties[x].typeInput === atlasEnumType.radio">
+          </template>
+
+          <template
+            v-else-if="properties[x].typeInput === atlasEnumType.select"
+          >
+         
+              <AtlasCustomSelect
+                @emit-object="setComplexValues($event)"
+                v-model="field[0].value"
+                v-bind="field[1].value"
+                :props="properties"
+              />
+          </template>
+
+          <template v-else>
+            <AtlasCustomInputControl
+              :key="x"
+              v-model="field[0].value"
+              v-bind="field[1].value"
+              :props="properties"
+            />
+          </template>
+        </template>
+
+        <div class="">
+          <slot></slot>
+        </div>
+
+        <div>
+          <slot name="buttons"></slot>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hidden sm:block bg-base-100 w-full h-full rounded-md">
+    <div class=" ">
+      <h1
+        class="mt-4 mb-1 text-3xl font-bold text-slate-600"
+        :class="props.configs.customClassTitle"
+      >
+        {{ props.configs.sectionTitle }}
+      </h1>
+      <hr class="" :class="props.configs.customClassDivider" />
+    </div>
+
+    <div
+      class="grid sm:grid-cols-3 lg:grid-cols-4 gap-4 mt-4"
+      :class="props.configs.customClassContainer"
+    >
+      <template v-for="(field, x) in fields">
+        <template v-if="properties[x].typeInput === atlasEnumType.area">
+          <AtlasCustomTextArea
+            v-model="field[0].value"
+            v-bind="field[1].value"
+            :props="properties"
+          />
+        </template>
+
+        <template v-else-if="properties[x].typeInput === atlasEnumType.check">
+        </template>
+
+        <template v-else-if="properties[x].typeInput === atlasEnumType.file">
+          <AtlasCustomInputFileControl
+            v-model="field[0].value"
+            v-bind="field[1].value"
+            :props="properties"
+          />
+        </template>
+
+        <template v-else-if="properties[x].typeInput === atlasEnumType.files">
+          <AtlasCustomInputFileControl
+            :files="configs.initialValues"
+            :multiple="true"
+            v-model="field[0].value"
+            v-bind="field[1].value"
+            :props="properties"
+          />
+        </template>
+
+        <template v-else-if="properties[x].typeInput === atlasEnumType.radio">
+        </template>
+
+        <template v-else-if="properties[x].typeInput === atlasEnumType.select">
+          <template v-if="properties[x].showControl">
+            <AtlasCustomSelect
+              @emit-objects="setComplexValues($event)"
+              v-model="field[0].value"
+              v-bind="field[1].value"
+              :props="properties"
+            />
+          </template>
+        </template>
+
+        <template v-else-if="properties[x].typeInput === atlasEnumType.color">
+          <AtlasCustomColorControl
+            v-model="field[0].value"
+            v-bind="field[1].value"
+            :props="properties"
+          ></AtlasCustomColorControl>
+        </template>
+
+        <template v-else>
+          <AtlasCustomInputControl
+            v-model="field[0].value"
+            v-bind="field[1].value"
+            :props="properties"
+          />
+        </template>
+      </template>
+    </div>
+    <div class="">
+      <slot></slot>
+    </div>
+
+    <div>
+      <slot name="buttons"></slot>
+    </div>
+  </div>
+</template>

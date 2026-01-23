@@ -18,8 +18,8 @@ import {
   IDtoExtApiCountry,
   IDtoExtApiCountryResponse,
   IDtoExtApiState,
-} from "../../../Models/Interfaces/ExternalApis/CountryInfo/Country.interface";
-import { IDtoApiState } from "@/Models/Entities/IDtoApiState";
+} from "../../../Models/DTOs/APIs/CountryInfo/Country.interface";
+// import { IDtoApiState } from "@/Models/DTOs/APIs/Ecart/IDtoEcartState";
 import { AtlasHelperProducto } from "@/Models/Helpers/AtlasHelper";
 import { useAtlasComposableMapKeyValue } from "@/Models/Composables/AtlasComposableMapKeyValue";
 import { IAtlasKeyValue } from "@/Models/Interfaces/IAtlasKeyValue";
@@ -125,9 +125,21 @@ const configs = reactive<IAtlasCustomFormConfig>({
     //     }
     // },
 
+    /// direccion primaria is being hidden in favor of street name
+    // {
+    //   schema: {
+    //     direccionPrimaria: yup.string().required().label("Direccion Primaria"),
+    //   },
+    //   config: {
+    //     customClassLable: "text-sm md:text-lg ",
+    //     customClassError: "hidden",
+    //     customClassContainer: "sm:col-span-3",
+    //   },
+    // },
+
     {
       schema: {
-        direccionPrimaria: yup.string().required().label("Direccion Primaria"),
+        calle: yup.string().required().label("Calle"),
       },
       config: {
         customClassLable: "text-sm md:text-lg ",
@@ -138,7 +150,7 @@ const configs = reactive<IAtlasCustomFormConfig>({
 
     {
       schema: {
-        direccionSecundaria: yup.string().label("Direccion Secundaria"),
+        numeroExterior: yup.string().required().label("# Ext."),
       },
       config: {
         customClassLable: "text-sm md:text-lg ",
@@ -146,6 +158,51 @@ const configs = reactive<IAtlasCustomFormConfig>({
         customClassContainer: "sm:col-span-3",
       },
     },
+
+    {
+      schema: {
+        numeroInterior: yup.string().required().label("# Int."),
+      },
+      config: {
+        customClassLable: "text-sm md:text-lg ",
+        customClassError: "hidden",
+        customClassContainer: "sm:col-span-3",
+      },
+    },
+
+    {
+      schema: {
+        colonia: yup.string().required().label("# Ext"),
+      },
+      config: {
+        customClassLable: "text-sm md:text-lg ",
+        customClassError: "hidden",
+        customClassContainer: "sm:col-span-3",
+      },
+    },
+
+    {
+      schema: {
+        colonia: yup.string().required().label("Colonia"),
+      },
+      config: {
+        customClassLable: "text-sm md:text-lg ",
+        customClassError: "hidden",
+        customClassContainer: "sm:col-span-3",
+      },
+    },
+
+    /// was being hidden in favor of only 1 direcction
+    // {
+    //   schema: {
+    //     direccionSecundaria: yup.string().label("Direccion Secundaria"),
+    //   },
+    //   config: {
+    //     customClassLable: "text-sm md:text-lg ",
+    //     customClassError: "hidden",
+    //     customClassContainer: "sm:col-span-3",
+    //   },
+    // },
 
     {
       schema: { cp: yup.number().required().label("CP") },
@@ -182,15 +239,15 @@ const configs = reactive<IAtlasCustomFormConfig>({
     //         ,customClassContainer: 'sm:col-span-6'
     //     }
     // },
-    // {
-    //     schema: {referencias: yup.string().required().label('Referencias')}
-    //     ,config: {
-    //         typeInput: AtlasEnumInputType.area,
-    //         customClassLable: 'text-sm md:text-lg '
-    //         ,customClassError: 'hidden'
-    //         ,customClassContainer: 'sm:col-span-6'
-    //     }
-    // },
+    ,{
+        schema: {referencias: yup.string().required().label('Referencias')}
+        ,config: {
+            typeInput: AtlasEnumInputType.area,
+            customClassLable: 'text-sm md:text-lg '
+            ,customClassError: 'hidden'
+            ,customClassContainer: 'sm:col-span-6'
+        }
+    },
   ],
 });
 

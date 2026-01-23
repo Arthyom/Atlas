@@ -8,14 +8,14 @@ namespace Core.Models.Entities;
 
 public class Direccion : BaseEntity
 {
-    public string Company { get; set; } = null!;
+    public string? Company { get; set; }
     public string Street { get; set; } = null!;
     public string? InteriorNumber { get; set; } 
     public string OutdoorNumber { get; set; } = null!;
     public string ZipCode { get; set; } = null!;
     public string Neighborhood { get; set; } = null!;
     public string City { get; set; } = null!;
-    public string State{ get; set; } = null!;
+    public string? State{ get; set; } 
 
     public string StateCode{ get; set; } = null!;
 
@@ -28,5 +28,5 @@ public class Direccion : BaseEntity
     public string Email { get; set; } = null!;
     public string Phone { get; set; } = null!;
 
-    public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
+    // public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 }

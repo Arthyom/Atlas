@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import {
-  IAtlasDtoContainer,
-  IAtlasDtoProducto,
-} from "@/Models/Entities/IAtlasProducto";
+
 import AdminLayout from "@/Pages/admin/layout/AdminLayout.vue";
 import { computed, onMounted, reactive, ref, useTemplateRef } from "vue";
 import { StreamBarcodeReader } from "vue-barcode-reader";

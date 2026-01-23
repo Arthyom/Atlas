@@ -25,6 +25,9 @@ where TBaseDtoResponse : AtlasBaseDto
 
     public Task <Imagen> GetImages(string identifies, string? resourceName = null);
 
+    public Task <TBaseDtoResponse> GetDocs(string identifies, string? resourceName = null);
+
+
 
     public Task<AtlasMixedResponse<TBaseDtoResponse>> GetById(int id);
 

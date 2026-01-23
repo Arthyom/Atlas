@@ -30,10 +30,10 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             entity.HasKey( e => e.Id).HasName("Order_PK");
 
-            entity
-            .HasOne(d => d.Direccion)
-            .WithMany(p => p.Orders)
-            .HasForeignKey(d => d.DireccionId);
+            // entity
+            // .HasOne(d => d.Direccion)
+            // .WithMany(p => p.Orders)
+            // .HasForeignKey(d => d.DireccionId);
         });
         
         modelBuilder.Entity<ProductoVenta>(entity =>

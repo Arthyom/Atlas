@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import IAtlasProducto, { IAtlasDtoProducto } from "@/Models/Entities/IAtlasProducto";
-import Producto from "@/Models/Entities/IAtlasProducto";
 import IAtlasMixedResponse from "@/Models/Interfaces/IAtlasMixedResponse";
 import StoreFrontLayOutPage from "@/Pages/layouts/store-front/StoreFrontLayOutPage.vue";
 // import ProductComponent from "@/Pages/Producto/components/ProductComponent.vue";
 import {Link} from "@inertiajs/vue3";
 import ShopProduct from "../components/ShopProduct.vue";
+import { IDtoProducto } from "@/Pages/Producto/DTOs/IDtoProducto";
 
-const props = defineProps<IAtlasMixedResponse<IAtlasDtoProducto>>()
+const props = defineProps<IAtlasMixedResponse<IDtoProducto>>()
 
 </script>
 

@@ -15,11 +15,47 @@ using Web.Controllers.Base;
 
 namespace Web.Controllers.Admin
 {
-    public class EnvioController : AtlasMixedFileBaseController<Envio, DtoApiRequestEnvio, DtoApiResponseEnvio>
+    public class EnvioController : AtlasMixedFileBaseController<Envio, DtoApiEnPeEnvioRequest, DtoApiEnPeEnvioResponse>
     {
-        // public PurchaseController(IShippingMixedService baseService) : base(baseService, "Purchase")
-        public EnvioController(IShippingMixedService baseService) : base(baseService)
+        private readonly IEnvioMixedService _envioService;
+        // public PurchaseController(IEnvioMixedService baseService) : base(baseService, "Purchase")
+        public EnvioController(IEnvioMixedService baseService) : base(baseService)
         {
+            _envioService = baseService;
         }
+
+
+        // [HttpPost("file/{identifier}")]
+        [HttpGet("GetShippingGuide/{identifier}")]
+        public async Task<IActionResult> GetShippingGuide(string identifier)
+        {
+            try
+            {
+                var list = await _envioService.GetShippingGuide(identifier);
+                return File(list.Info, "application/pdf");
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+        }
+
+        // [HttpGet("file/{identifier}")]
+        [HttpGet("GetShippingProviders")]
+        public async Task<IActionResult> GetShippingProviders(string identifier)
+        {
+            try
+            {
+                var list = await _envioService.GetShippingProviders();
+                return Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+        }
+
+
+
     }
 }

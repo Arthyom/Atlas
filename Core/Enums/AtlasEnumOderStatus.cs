@@ -7,8 +7,19 @@ namespace Core.Enums
 {
     public enum AtlasEnumOderStatus
     {
-        Created = 1 ,
+        OrdenCreada = 1 ,
+
         
-        Cancelled = 2 ,
+        PagoConfirmado = 2 ,
+        PagoEnEspera = 3,
+        PagoRechazado = 4,
+
+        OrdenEnPreparacion = 5,
+        OrdenEnviada = 6,
+        OrdenRecivida = 7,
+        OrdenCancelada = 8
+
+
     }
 }
+

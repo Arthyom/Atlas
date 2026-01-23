@@ -39,7 +39,7 @@ public partial class Order : BaseEntity
     [Unicode(false)]
     public string ApiCustomerId {get; set;} = null!;
 
-    public int DireccionId {get; set;}
+    // public int DireccionId {get; set;}
 
     [StringLength(100)]
     [Unicode(false)]
@@ -60,9 +60,12 @@ public partial class Order : BaseEntity
 
     // public virtual Direccion Address { get; set; } = null!;
 
-    public virtual Direccion Direccion { get; set; } = null!;
+    // public virtual Direccion Direccion { get; set; } = null!;
 
     public virtual ICollection<Producto> Productos { get; set; } = new List<Producto>();
+
+    public virtual ICollection<ProductoOrder> ProductoOrder { get; set; } = new List<ProductoOrder>();
+
 
     public virtual ICollection<Envio> Envios { get; set; } = new List<Envio>();
 

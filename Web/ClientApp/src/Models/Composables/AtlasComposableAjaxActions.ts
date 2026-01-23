@@ -1,12 +1,12 @@
 import { computed, ref } from "vue"
 import { router } from "@inertiajs/vue3";
 import { useAtlasComposableLoadingCallbacks } from "./AtlasComposableLoadingCallbacks";
-import { IAtlasDtoProducto } from "../Entities/IAtlasProducto";
 import axios from "axios";
 import  IAtlasMixedResponse from "../Interfaces/IAtlasMixedResponse";
+import { IDtoProducto } from "@/Pages/Producto/DTOs/IDtoProducto";
 
 
-export const useAtlasComposableAjaxActions = <TTipe>(resourcer: string, mode = 'admin', url: string | null) =>{
+export const useAtlasComposableAjaxActions = <TTipe>(resourcer: string, mode: string  | null = 'admin', url: string | null = null) =>{
 
     const { opts } = useAtlasComposableLoadingCallbacks();
 
@@ -32,7 +32,7 @@ export const useAtlasComposableAjaxActions = <TTipe>(resourcer: string, mode = '
             const path = `${_url.value}/json/${id}`
     
             opts.onStart({})
-            const response = await axios.get<IAtlasMixedResponse<IAtlasDtoProducto>>(path)
+            const response = await axios.get<IAtlasMixedResponse<IDtoProducto>>(path)
            await setTimeout(() => {
                 
                 opts.onFinish({})
@@ -64,6 +64,26 @@ export const useAtlasComposableAjaxActions = <TTipe>(resourcer: string, mode = '
         }
     }
 
+    const sendRequest = async<Tout>(data: any, method: string, url: string) =>{
+        try {
+            opts.onStart({});
+            const response = await axios.request<Tout>({
+                method,
+                data,
+                url
+            });
+
+             await setTimeout(() => {
+                
+                opts.onFinish({})
+            }, 2000);
+
+            _state.value = response.data;
+        } catch (error) {
+            opts.onError({})
+        }
+    }
+
     const getState = computed( () => _state.value)
         const getStates = computed( () => _states.value)
 
@@ -76,6 +96,7 @@ export const useAtlasComposableAjaxActions = <TTipe>(resourcer: string, mode = '
         getState,
         getStates,
         getById,
-        getUrl
+        getUrl,
+        sendRequest
     }
 }

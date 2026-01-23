@@ -7,6 +7,7 @@ using Core.Services.Implementations.Base;
 using Core.Services.Interfaces;
 using Core.Services.Interfaces.Base;
 using InertiaCore.Extensions;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using PdfSharp.Fonts;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,6 +26,18 @@ builder.Services.AddViteHelper(options =>
     options.ManifestFilename = "manifest.json";
 });
 
+
+// builder.Services.AddCors( opts =>
+// {
+//     opts.AddPolicy(name: "AddingPolicy",
+//     configurePolicy: policy =>
+//         {
+//         policy
+//             .AllowAnyOrigin()
+//             .AllowAnyMethod();
+//         }
+//     );
+// });
 
 builder.Services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork));
 
@@ -48,7 +61,11 @@ builder.Services.AddScoped<IVentaMixedService, VentaMixedService>();
 builder.Services.AddScoped<IShopMixedService, ShopMixedService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IUsuarioMixedService, UsuarioMixedService>();
-builder.Services.AddScoped<IShippingMixedService, ShippingMixedService>();
+builder.Services.AddScoped<IEnvioMixedService, EnvioMixedService>();
+builder.Services.AddScoped<IPaqueteMixedService, PaqueteMixedService>();
+builder.Services.AddScoped<IGuideMixedService, GuideMixedService>();
+
+
 
 
 
@@ -70,8 +87,48 @@ builder.Services.AddHttpClient("TokenProvider")
 ;
 
 
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.Events = new CookieAuthenticationEvents
+    {
+        OnRedirectToLogin = context =>
+        {
+            // Prevent adding ReturnUrl by redirecting directly to login
+            context.Response.Redirect("/auth/index");
+            return Task.CompletedTask;
+        },
+        OnRedirectToAccessDenied = context =>
+        {
+            // Optionally handle access denied without redirect
+            context.Response.StatusCode = 403;
+            return Task.CompletedTask;
+        }
+    };
+});
 
 
+builder.Services.AddAuthentication()
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/auth/index";
+         options.AccessDeniedPath = "/auth/index";
+         options.Events = new CookieAuthenticationEvents
+    {
+        OnRedirectToLogin = context =>
+        {
+            // Prevent adding ReturnUrl by redirecting directly to login
+            context.Response.Redirect("/auth/index");
+            return Task.CompletedTask;
+        },
+        OnRedirectToAccessDenied = context =>
+        {
+            // Optionally handle access denied without redirect
+            context.Response.StatusCode = 403;
+            return Task.CompletedTask;
+        }
+    };
+        // options.ReturnUrlParameter = "";
+    });   
 
 builder.Services.AddControllersWithViews( options =>
 {
@@ -109,7 +166,9 @@ app.ApplySeeders();
 app.MapFallbackToFile("index.html");
 
 app.UseSession();
-app.UseMiddleware<AuthSharedMiddleWrare>();
+app.UseAuthentication();
+app.UseAuthorization();
+// app.UseMiddleware<AuthSharedMiddleWrare>();
 
 
 app.Run();

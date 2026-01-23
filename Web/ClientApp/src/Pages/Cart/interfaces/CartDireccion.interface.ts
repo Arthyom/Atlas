@@ -10,7 +10,7 @@ export interface ICartDireccion{
     cp:number;
     exterior:number;
     interior:number;
-    entreCalles:string;
+    // entreCalles:string;
     referencias:string;
 
     last_name:string,
@@ -24,7 +24,11 @@ export interface ICartDireccion{
     estado:string,
     estadoCodigo: string;
         paisCode:string;
-    paisName:string
+    paisName:string;
+
+    numeroExterior:number;
+    numeroInterior:number;
+    calle:string;
 
 }
 
@@ -44,4 +48,5 @@ export interface ICartPropietario{
     apellidoP: string;
     telefono: string;
     email: string;
+    direccion? : string;
 }

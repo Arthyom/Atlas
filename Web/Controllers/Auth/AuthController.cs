@@ -1,9 +1,11 @@
 using Azure;
 using InertiaCore;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Web.Controllers.Auth
 {
+    [AllowAnonymous]
     public class AuthController : Controller
     {
         // GET: AuthController

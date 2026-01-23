@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import IDtoCategoria from "@/Models/Entities/IDtoCategoria";
+import IDtoCategoria from "@/Pages/Categoria/DTOs/IDtoCategoria";
 import IAtlasCustomTableConfig from "@/Models/Interfaces/IAtlasCustomTableConfig";
 import IAtlasMixedResponse from "@/Models/Interfaces/IAtlasMixedResponse";
 import AdminLayout from "@/Pages/admin/layout/AdminLayout.vue";

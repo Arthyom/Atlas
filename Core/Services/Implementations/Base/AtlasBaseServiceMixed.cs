@@ -36,6 +36,15 @@ where TBaseDtoResponse: AtlasBaseDto
     }
 
 
+    public virtual async Task <TBaseDtoResponse> GetDocs(string identifies, string? resourceName = null)
+    {
+        var repo = _UoW.GetRepo<TBaseEntity>();
+
+        var response = await repo.DbSet.Where( x => x.Id.ToString() == identifies).FirstOrDefaultAsync();
+
+        return _Mapper.Map<TBaseDtoResponse>(repo);
+    }
+
 
     public async Task<Imagen> GetImages(string identifier, string? resourceName = null)
     {

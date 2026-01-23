@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useAtlasComposableUseFilesFetcher } from "@/Models/Composables/AtlasComposableFilesFetcher";
 import { useAtlasComposableLoadingCallbacks } from "@/Models/Composables/AtlasComposableLoadingCallbacks";
-import { IAtlasDtoProducto } from "@/Models/Entities/IAtlasProducto";
+import { IDtoProducto } from "@/Pages/Producto/DTOs/IDtoProducto";
 import { AtlasHelperProducto } from "@/Models/Helpers/AtlasHelper";
 import IAtlasCustomTableConfig from "@/Models/Interfaces/IAtlasCustomTableConfig";
 import IAtlasCustomTemplateWrapper from "@/Models/Interfaces/IAtlasCustomTemplateWrapper";
@@ -18,7 +18,7 @@ import { computed, InputTypeHTMLAttribute, ref, h } from "vue";
 import { saveAs } from "file-saver";
 
 const areAllChecked = ref<boolean>(false);
-const props = defineProps<IAtlasMixedResponse<IAtlasDtoProducto>>();
+const props = defineProps<IAtlasMixedResponse<IDtoProducto>>();
 
 const { getFirstFileForProducto, noFile } = useAtlasComposableUseFilesFetcher();
 

@@ -264,7 +264,7 @@ public class ProductoMixedService : AtlasBaseServiceMixed<Producto, DtoProductoR
         return response;
     }
 
-    public async Task<byte[]> GetCodes(IEnumerable< DtoKeyValue > codes)
+    public async Task<byte[]> GetCodes(IEnumerable< AtlasDtoKeyValue > codes)
     {
         const string docMargin = "0.5cm", paragraphSpaceAfter = "0.2cm";
         const double cellWidth = 6.5, borderWidth = 0.3, imageSpaceBefore = 10;

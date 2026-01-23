@@ -1,18 +1,20 @@
 <script setup lang="ts">
-import { onMounted, onUpdated } from 'vue';
+import { onBeforeMount, onMounted, onUpdated } from 'vue';
 import { boolean } from 'yup';
 
   defineProps<{isValidOk?:boolean}>()
 
-   onMounted( ()=>{
-       const e = document.getElementById('my_modal_1') as HTMLDialogElement
-       e.showModal()
+   onBeforeMount( ()=>{
+      setTimeout(() => {
+        const e = document.getElementById('1') as HTMLDialogElement
+        e.showModal()
+      }, 1000);
    })
 </script>
 
 <template>
   <!-- <button class="btn" onclick="my_modal_1.showModal()">open modal</button> -->
-  <dialog id="my_modal_1" class="modal">
+  <dialog id="1" class="modal">
     <div class="modal-box px-2">
       <h3 class="text-lg font-bold">
         <slot name="title">

@@ -7,7 +7,7 @@ defineProps<IAtlasCustomTableConfig>();
 </script>
 
 <template>
-    <div class="bg-base-100 shadow-lg">
+    <div class="bg-base-100 shadow-lg w-full">
 
     <div class="sticky top-16 z-20 " >
       <AtlasCustomNavTool :configs="configs" class="">

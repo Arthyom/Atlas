@@ -16,7 +16,8 @@ public partial class AtlasDbContext : DbContext
         : base(options)
     {
     }
-    
+    public virtual DbSet<Guide> Guide { get; set; }
+
     public virtual DbSet<ProductoOrder> ProductoOrder { get; set; }
 
     public virtual DbSet<Paquete> Paquete { get; set; }

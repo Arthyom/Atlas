@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useAtlasComposableUseFilesFetcher } from "@/Models/Composables/AtlasComposableFilesFetcher";
-import { IAtlasDtoProducto } from "@/Models/Entities/IAtlasProducto";
+import { IDtoProducto } from "@/Pages/Producto/DTOs/IDtoProducto";
 import { ref } from "vue";
 
-defineProps<IAtlasDtoProducto>();
+defineProps<IDtoProducto>();
 const { getFileFrom } = useAtlasComposableUseFilesFetcher()
 const mode = ref('admin')
 const resource = ref('producto')

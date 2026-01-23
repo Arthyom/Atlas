@@ -15,5 +15,5 @@ public class DtoVentaResponse : AtlasBaseDto
 
     public string Folio { get; set;} = null!;
     
-    public List<DtoKeyValue> Productos { get; set; } = new List<DtoKeyValue>();
+    public List<AtlasDtoKeyValue> Productos { get; set; } = new List<AtlasDtoKeyValue>();
 }

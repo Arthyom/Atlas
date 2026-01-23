@@ -2,11 +2,13 @@ using System;
 using Core.DTOs.Base;
 using Core.Models.Entities.Base;
 using Core.Services.Interfaces.Base;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Web.Controllers.Base;
 
 [Route("{approachType?}/{controller}")]
+[Authorize]
 public  class AtlasMixedJsonBaseController<TBaseEntity, TBaseDtoRequest, TBaseDtoResponse> : Controller
 where TBaseEntity : BaseEntity
 where TBaseDtoRequest : AtlasBaseDto
@@ -79,6 +81,27 @@ where TBaseDtoResponse : AtlasBaseDto
         catch (Exception ex)
         {
             return Problem(ex.Message);
+        }
+    }
+
+
+    [HttpPatch("json/{id}")]
+    public async Task<IActionResult> Patch([FromBody] TBaseDtoRequest entityToUpdate, [FromRoute]int id)
+    {
+        try
+        {
+            _baseService.UoW.Begin();
+
+            var response = await _baseService.Update(entityToUpdate, id);
+
+            _baseService.UoW.Commit();
+
+            return Ok(response);
+        }
+        catch (Exception ex)
+        {
+                _baseService.UoW.RollBack();
+                return Problem(ex.Message);
         }
     }
 

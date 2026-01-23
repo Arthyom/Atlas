@@ -26,7 +26,7 @@ namespace Core.Mappers
             .ReverseMap();
         }
 
-        private static IEnumerable<DtoKeyValue> mapEntityToKeyValue(ICollection<ProductoVenta> venta)
+        private static IEnumerable<AtlasDtoKeyValue> mapEntityToKeyValue(ICollection<ProductoVenta> venta)
         {
             return venta.MapBaseEntityToExplicitKeyValue( "ProductoId", venta.Count().ToString());
         }

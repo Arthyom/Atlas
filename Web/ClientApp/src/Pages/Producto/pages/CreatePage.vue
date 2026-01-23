@@ -7,16 +7,15 @@ import { IAtlasCustomControl } from "@/Models/Interfaces/IAtlasCustomControl";
 import AtlasCustomTemplateForm from "@/Pages/Shared/Components/AtlasCustomTemplateForm.vue";
 import { AtlasEnumInputType } from "@/Models/Enums/AtlasEnumInputType";
 import IAtlasMixedResponse from "@/Models/Interfaces/IAtlasMixedResponse";
-import IAtlasProducto, { IAtlasDtoProducto } from "@/Models/Entities/IAtlasProducto";
+import  { IDtoProducto } from "@/Pages/Producto/DTOs/IDtoProducto";
 import { useAtlasComposableMapKeyValue } from "@/Models/Composables/AtlasComposableMapKeyValue";
 import { router, useForm } from "@inertiajs/vue3";
-import Producto from '@/Models/Entities/IAtlasProducto';
 import { useAtlasComposableLoadingCallbacks } from "@/Models/Composables/AtlasComposableLoadingCallbacks";
 
 const atlasType = AtlasEnumInputType;
 const { mapToKeyValue } = useAtlasComposableMapKeyValue();
 const {opts} = useAtlasComposableLoadingCallbacks()
-const props = defineProps<IAtlasMixedResponse<IAtlasDtoProducto>>();
+const props = defineProps<IAtlasMixedResponse<IDtoProducto>>();
   
 const ad = mapToKeyValue(props.extras.categorias, "nombre");
 console.log("las propps", mapToKeyValue(props.extras.categorias, "nombre"));

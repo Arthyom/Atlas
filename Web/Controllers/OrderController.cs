@@ -1,5 +1,6 @@
 using Core.DTOs;
 using Core.DTOs.Api.Response;
+using Core.DTOs.Shared;
 using Core.Models.Entities;
 using Core.Services.Interfaces;
 using Core.Services.Interfaces.Base;
@@ -9,7 +10,7 @@ using Web.Controllers.Base;
 
 namespace Web.Controllers
 {
-    public class OrderController : AtlasMixedBaseController<Order, DtoOrder, DtoOrderResponse>
+    public class OrderController : AtlasMixedBaseController<Order, DtoSharedApiEnvioOrdenRequest, DtoOrderResponse>
     {
         public OrderController(IOrderService baseService, string? resourceName = null) : base(baseService, resourceName)
         {
@@ -17,7 +18,7 @@ namespace Web.Controllers
 
 
         [HttpPost("json/save", Order = -1)]
-        public override async Task<IActionResult> Save([FromBody] DtoOrder entityToCreate)
+        public override async Task<IActionResult> Save([FromBody] DtoSharedApiEnvioOrdenRequest entityToCreate)
         {
             try
             {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useAtlasComposableFormActions } from "@/Models/Composables/AtlasComposableFormActions";
-import IDtoCategoria from "@/Models/Entities/IDtoCategoria";
+import IDtoCategoria from "@/Pages/Categoria/DTOs/IDtoCategoria";
 import { AtlasEnumInputType } from "@/Models/Enums/AtlasEnumInputType";
 import { IAtlasCustomFormConfig } from "@/Models/Interfaces/IAtlasCustomFormConfig";
 import IAtlasMixedResponse from "@/Models/Interfaces/IAtlasMixedResponse";

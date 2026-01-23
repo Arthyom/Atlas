@@ -1,4 +1,4 @@
-import { IDtoExtApiCountry } from "./Interfaces/ExternalApis/CountryInfo/Country.interface";
+import { IDtoExtApiCountry } from "./DTOs/APIs/CountryInfo/Country.interface";
 
 export const AtlasDataCountries : IDtoExtApiCountry[] = [
     {

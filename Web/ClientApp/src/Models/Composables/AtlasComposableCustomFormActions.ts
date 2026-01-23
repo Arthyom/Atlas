@@ -132,7 +132,7 @@ export const useAtlasComposableCustomFormActions = ( resource: string, isAdmin =
     cancelCustomForm,
     submitCustomForm,
     submitCustomFormWithData,
-    setCustomFormValues
+    setCustomFormValues,
     
   };
 };

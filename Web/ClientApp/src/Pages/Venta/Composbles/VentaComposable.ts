@@ -1,9 +1,9 @@
+import { IDtoProducto } from '@/Pages/Producto/DTOs/IDtoProducto';
 import { computed, reactive, ref } from 'vue';
-import { IAtlasDtoProducto } from '../../../Models/Entities/IAtlasProducto';
 
-export const useVentaComposable = ( intialList: IAtlasDtoProducto[]) =>{
+export const useVentaComposable = ( intialList: IDtoProducto[]) =>{
 
-    const _productos = reactive<IAtlasDtoProducto[]>(intialList)
+    const _productos = reactive<IDtoProducto[]>(intialList)
 
     const _total = ref(0)
 
@@ -35,21 +35,21 @@ export const useVentaComposable = ( intialList: IAtlasDtoProducto[]) =>{
         return cantidad
     })
 
-    const increaseAmount = (producto: IAtlasDtoProducto) =>{
+    const increaseAmount = (producto: IDtoProducto) =>{
         producto.cantidad++;
     }
 
-    const reduceAmount = (producto: IAtlasDtoProducto) =>{
+    const reduceAmount = (producto: IDtoProducto) =>{
         producto.cantidad--;
     }
 
-    const toggleProduct = (producto: IAtlasDtoProducto) =>{
+    const toggleProduct = (producto: IDtoProducto) =>{
         producto.selected = !producto.selected
     }
 
     const productos = computed( () =>[..._productos])
 
-    const addNewProduct = (newItem: IAtlasDtoProducto) =>{
+    const addNewProduct = (newItem: IDtoProducto) =>{
         
         const product = _productos.find( x => x.id === newItem.id )
 

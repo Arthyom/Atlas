@@ -60,6 +60,10 @@ public partial class Producto : BaseEntity
     [InverseProperty("Producto")]
     public virtual ICollection<ProductoVenta> ProductoVenta { get; set; } = new List<ProductoVenta>();
 
+        
+    [InverseProperty("Producto")]
+    public virtual ICollection<ProductoOrder> ProductoOrder { get; set; } = new List<ProductoOrder>();
+
 
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 

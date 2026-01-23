@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import IAtlasProducto, {
   IAtlasDtoProducto,
-} from "@/Models/Entities/IAtlasProducto";
+} from "@/Pages/Producto/DTOs/IDtoProducto";
 import { string } from "yup";
 import { ICartDireccion, ICartMetodoPago, ICartPropietario } from "../interfaces/CartDireccion.interface";
 
