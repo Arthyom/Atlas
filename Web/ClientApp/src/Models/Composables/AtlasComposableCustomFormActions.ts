@@ -92,6 +92,19 @@ export const useAtlasComposableCustomFormActions = ( resource: string, isAdmin =
     });
   };
 
+   const submitCustomFormWithDataAndUrl = (data:any, url: string) => {
+    opts.onStart({});
+    const f = { ...data};
+
+    const form = useForm(f);
+
+    form.post(url, {
+      _method: "post",
+      forceFormData: true,
+      opts,
+    });
+  };
+
   const submitCustomAjaxmWithData = async (data:any) => {
 
     try {
@@ -131,6 +144,7 @@ export const useAtlasComposableCustomFormActions = ( resource: string, isAdmin =
     submitCustomAjaxmWithData,
     cancelCustomForm,
     submitCustomForm,
+    submitCustomFormWithDataAndUrl,
     submitCustomFormWithData,
     setCustomFormValues,
     

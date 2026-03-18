@@ -10,14 +10,14 @@ import { StoreLinkItems } from "@/Pages/admin/data/links.data";
   <div class="drawer drawer-end">
     <input id="my-drawer-4" type="checkbox" class="drawer-toggle" />
 
-    <div class="drawer-content">
+    <div class="drawer-content ">
         
       <div class="h-screen flex flex-col bg-red-s400">
         <div class="sticky top-0 z-20 w-full">
           <StoreFrontNavBarComponent></StoreFrontNavBarComponent>
         </div>
 
-        <div class="flex-1 m-5">
+        <div class="flex-1  bg-base-300">
           <slot></slot>
         </div>
         <StoreFrontFooterComponent></StoreFrontFooterComponent>

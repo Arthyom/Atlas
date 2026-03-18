@@ -5,12 +5,13 @@ using Core.Models.Entities;
 using Core.Services.Interfaces;
 using Core.Services.Interfaces.Base;
 using InertiaCore;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Web.Controllers.Base;
 
 namespace Web.Controllers
 {
-    public class OrderController : AtlasMixedBaseController<Order, DtoSharedApiEnvioOrdenRequest, DtoOrderResponse>
+    public class OrderController : AtlasMixedBaseAnonimousController<Order, DtoSharedApiEnvioOrdenRequest, DtoOrderResponse>
     {
         public OrderController(IOrderService baseService, string? resourceName = null) : base(baseService, resourceName)
         {

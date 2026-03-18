@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 import { Link, router } from '@inertiajs/vue3';
-import { useCartStore } from '../store/cart.store';
 import CartProductViewer from './CartProductViewer.vue';
 import { useAtlasCartStore } from '@/Pages/Shared/store/AtlasCartStore';
 

@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import { useAtlasComposableUserStore } from "@/Models/Composables/AtlasComposableUserStore";
 import { Link } from "@inertiajs/vue3";
+
+const {userInfo} = useAtlasComposableUserStore()
 </script>
 
 <template>
@@ -36,11 +39,12 @@ import { Link } from "@inertiajs/vue3";
     <div class="navbar-end">
       <div class="flex flex-row gap-5 mr-5"></div>
 
-      <div class="flex">
-        <div class="flex items-center mr-1   font-extrabold text-xl">Admin</div>
+      <div class="flex flex-row">
+          <h1 class="flex items-center font-extrabold text-xl">{{ userInfo?.nombre }} </h1> | <h1 class="text-xl"> {{ userInfo?.rol }}</h1>
+      </div>
+
 
        
-      </div>
     </div>
   </div>
 </template>

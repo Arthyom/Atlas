@@ -18,6 +18,10 @@ public partial class Rol : BaseEntity
     [Unicode(false)]
     public string Code { get; set; } = null!;
 
+    [StringLength(100)]
+    [Unicode(false)]
+    public string Name { get; set; } = null!;
+
     [InverseProperty("Rol")]
     public virtual ICollection<RolPermiso> RolPermisos { get; set; } = new List<RolPermiso>();
 

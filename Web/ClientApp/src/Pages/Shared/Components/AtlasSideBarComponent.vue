@@ -16,6 +16,9 @@ defineProps<IAtlasCustomLinks>();
       class="drawer-overlay"
     ></label>
     <ul class="menu bg-base-200 text-base-content min-h-full w-40 p-4">
+      <!-- <Link href="/auth/signout" class="btn btn-error w-full my-2">
+        Salir
+      </Link> -->
       <template v-if="linkItems != null">
         <template v-for="link in linkItems">
           <Link :href="link.path" class="btn btn-primary w-full my-2">

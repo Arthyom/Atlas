@@ -9,6 +9,7 @@ using Core.Services.Interfaces.Base;
 using InertiaCore.Extensions;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using PdfSharp.Fonts;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +26,7 @@ builder.Services.AddViteHelper(options =>
     options.HotFile = "hot";
     options.ManifestFilename = "manifest.json";
 });
+
 
 
 // builder.Services.AddCors( opts =>

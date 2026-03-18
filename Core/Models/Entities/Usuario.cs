@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Core.Models.Entities;
 using Core.Models.Entities.Base;
 using Microsoft.EntityFrameworkCore;
 
@@ -31,4 +32,9 @@ public partial class Usuario : BaseEntity
     [ForeignKey("RolId")]
     [InverseProperty("Usuarios")]
     public virtual Rol Rol { get; set; } = null!;
+
+
+    public int? OrigenId { get; set; }
+    [ForeignKey("OrigenId")]
+    public virtual Origen? Origen { get; set; }
 }

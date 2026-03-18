@@ -6,7 +6,7 @@ import { ref } from "vue";
 defineProps<IDtoProducto>();
 const { getFileFrom } = useAtlasComposableUseFilesFetcher()
 const mode = ref('admin')
-const resource = ref('producto')
+const resource = ref('productoAnonimous')
 </script>
 
 <template>

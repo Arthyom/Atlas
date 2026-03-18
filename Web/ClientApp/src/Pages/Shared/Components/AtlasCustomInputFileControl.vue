@@ -85,7 +85,7 @@ const emitImages = (event : Event) =>{
 
         <div :id="`slide${i}`" class="carousel-item relative w-full">
         <img
-          :src="getFileFrom('producto','admin', imageUrl )"
+          :src="getFileFrom('productoAnonimous','admin', imageUrl )"
           class="w-full"
         />
 

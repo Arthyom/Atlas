@@ -7,7 +7,7 @@ import { useAtlasComposableUseFilesFetcher } from '@/Models/Composables/AtlasCom
 const producto = defineProps<IDtoProducto>()
 
 const {increase, decrease, exclude,restore} = useAtlasCartStore()
-const {getFirstFileForProducto} = useAtlasComposableUseFilesFetcher()
+const {getFirstFileForProductoAnonimous} = useAtlasComposableUseFilesFetcher()
 </script>
 
 <template>
@@ -25,7 +25,7 @@ const {getFirstFileForProducto} = useAtlasComposableUseFilesFetcher()
         <div class="avatar-group w-full">
           <div class="avatar">
             <div class="w-15 md:w-30 lg:w-42">
-              <img :src="getFirstFileForProducto(producto)" class="" />
+              <img :src="getFirstFileForProductoAnonimous(producto)" class="" />
             </div>
           </div>
         </div>

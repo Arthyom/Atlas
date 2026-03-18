@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Atlas.Core.Entities;
 using Core.DTOs;
+using Core.DTOs.Usuario;
 using Core.Services.Interfaces;
 using Core.Services.Interfaces.Base;
 using Microsoft.AspNetCore.Mvc;
@@ -13,7 +14,7 @@ using Web.Controllers.Base;
 
 namespace Web.Controllers.Admin
 {
-    public class UsuarioController : AtlasMixedFileBaseController<Usuario, DtoUsuario, DtoUsuario>
+    public class UsuarioController : AtlasMixedFileBaseController<Usuario, DtoUsuarioRequest, DtoUsuarioResponse>
     {
         public UsuarioController(IUsuarioMixedService baseService, string? resourceName = null) : base(baseService, resourceName)
         {

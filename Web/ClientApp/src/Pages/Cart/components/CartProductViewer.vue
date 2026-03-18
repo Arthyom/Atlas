@@ -5,7 +5,7 @@ import { useAtlasCartStore } from "@/Pages/Shared/store/AtlasCartStore";
 
 const props = defineProps<IDtoProducto>();
 
-const { getFirstFileForProducto } = useAtlasComposableUseFilesFetcher();
+const { getFirstFileForProductoAnonimous } = useAtlasComposableUseFilesFetcher();
 
 const { increase, decrease, restore, exclude } = useAtlasCartStore();
 </script>
@@ -28,7 +28,7 @@ const { increase, decrease, restore, exclude } = useAtlasCartStore();
         <div class="flex w-full justify-center">
           <div class="avatar flex justify-center">
             <div class="w-18 rounded-full">
-              <img :src="getFirstFileForProducto(props)" />
+              <img :src="getFirstFileForProductoAnonimous(props)" />
             </div>
           </div>
         </div>

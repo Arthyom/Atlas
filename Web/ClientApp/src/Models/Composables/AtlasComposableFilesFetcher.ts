@@ -13,6 +13,12 @@ export const useAtlasComposableUseFilesFetcher = () =>{
         return `/${mode}/producto/file/${productoLike.imagenes[0]}`
     }
 
+         const getFirstFileForProductoAnonimous = (  productoLike: IDtoProducto, mode = 'store',) =>{
+        if(!productoLike.imagenes) return noFile()
+        if(productoLike.imagenes.length == 0) return noFile()
+        return `/${mode}/productoAnonimous/file/${productoLike.imagenes[0]}`
+    }
+
     const getLastImage = (producto: IDtoProducto) =>{
         const {imagenes} = producto;
 
@@ -48,6 +54,7 @@ export const useAtlasComposableUseFilesFetcher = () =>{
         getLastImage,
         getFileFrom,
         noFile,
+        getFirstFileForProductoAnonimous,
         getFirstFileForProducto
     }
 }
