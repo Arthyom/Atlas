@@ -60,7 +60,7 @@ namespace Web.Controllers.Base
             }
         }
 
-
+        [HttpGet("details/{id}")]
         public async Task<IActionResult> Details(int id)
         {
             try

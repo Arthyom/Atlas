@@ -118,7 +118,10 @@ where TBaseDtoResponse: AtlasBaseDto
     {
         var respo = new AtlasMixedResponse<TBaseDtoResponse>();
 
-        var item = await repo.DbSet.FirstOrDefaultAsync( x => x.Id == id ) ?? throw new Exception();
+        var item = await repo
+        .DbSet
+        .ProjectTo<TBaseDtoResponse>( _Mapper.ConfigurationProvider )
+        .FirstOrDefaultAsync( x => x.Id == id ) ?? throw new Exception();
 
         var itemMapped = _Mapper.Map<TBaseDtoResponse>(item);
 

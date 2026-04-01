@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import "./app.css";
 
 import { register } from "swiper/element/bundle";
+import i18nLocal from "./i18n/i18nInstance/i18n";
 
 register();
 
@@ -30,6 +31,7 @@ await createInertiaApp({
     ),
   setup({ el, App, props, plugin }) {
     createApp({ render: () => h(App, props) })
+      .use(i18nLocal)
       .use(pinia)
       .use(plugin)
       .component("font-awesome-icon", FontAwesomeIcon)

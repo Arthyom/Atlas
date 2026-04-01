@@ -4,12 +4,17 @@ import  { IDtoProducto } from "@/Pages/Producto/DTOs/IDtoProducto";
 import IAtlasMixedResponse from "@/Models/Interfaces/IAtlasMixedResponse";
 import { useAtlasCartStore } from "@/Pages/Shared/store/AtlasCartStore";
 import { ref } from "vue";
+import { Link, router } from "@inertiajs/vue3";
+import { useAtlasComposableAjaxActions } from "@/Models/Composables/AtlasComposableAjaxActions";
+import { useAtlasComposableRouterHtmlActions } from "@/Models/Composables/AtlasComposableRouterActions";
 
 const props = defineProps<IDtoProducto>();
 
 const {noFile, getFirstFileForProducto, getFileFrom, getImageAt, getLastImage} = useAtlasComposableUseFilesFetcher()
 const { length, addProduct } = useAtlasCartStore()
+const {getHtml} = useAtlasComposableRouterHtmlActions()
 const isVisible = ref(false)
+
 </script>
 
 <template>
@@ -61,9 +66,9 @@ const isVisible = ref(false)
            ">
            <div class="  w-full">
             <div class="flex justify-center gap-1  bg-black p-1 mx-5 rounded-md">
-              <button class="btn btn-sm btn-black btn-circle "> 
-                <font-awesome-icon icon="fas fa-eye"></font-awesome-icon>
-              </button>
+              <button @click="getHtml(`/store/shop/details/${props.id}`)" class="btn btn-sm btn-black btn-circle" >
+                  <font-awesome-icon icon="fas fa-eye"></font-awesome-icon>
+                </button>
               <button class="btn btn-sm btn-circle "> 
                 <font-awesome-icon icon="fas fa-dollar"></font-awesome-icon>
               </button>

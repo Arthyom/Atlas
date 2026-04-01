@@ -3,12 +3,14 @@ import StoreFrontFooterComponent from "./components/StoreFrontFooterComponent.vu
 import StoreFrontNavBarComponent from "./components/StoreFrontNavBarComponent.vue";
 import StoreFrontSideBarComponent from "../../Shared/Components/AtlasSideBarComponent.vue";
 import { StoreLinkItems } from "@/Pages/admin/data/links.data";
+import AtlasInfiniteLoader from "@/Pages/Shared/Components/AtlasInfiniteLoader.vue";
 
 </script>
-
+ 
 <template>
   <div class="drawer drawer-end">
     <input id="my-drawer-4" type="checkbox" class="drawer-toggle" />
+    <AtlasInfiniteLoader></AtlasInfiniteLoader>
 
     <div class="drawer-content ">
         
