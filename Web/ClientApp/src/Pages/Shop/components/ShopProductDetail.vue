@@ -89,7 +89,7 @@ const setSelectedImage = (event:any, image: string) => {
               <font-awesome-icon icon="fas fa-dollar"></font-awesome-icon>
             </button>
             <button class="btn btn-circle" @click="addProduct(props.producto)">
-              <font-awesome-icon icon="fas fa-car"></font-awesome-icon>
+              <font-awesome-icon icon="fas fa-cart-arrow-down"></font-awesome-icon>
             </button>
           </div>
         </div>

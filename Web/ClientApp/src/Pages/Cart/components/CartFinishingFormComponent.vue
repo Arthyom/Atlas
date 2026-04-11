@@ -157,15 +157,15 @@ const hideString = (source?:string, toShowLast:number = 4, replaceChar: string =
                 <tr v-for="prop in props.products">
                   <td>{{ prop.nombre }}</td>
                   <td>{{ prop.cantidad }}</td>
-                  <td>{{ prop.precioMayoreo }}</td>
-                  <td>{{ prop.precioMayoreo * prop.cantidad }}</td>
+                  <td>${{ prop.precioMayoreo }}</td>
+                  <td>${{ prop.precioMayoreo * prop.cantidad }}</td>
                 </tr>
                 
                 <tr>
                   <td></td>
                   <td></td>
                   <td><b>SubTotal</b></td>
-                  <td><b>{{ total }}</b></td>
+                  <td><b>${{ total }}</b></td>
                 </tr>
               </tbody>
 

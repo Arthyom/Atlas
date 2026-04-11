@@ -42,7 +42,7 @@ const goBack = () =>{
       <div class="flex flex-col text-center py-3">
         <div class="font-light text-2xl">Productos: {{ totalProductos }}</div>
         <div class="font-light text-8xl">
-          {{ totalPago }}
+          ${{ totalPago }}
         </div>
       </div>
       

@@ -81,7 +81,7 @@ const isVisible = ref(false)
                 <font-awesome-icon icon="fas fa-dollar"></font-awesome-icon>
               </button>
               <button class="btn btn-circle " @click="addProduct(props)">
-                <font-awesome-icon icon="fas fa-car"></font-awesome-icon>
+                <font-awesome-icon icon="fas fa-cart-arrow-down"></font-awesome-icon>
               </button>
             </div>
           </div>
@@ -100,7 +100,7 @@ const isVisible = ref(false)
     <div class="card-body p-2 bg-white">
         <div class="flex flex-col text-center">
           <span class=" text-2xl font-extralight">{{ props.nombre }}</span> 
-          <span class="text-2xl font-bold">{{ props.precioUnitario }}</span>
+          <span class="text-2xl font-bold">${{ props.precioUnitario }}</span>
         </div>
       <!-- <button class="card-title text-primary hover:underline color-red-500">
         <Link href="/store/product?id=12"> Card Title </Link>

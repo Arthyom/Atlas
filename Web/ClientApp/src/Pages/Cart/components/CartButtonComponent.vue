@@ -70,7 +70,7 @@ const goToCart =() =>{
           <div class="card-title">
             <div class="flex w-full ">
                     
-                        <span class="text-info font-bold text-center text-2xl flex-1 self-center">{{ totalPago }}</span>
+                        <span class="text-info font-bold text-center text-2xl flex-1 self-center">${{ totalPago }}</span>
                         <button @click="goToCart" class="btn btn-sm btn-primary self-center">
                           Pagar
                         </button>
