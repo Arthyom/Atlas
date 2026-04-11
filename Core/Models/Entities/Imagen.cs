@@ -17,6 +17,8 @@ public partial class Imagen : BaseEntity
     // [MaxLength(1)]
     public byte[] Info { get; set; } = null!;
 
+    public string? resourceName { get; set; }
+
     [InverseProperty("Imagen")]
     public virtual ICollection<ImagenProducto> ImagenProductos { get; set; } = new List<ImagenProducto>();
 }

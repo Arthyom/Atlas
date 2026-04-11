@@ -1,8 +1,7 @@
-import { IDtoModelo } from "@/Models/DTOs/IDtoModelo";
+import { IBaseDto } from "./Base/IBaseDto";
 
-export  interface IDtoProducto{
-    
-        id: number;
+export interface IDtoModelo extends IBaseDto{
+
         nombre: string;
         descripcion: string;
         precioUnitario: number;
@@ -23,16 +22,5 @@ export  interface IDtoProducto{
 
         imagenes?: string[];
 
-        modelos?: IDtoModelo[];
-
         cantidad: number;
 }
-
-
-
-
-
-
-
-
-
