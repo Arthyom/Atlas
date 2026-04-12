@@ -18,6 +18,12 @@ public partial class AtlasDbContext : DbContext
     }
     public virtual DbSet<Guide> Guide { get; set; }
 
+    public virtual DbSet<Modelo> Modelo { get; set; }
+
+    public virtual DbSet<ImagenModelo> ImagenModelo { get; set; }
+
+
+
     public virtual DbSet<ProductoOrder> ProductoOrder { get; set; }
 
     public virtual DbSet<Paquete> Paquete { get; set; }

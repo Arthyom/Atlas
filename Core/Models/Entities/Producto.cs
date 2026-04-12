@@ -67,6 +67,9 @@ public partial class Producto : BaseEntity
 
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 
+    public virtual ICollection<Modelo> Modelos { get; set; } = new List<Modelo>();
+
+
 
     // [ForeignKey("ProductoId")]
     // [InverseProperty("ImagenProductos")]

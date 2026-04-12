@@ -39,6 +39,7 @@
   <Folder Include="DTOs/Customer/" />
   <Folder Include="DTOs/Direccion/Destino/" />
   <Folder Include="DTOs/Direccion/Origen/" />
+  <Folder Include="DTOs/Modelo/" />
   <Folder Include="DTOs/Paquete/" />
   <Folder Include="DTOs/Shared/" />
   <Folder Include="Resolvers/" />

@@ -21,6 +21,14 @@ namespace Web.Controllers.Base
         {
             try
             {
+                if(string.IsNullOrEmpty(_resourceName))
+                {
+                    _resourceName = typeof(TBaseEntity).Name;
+                }
+                else
+                {
+                    _resourceName = _resourceName.Replace("Anonimous", "");
+                }
                 var list = await _baseService.GetImages(identifier, _resourceName);
                 return File(list.Info, "image/jpeg");
             }

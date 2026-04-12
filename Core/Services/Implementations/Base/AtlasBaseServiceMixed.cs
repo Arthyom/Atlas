@@ -50,7 +50,7 @@ where TBaseDtoResponse: AtlasBaseDto
     {
         var imageRepo = _UoW.GetRepo<Imagen>();
 
-        return await imageRepo.DbSet.Where(x => x.Identificador == identifier).FirstOrDefaultAsync() ?? throw new Exception("not found");
+        return await imageRepo.DbSet.Where(x => x.Identificador == identifier && x.resourceName == resourceName).FirstOrDefaultAsync() ?? throw new Exception("not found");
     }
 
 
