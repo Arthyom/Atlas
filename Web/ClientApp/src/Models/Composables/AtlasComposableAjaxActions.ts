@@ -79,6 +79,8 @@ export const useAtlasComposableAjaxActions = <TTipe>(resourcer: string, mode: st
             }, 2000);
 
             _state.value = response.data;
+
+            return response
         } catch (error) {
             opts.onError({})
         }

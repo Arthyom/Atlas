@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import AtlasInfiniteLoader from '@/Pages/Shared/Components/AtlasInfiniteLoader.vue';
 
 </script>
 
 <template>
 
+    <AtlasInfiniteLoader></AtlasInfiniteLoader>
 
     <div class="min-h-dvh flex  items-center ">
         <div class="flex flex-col w-full items-center">

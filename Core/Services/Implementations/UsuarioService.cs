@@ -84,27 +84,6 @@ namespace Core.Services.Implementations
             {
                 MainResource = mappedUser
             };
-
-
-            
-
-
-            // Set a custom cookie
-        // var cookieOptions = new CookieOptions
-        // {
-        //     Path = "/",
-        //     Expires = DateTime.UtcNow.AddDays(7),
-        //     HttpOnly = true,
-        //     Secure = true,
-        //     SameSite = SameSiteMode.Strict
-        // };
-
-        // _http.HttpContext?.Response.Cookies.Append("UserPreference", "DarkMode", cookieOptions);
-
-
-        
-
-
         
     }
 
