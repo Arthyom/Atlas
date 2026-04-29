@@ -4,6 +4,7 @@ using Core.Models.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Core.Migrations
 {
     [DbContext(typeof(AtlasDbContext))]
-    partial class AtlasDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260423053213_AddingEtiquetaEntity")]
+    partial class AddingEtiquetaEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -572,9 +575,6 @@ namespace Core.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(1000)");
 
-                    b.Property<int?>("EtiquetaId")
-                        .HasColumnType("int");
-
                     b.Property<byte>("Existencia")
                         .HasColumnType("tinyint");
 
@@ -603,8 +603,6 @@ namespace Core.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("EtiquetaId");
 
                     b.HasIndex("ModeloId");
 
@@ -697,6 +695,11 @@ namespace Core.Migrations
                         .HasMaxLength(1000)
                         .IsUnicode(false)
                         .HasColumnType("varchar(1000)");
+
+                    b.Property<string>("Etiquetas")
+                        .HasMaxLength(10000)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(max)");
 
                     b.Property<byte>("Existencia")
                         .HasColumnType("tinyint");
@@ -1095,12 +1098,8 @@ namespace Core.Migrations
 
             modelBuilder.Entity("Core.Models.Entities.Etiqueta", b =>
                 {
-                    b.HasOne("Core.Models.Entities.Etiqueta", null)
-                        .WithMany("EtiquetasRelacionadas")
-                        .HasForeignKey("EtiquetaId");
-
                     b.HasOne("Core.Models.Entities.Modelo", "Modelo")
-                        .WithMany("Etiquetas")
+                        .WithMany("Variantes")
                         .HasForeignKey("ModeloId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1248,16 +1247,11 @@ namespace Core.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Core.Models.Entities.Etiqueta", b =>
-                {
-                    b.Navigation("EtiquetasRelacionadas");
-                });
-
             modelBuilder.Entity("Core.Models.Entities.Modelo", b =>
                 {
-                    b.Navigation("Etiquetas");
-
                     b.Navigation("ImagenModelos");
+
+                    b.Navigation("Variantes");
                 });
 
             modelBuilder.Entity("Core.Models.Entities.Order", b =>

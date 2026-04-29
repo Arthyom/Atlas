@@ -43,6 +43,8 @@ public class DtoProductoResponse : AtlasBaseDto
 
     public string CategoriaColor{ get; set; } = null!;
 
+    // public string? Etiquetas{ get; set; }
+
     public int Cantidad {get;set;} 
 
 

@@ -16,6 +16,10 @@ public partial class AtlasDbContext : DbContext
         : base(options)
     {
     }
+
+    public virtual DbSet<Etiqueta> Etiqueta { get; set; }
+
+
     public virtual DbSet<Guide> Guide { get; set; }
 
     public virtual DbSet<Modelo> Modelo { get; set; }

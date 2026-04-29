@@ -4,6 +4,7 @@ using Core.Models.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Core.Migrations
 {
     [DbContext(typeof(AtlasDbContext))]
-    partial class AtlasDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260422053522_AddingEtiquetasAndIncreasingDescripcionLen")]
+    partial class AddingEtiquetasAndIncreasingDescripcionLen
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -555,62 +558,6 @@ namespace Core.Migrations
                     b.ToTable("Envio");
                 });
 
-            modelBuilder.Entity("Core.Models.Entities.Etiqueta", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Descripcion")
-                        .IsRequired()
-                        .HasMaxLength(1000)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(1000)");
-
-                    b.Property<int?>("EtiquetaId")
-                        .HasColumnType("int");
-
-                    b.Property<byte>("Existencia")
-                        .HasColumnType("tinyint");
-
-                    b.Property<byte>("ExistenciaMaxima")
-                        .HasColumnType("tinyint");
-
-                    b.Property<byte>("ExistenciaMinima")
-                        .HasColumnType("tinyint");
-
-                    b.Property<int>("ModeloId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<decimal>("PrecioMayoreo")
-                        .HasColumnType("decimal(38, 0)");
-
-                    b.Property<decimal>("PrecioUnitario")
-                        .HasColumnType("decimal(38, 0)");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EtiquetaId");
-
-                    b.HasIndex("ModeloId");
-
-                    b.ToTable("Etiqueta");
-                });
-
             modelBuilder.Entity("Core.Models.Entities.Guide", b =>
                 {
                     b.Property<int>("Id")
@@ -697,6 +644,11 @@ namespace Core.Migrations
                         .HasMaxLength(1000)
                         .IsUnicode(false)
                         .HasColumnType("varchar(1000)");
+
+                    b.Property<string>("Etiquetas")
+                        .HasMaxLength(10000)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(max)");
 
                     b.Property<byte>("Existencia")
                         .HasColumnType("tinyint");
@@ -1093,21 +1045,6 @@ namespace Core.Migrations
                     b.Navigation("Paquete");
                 });
 
-            modelBuilder.Entity("Core.Models.Entities.Etiqueta", b =>
-                {
-                    b.HasOne("Core.Models.Entities.Etiqueta", null)
-                        .WithMany("EtiquetasRelacionadas")
-                        .HasForeignKey("EtiquetaId");
-
-                    b.HasOne("Core.Models.Entities.Modelo", "Modelo")
-                        .WithMany("Etiquetas")
-                        .HasForeignKey("ModeloId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Modelo");
-                });
-
             modelBuilder.Entity("Core.Models.Entities.Guide", b =>
                 {
                     b.HasOne("Core.Models.Entities.Order", "Order")
@@ -1248,15 +1185,8 @@ namespace Core.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Core.Models.Entities.Etiqueta", b =>
-                {
-                    b.Navigation("EtiquetasRelacionadas");
-                });
-
             modelBuilder.Entity("Core.Models.Entities.Modelo", b =>
                 {
-                    b.Navigation("Etiquetas");
-
                     b.Navigation("ImagenModelos");
                 });
 

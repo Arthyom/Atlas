@@ -1,4 +1,5 @@
 import { IBaseDto } from "./Base/IBaseDto";
+import { IDtoEtiqueta } from "./IDtoEtiqueta";
 
 export interface IDtoModelo extends IBaseDto{
 
@@ -23,4 +24,6 @@ export interface IDtoModelo extends IBaseDto{
         imagenes?: string[];
 
         cantidad: number;
+
+        etiquetas?: IDtoEtiqueta[];
 }

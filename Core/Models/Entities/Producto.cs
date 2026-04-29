@@ -15,8 +15,12 @@ public partial class Producto : BaseEntity
     [StringLength(100)]
     [Unicode(false)]
     public string Nombre { get; set; } = null!;
+    
+    [StringLength(10000)]
+    [Unicode(false)]
+    public string? Etiquetas { get; set; }
 
-    [StringLength(100)]
+    [StringLength(1000)]
     [Unicode(false)]
     public string Descripcion { get; set; } = null!;
 

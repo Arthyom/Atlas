@@ -1,5 +1,6 @@
 using System;
 using Core.DTOs.Base;
+using Core.DTOs.Etiqueta;
 
 namespace Core.DTOs.Modelo;
 
@@ -30,7 +31,11 @@ public class DtoModeloResponse : AtlasBaseDto
 
     public byte ExistenciaMaxima { get; set; }
 
+    // public string? Etiquetas{ get; set; }
+
 
     public IEnumerable<string>? imagenes { get; set; }
+
+    public IEnumerable<DtoEtiquetaResponse>? Etiquetas {get;set;}
 
 }

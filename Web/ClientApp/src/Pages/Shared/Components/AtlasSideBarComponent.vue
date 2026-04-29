@@ -21,9 +21,16 @@ defineProps<IAtlasCustomLinks>();
       </Link> -->
       <template v-if="linkItems != null">
         <template v-for="link in linkItems">
-          <Link :href="link.path" class="btn btn-primary w-full my-2">
-            {{ link.label }}
-          </Link>
+          <template v-if="link.customFun">
+            <Link :href="link.path" class="btn btn-primary w-full my-2" @click="link.customFun()">
+              {{ link.label }}
+            </Link>
+          </template>
+          <template v-else>
+             <Link :href="link.path" class="btn btn-primary w-full my-2" >
+              {{ link.label }}
+            </Link>
+          </template>
         </template>
       </template>
     </ul>

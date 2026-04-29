@@ -14,7 +14,12 @@ public class Modelo : BaseEntity{
     [Unicode(false)]
     public string Nombre { get; set; } = null!;
 
-    [StringLength(100)]
+        
+    // [StringLength(10000)]
+    // [Unicode(false)]
+    // public string? Etiquetas { get; set; }
+
+    [StringLength(1000)]
     [Unicode(false)]
     public string Descripcion { get; set; } = null!;
 
@@ -55,4 +60,5 @@ public class Modelo : BaseEntity{
     public virtual ICollection<ImagenModelo> ImagenModelos { get; set; } = new List<ImagenModelo>();
     
 
+    public virtual ICollection<Etiqueta> Etiquetas { get; set; } = new List<Etiqueta>();
 }
