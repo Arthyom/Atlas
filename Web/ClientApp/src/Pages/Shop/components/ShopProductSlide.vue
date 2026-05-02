@@ -20,7 +20,7 @@ const isVisible = ref(false)
 <template>
 
   <div 
-  class="card  w-full shadow-sm flex justify-center  bg-white"
+  class="card w-full shadow-md flex justify-center bg-white my-2"
     
   @mouseenter="isVisible = true"
   @mouseleave="isVisible = false"
@@ -28,19 +28,19 @@ const isVisible = ref(false)
   >
  
 
-    <figure class="0">
-      <div v-if="props.imagenes">
+        <figure class="0">
+            <div v-if="props.imagenes">
         <img
              :src="getFileFrom('productoAnonimous','store', props.imagenes[0])"
              class="min-h-40 max-h-40   object-fill w-full "
            />
-          </div>
-          <div v-else>
+            </div>
+            <div v-else>
             <img
             :src="noFile()"
             class="min-h-30 max-h-30 w-full"
             />
-          </div>
+            </div>
         </figure>
         <div class=" flex justify-center ">
           <img
@@ -50,14 +50,14 @@ const isVisible = ref(false)
         </div>
 
 
-    <transition
-      enter-active-class="transition-opacity duration-300 ease-out"
-      leave-active-class="transition-opacity duration-300 ease-in"
-      enter-from-class="opacity-0"
-      enter-to-class="opacity-100"
-      leave-from-class="opacity-100"
-      leave-to-class="opacity-0"
-    >
+        <transition
+            enter-active-class="transition-opacity duration-300 ease-out"
+            leave-active-class="transition-opacity duration-300 ease-in"
+            enter-from-class="opacity-0"
+            enter-to-class="opacity-100"
+            leave-from-class="opacity-100"
+            leave-to-class="opacity-0"
+        >
         <div v-show="isVisible"
           class="
           w-full
@@ -67,27 +67,27 @@ const isVisible = ref(false)
            <div class="  w-full">
             <div class="flex justify-center gap-1  bg-black p-1 mx-5 rounded-md">
               <button @click="getHtml(`/store/shop/details/${props.id}`)" class="btn btn-sm btn-black btn-circle" >
-                  <font-awesome-icon icon="fas fa-eye"></font-awesome-icon>
-                </button>
+                            <font-awesome-icon icon="fas fa-eye"></font-awesome-icon>
+                        </button>
               <button class="btn btn-sm btn-circle "> 
-                <font-awesome-icon icon="fas fa-dollar"></font-awesome-icon>
-              </button>
+                            <font-awesome-icon icon="fas fa-dollar"></font-awesome-icon>
+                        </button>
               <button class="btn btn-sm btn-circle " @click="addProduct(props)">
-                <font-awesome-icon icon="fas fa-cart-arrow-down"></font-awesome-icon>
-              </button>
-            </div>
-          </div>
+                            <font-awesome-icon icon="fas fa-cart-arrow-down"></font-awesome-icon>
+                        </button>
+                    </div>
+                </div>
             
-        </div>
+            </div>
         </transition>
 
     
 
-    <div class="card-body px-2 py-0 pb-2 bg-white">
-        <div class="flex flex-col text-center">
-          <span class=" text-lg font-extralight">{{ props.nombre }}</span> 
-          <span class="text-md font-bold">${{ props.precioUnitario }}</span>
+        <div class="card-body px-2 py-0 pb-2 bg-white">
+            <div class="flex flex-col text-center">
+                <span class="text-base font-medium">{{ props.nombre }}</span>
+                <span class="text-xl font-bold text-gray-600">${{ props.precioUnitario }}</span>
+            </div>
         </div>
     </div>
-  </div>
 </template>

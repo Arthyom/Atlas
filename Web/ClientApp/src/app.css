@@ -1,13 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Roboto&display=swap');
 @import "tailwindcss";
 
 
-@theme{
+@theme {
   --breakpoint-sm: 420px;
-
+  --font-primary: "Audiowide", system-ui, sans-serif;
+  --font-secondary: "Roboto", ui-sans-serif, sans-serif;
 }
 
+@layer base {
+  h1, h2, h3 {
+    font-family: var(--font-primary);
+  }
 
+  h4, h5, h6, body, p, li, span, input, button {
+    font-family: var(--font-secondary);
+  }
+}
 
 @plugin "daisyui" {
-    themes: light --default;
-  }
+  themes: light --default;
+}

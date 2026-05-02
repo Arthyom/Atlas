@@ -15,13 +15,13 @@ const isVisible = ref(false)
 <template>
 
   <div 
-  class="card bg-white w-full shadow-sm flex justify-center  mb-8"
+  class="card bg-white w-full shadow-lg flex justify-center mb-8"
     
   @mouseenter="isVisible = true"
   @mouseleave="isVisible = false"
 
   >
-    <!-- <figure>
+        <!-- <figure>
       <div class="carousel w-full">
 
         <div :id="imagen" class="carousel-item relative w-full" v-for="(imagen,i) in props.imagenes" :key="imagen">
@@ -43,29 +43,29 @@ const isVisible = ref(false)
     </figure> -->
 
     <figure >
-      <template v-if="props.imagenes">
+            <template v-if="props.imagenes">
         <img
              :src="getFileFrom('productoAnonimous','store', props.imagenes[0])"
              class="min-h-60 max-h-60 w-full object-fill "
            />
-      </template>
-      <template v-else>
+            </template>
+            <template v-else>
         <img
              :src="noFile()"
              class="min-h-60 max-h-60 w-full"
            />
-      </template>
-    </figure>
+            </template>
+        </figure>
 
 
-    <transition
-      enter-active-class="transition-opacity duration-300 ease-out"
-      leave-active-class="transition-opacity duration-300 ease-in"
-      enter-from-class="opacity-0"
-      enter-to-class="opacity-100"
-      leave-from-class="opacity-100"
-      leave-to-class="opacity-0"
-    >
+        <transition
+            enter-active-class="transition-opacity duration-300 ease-out"
+            leave-active-class="transition-opacity duration-300 ease-in"
+            enter-from-class="opacity-0"
+            enter-to-class="opacity-100"
+            leave-from-class="opacity-100"
+            leave-to-class="opacity-0"
+        >
         <div v-show="isVisible"
           class="
           w-full
@@ -73,20 +73,20 @@ const isVisible = ref(false)
           bottom-18
            ">
            <div class="  w-full">
-            <div class="flex justify-center gap-2 p-2 bg-base-300 mx-18 rounded-lg">
+                    <div class="flex justify-center gap-2 p-2 bg-base-300 mx-18 rounded-lg">
               <button class="btn btn-circle "> 
-                <font-awesome-icon icon="fas fa-eye"></font-awesome-icon>
-              </button>
+                            <font-awesome-icon icon="fas fa-eye"></font-awesome-icon>
+                        </button>
               <button class="btn btn-circle "> 
-                <font-awesome-icon icon="fas fa-dollar"></font-awesome-icon>
-              </button>
+                            <font-awesome-icon icon="fas fa-dollar"></font-awesome-icon>
+                        </button>
               <button class="btn btn-circle " @click="addProduct(props)">
-                <font-awesome-icon icon="fas fa-cart-arrow-down"></font-awesome-icon>
-              </button>
-            </div>
-          </div>
+                            <font-awesome-icon icon="fas fa-cart-arrow-down"></font-awesome-icon>
+                        </button>
+                    </div>
+                </div>
             
-        </div>
+            </div>
         </transition>
 
     <div class=" flex justify-center ">
@@ -94,15 +94,15 @@ const isVisible = ref(false)
              src="/logo.png"
              class="min-h-20 max-h-20 "
            />
-    </div>
+        </div>
     
 
-    <div class="card-body p-2 bg-white">
-        <div class="flex flex-col text-center">
-          <span class=" text-2xl font-extralight">{{ props.nombre }}</span> 
-          <span class="text-2xl font-bold">${{ props.precioUnitario }}</span>
-        </div>
-      <!-- <button class="card-title text-primary hover:underline color-red-500">
+        <div class="card-body p-2 bg-white">
+            <div class="flex flex-col text-center">
+                <span class="text-base font-medium">{{ props.nombre }}</span>
+                <span class="text-xl font-bold text-gray-600">${{ props.precioUnitario }}</span>
+            </div>
+            <!-- <button class="card-title text-primary hover:underline color-red-500">
         <Link href="/store/product?id=12"> Card Title </Link>
       </button>
       <h1
@@ -117,6 +117,6 @@ const isVisible = ref(false)
       <div class="card-actions justify-end">
         <button class="btn btn-primary" @click="({})">Buy Now</button>
       </div> -->
+        </div>
     </div>
-  </div>
 </template>

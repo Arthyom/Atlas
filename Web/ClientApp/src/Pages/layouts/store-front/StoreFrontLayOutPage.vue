@@ -19,7 +19,7 @@ import AtlasInfiniteLoader from "@/Pages/Shared/Components/AtlasInfiniteLoader.v
           <StoreFrontNavBarComponent></StoreFrontNavBarComponent>
         </div>
 
-        <div class="flex-1  bg-base-300">
+        <div class="flex-1">
           <slot></slot>
         </div>
         <StoreFrontFooterComponent></StoreFrontFooterComponent>
